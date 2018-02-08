@@ -1,0 +1,194 @@
+<resources>
+    <string name="app_name">New Health</string>
+
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_settings">Settings</string>
+    <string name="atualizar_perfil">Atualizar perfil</string>
+
+    <string name="button_voltar">Voltar</string>
+    <string name="button_entrar">Entrar</string>
+    <string name="button_cadastrar">Cadastrar</string>
+    <string name="button_cancelar">Cancelar</string>
+    <string name="button_marcar_consulta">Marcar consulta</string>
+    <string name="button_meu_historico">Meu Histórico</string>
+    <string name="button_consultas_pendentes">Consultas Pendentes</string>
+    <string name="button_posto_proximo">Posto mais próximo</string>
+    <string name="button_sair">Sair</string>
+    <string name="button_cadastro">CADASTRO</string>
+    <string name="button_emergencia">Botão de Emegência</string>
+    <string name="button_posto_mais_proximo">Posto Mais Próximo</string>
+    <string name="button_meu_calendario">MEU CALENDÁRIO</string>
+    <string name="button_minhas_consultas">MINHAS CONSULTAS</string>
+    <string name="button_teste_login">Mapa</string>
+    <string name="button_cancelar_atual_med">Cancelar</string>
+    <string name="button_atualizar_perfil_med">Atualizar</string>
+    <string name="button_marcar_sint">Marcar</string>
+    <string name="button_marc_voltar_menu">Voltar</string>
+    <string name="button_confirma_consulta">Confirma</string>
+    <string name="button_cancela_consulta">Cancela</string>
+    <string name="button_atualizar_cons">Atualizar</string>
+    <string name="button_atualizar_perfil_pac">Atualizar</string>
+
+    <string name="dialog_botao_ok">OK</string>
+    <string name="dialog_titulo_erro">Erro</string>
+
+    <string name="error_field_required">Esse campo é requerido</string>
+    <string name="error_invalid_cpf">CPF inválido.</string>
+    <string name="error_invalid_crm">CRM inválido.</string>
+    <string name="error_invalid_date">Data Inválida.</string>
+    <string name="error_invalid_email">E-mail inválido</string>
+    <string name="error_invalid_name">Nome inválido.</string>
+    <string name="error_invalid_password">"Senha deve ter 6 ou mais caracteres."</string>
+    <string name="error_invalid_spec">Especialidade inválida.</string>
+    <string name="error_incorrect_password">Senha incorreta</string>
+
+    <string name="image_logo_2">New Health</string>
+    <string name="image_logopadrao">LogoPadrão</string>
+
+    <string name="label_tipo_sangue">Tipo Sanguíneo</string>
+    <string name="label_sexo">Sexo Biológico</string>
+    <string name="label_nome_do_medico">Nome do medico</string>
+    <string name="label_android_studio">Android Studio</string>
+    <string name="label_android_studio_android_com">android.studio@android.com</string>
+    <string name="label_mapa_dos_postos">Mapa dos postos</string>
+    <string name="label_consultas_pendentes">Consultas pendentes</string>
+    <string name="label_marcar_consulta">Marcar consulta</string>
+    <string name="label_nome_do_paciente">Nome do paciente</string>
+    <string name="label_meu_historico">Meu historico</string>
+    <string name="label_regiao">Região:</string>
+    <string name="label_marcar_sintomas">Marcar sintomas</string>
+    <string name="label_atualizar_perfil">Atualizar Perfil</string>
+    <string name="label_escolher_dia">Escolher dia</string>
+    <string name="label_confirmar_consulta">Confirmar consulta</string>
+    <string name="label_consulta_atual">Consulta atual</string>
+    <string name="label_consulta_escolhida">Consulta escolhida</string>
+    <string name="label_horario_trab">Horário de trabalho</string>
+    <string name="label_escolher_dia_da_consulta">Escolher dia</string>
+    <string name="label_lista_consultas_medico">Lista de consultas</string>
+    <string name="link_esqueceu_senha">Esqueceu a senha?</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_senha">Senha</string>
+    <string name="prompt_nome">Nome</string>
+    <string name="prompt_cpf">CPF</string>
+    <string name="prompt_data">dd/mm/aaaa</string>
+    <string name="prompt_crm">CRM</string>
+    <string name="prompt_especialidade">Especialidade</string>
+    <string name="prompt_nome_tela_Pac"></string>
+    <string name="prompt_nome_tela_med">Nome</string>
+    <string name="prompt_email_tela_med">Email</string>
+    <string name="prompt_senha_tela_med">Senha</string>
+    <string name="prompt_cpf_tela_med">CPF</string>
+    <string name="prompt_data_tela_med">Data nasc</string>
+    <string name="prompt_crm_tela_med">CRM</string>
+    <string name="prompt_especialidade_tela_med">Especialidade</string>
+    <string name="prompt_paciente_cadastrado_sucesso">Paciente cadastrado com sucesso</string>
+    <string name="prompt_medico_cadastrado_sucesso">Médico cadastrado com sucesso</string>
+    <string name="promt_nenhum_campo_preenchido_perfil_nao_atualizado">Nenhum campo preenchido para ser atualizado.</string>
+    <string name="prompt_dados_atualizados">Dados Atualizados</string>
+
+    <string name="switch_medico">Medico</string>
+    <string name="switch_paciente">Paciente</string>
+
+    <string name="title_tela_cadastro">Cadastro</string>
+    <string name="title_activity_menu_paciente">MenuPaciente</string>
+    <string name="title_activity_teste">TesteActivity</string>
+    <string name="title_import">Import</string>
+    <string name="title_gallery">Gallery</string>
+    <string name="title_slideshow">Slideshow</string>
+    <string name="title_tools">Tools</string>
+    <string name="title_communicate">Communicate</string>
+    <string name="title_share">Share</string>
+    <string name="title_send">Send</string>
+
+    <string name="Search">Pesquisar</string>
+    <string name="sexo_pac">Sexo</string>
+    <string name="sexo_med">Sexo</string>
+    <string name="sexo_feminino">Feminino</string>
+    <string name="sexo_masculino">Masculino</string>
+
+    <string name="texto_nome_pac_atualiza">Nome</string>
+    <string name="texto_cpf_pac">CPF</string>
+    <string name="texto_tipo_Sang_Pac">Tipo sanguineo</string>
+    <string name="texto_ap_tipo_sang_pac">Seu tipo sanguineo</string>
+    <string name="texto_data_nasc_pac">Data de nascimento</string>
+    <string name="text_tipo_sangue_med">Tipo sanguineo</string>
+    <string name="textSintomas">Sintomas</string>
+    <string name="textMarcarSint">Marque aqui seus sintomas</string>
+    <string name="text_view_dia_marc_cons">Dia marcado para consulta</string>
+    <string name="text_dia_marc_cons">Preencher aqui dia da consulta</string>
+    <string name="text_view_nome_med_cons">Nome do médico</string>
+    <string name="text_nome_med_cons">Preencher aqui o nome do médico</string>
+    <string name="text_view_espec_med_cons">Especialidade</string>
+    <string name="text_view_posto_saude">Posto de saúde</string>
+    <string name="text_posto_cons">Preencher aqui o nome do posto da consulta</string>
+    <string name="text_view_end_cons">Endereço</string>
+    <string name="text_end_posto_cons">Preencher aqui o ender do posto da cons</string>
+    <string name="text_view_nome_pac_esc">Nome do paciente escolhido</string>
+    <string name="text_view_sint_ditos_antes">Sintomas ditos pelo paciente quando marcou a consulta</string>
+    <string name="text_view_atualiza_sint">Atualizações de sintomas/Observações:</string>
+    <string name="text_view_prog_cons">Prognóstico/Tratamento/Observações</string>
+    <string name="texto_esp_med_cons">Prencher aqui a espec do med da cons</string>
+    <string name="texto_atualizar_perfil_med">Atualizar Perfil</string>
+    <string name="texto_outros_sint">Outros sintomas? Digite aqui</string>
+    <string name="texto_sub_marc">Para marcar a consulta, primeiro informe seus sintomas</string>
+    <string name="title_activity_escolher_especialidade">EscolherEspecialidade</string>
+
+    <string name="User">Usuário</string>
+
+    <string name="voltar_da_cons_atual">Voltar</string>
+    <string name="text_view_prog_cons_esc">Diagnóstico</string>
+    <string name="text_view_trat_cons_esc">Tratamento</string>
+    <string name="text_view_dia_cons_esc">Dia 01/01/2018</string>
+    <string name="nome_do_paciente">Nome do paciente</string>
+    <string name="olhos_inchados">Olhos inchados</string>
+    <string name="febre">Febre</string>
+    <string name="dor_abdominal">Dor abdominal</string>
+    <string name="bolhas">Bolhas</string>
+    <string name="coceira">Coceira</string>
+    <string name="dores_de_cabeca">Dores de cabeça</string>
+    <string name="ardencia_nos_olhos">Ardência nos olhos</string>
+    <string name="enjoo">Enjoo</string>
+
+    <string name="button_confirmar_hor_mont_med">Confirmar</string>
+    <string name="text_view_hor_montado_med">Horário</string>
+    <string name="text_view_qtd_vagas_hor_med">Qtd.Vagas</string>
+    <string name="text_view_data_hor_montado_medico">Data</string>
+    <string name="text_view_horario_montado_medico">Horário para consultas</string>
+
+    <string name="example_title">This is an awesome title</string>
+    <string name="example_subtitle">I\'m a cool subtitle, larger than the title</string>
+    <string name="text_header">Text</string>
+    <string name="flexible_title">Flexible space</string>
+    <string name="header_about">About</string>
+    <string name="header_examples">Examples</string>
+    <string name="item_flexible_space_example">Flexible space example</string>
+    <string name="item_simple_coordinator_example">Simple coordinator example</string>
+    <string name="item_googleio_example">Google IO Detail example</string>
+    <string name="item_materialup_example">Material up profile example</string>
+    <string name="title_mup_name">Saúl Molinero</string>
+    <string name="ignore">"ignorar"</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="about">This example shows different CoordinatorLayout usage examples, like the use of \'anchor\' in views,</string>
+    <string name="swype.help">The \'Swipe to dismiss\' behavior allows you to easily add the \'Swipe to dismiss\' functionality in a View inside a CoordinatorLayout</string>
+    <string name="subtitle_mup">Here I am with a subtitle</string>
+    <string name="oi">oi</string>
+    <string name="textView">Textview</string>
+    <string name="data">Data</string>
+    <string name="nome">Nome</string>
+    <string name="especialidade">Especialidade</string>
+    <string name="dias_semana">Dias da Semana</string>
+    <string name="lista_de_medicos">Lista de Medicos</string>
+    <string name="voltar">Voltar</string>
+    <string name="turnos">Turnos</string>
+    <string name="title_activity_maps">Localização de postos</string>
+
+
+</resources>

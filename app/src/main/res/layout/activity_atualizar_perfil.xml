@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:orientation="horizontal"
+    tools:context="com.maishealth.maishealth.usuario.gui.AtualizarPerfilActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/materialup.appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorButoes"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/materialup.toolbar"
+                    style="@style/ToolBarWithNavigationBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    android:text="@string/oi"
+                    app:layout_scrollFlags="scroll|enterAlways|snap"
+                    app:theme="@style/ThemeOverlay.AppCompat.Light"
+                    app:title="@string/label_atualizar_perfil"
+                    app:titleTextColor="@color/colorFundo" />
+            </android.support.design.widget.AppBarLayout>
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="124dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/user_avatar" />
+
+            <TextView
+                android:id="@+id/textoNome"
+                android:layout_width="379dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="@string/prompt_nome_tela_med"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/edtEmailMed"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:hint="@string/prompt_email_tela_med"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/edtSenhaMed"
+                android:layout_width="294dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:hint="@string/prompt_senha_tela_med"
+                android:inputType="textPassword" />
+
+            <LinearLayout
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="105dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancelarMed"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorButoes"
+                    android:onClick="retornoMenuPrincipal"
+                    android:text="@string/button_cancelar_atual_med"
+                    android:textColor="@color/colorTextoBut"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnAtualizarMedico"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorButoes"
+                    android:onClick="onClickAtualizarPerfil"
+                    android:text="@string/button_atualizar_perfil_med"
+                    android:textColor="@color/colorTextoBut"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/textView" />
+
+</LinearLayout>
+
+

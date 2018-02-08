@@ -1,0 +1,221 @@
+package com.maishealth.maishealth.usuario.gui;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
+
+import com.maishealth.maishealth.R;
+import com.maishealth.maishealth.infra.GuiUtil;
+import com.maishealth.maishealth.infra.Mask;
+import com.maishealth.maishealth.usuario.dominio.EnumEspecialidade;
+import com.maishealth.maishealth.usuario.dominio.EnumEstados;
+import com.maishealth.maishealth.usuario.dominio.EnumTipoSangue;
+import com.maishealth.maishealth.usuario.negocio.Servicos;
+import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
+
+public class Cadastrar extends AppCompatActivity {
+    private final String[] listaSexo = {"Feminino", "Masculino"};
+    private final String[] listaEstados = EnumEstados.enumEstadosLista();
+    private final String[] listaTipoSangue = EnumTipoSangue.enumTipoSangueLista();
+    private final String[] listaEspecialidades = EnumEspecialidade.enumEspecialidadeLista();
+    private EditText edtEmail, edtSenha, edtNome, edtCpf, edtNasc, edtCrm;
+    private TextView edtRegiao;
+    private Spinner spinnerSexo, spinnerTipoSangue, spinnerRegiao, spinnerEspec;
+    private Switch swUsuario;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cadastrar);
+
+        edtEmail = findViewById(R.id.edtEmail3);
+        edtSenha = findViewById(R.id.edtSenha3);
+        edtNome = findViewById(R.id.edtNome3);
+        edtCpf = findViewById(R.id.edtCpf3);
+        edtCpf.addTextChangedListener(Mask.insert("###.###.###-##", edtCpf));
+        edtNasc = findViewById(R.id.edtNasc3);
+        edtNasc.addTextChangedListener(Mask.insert("##/##/####", edtNasc));
+        spinnerEspec = findViewById(R.id.SpnEspecialidade);
+        swUsuario = findViewById(R.id.swUsuario);
+        edtCrm = findViewById(R.id.edtCRM3);
+        edtCrm.addTextChangedListener(Mask.insert("###.###.###.#", edtCrm));
+        edtRegiao = findViewById(R.id.textView7);
+
+        spinnerEspec.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, listaEspecialidades));
+        spinnerEspec.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+        // Checa se o switch usuário é medico ou paciente
+        // para setar visibilidade dos campos do cadastro do médico.
+        swUsuario.setChecked(false);
+        spinnerRegiao = findViewById(R.id.SpnRegiao3);
+        spinnerRegiao.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, listaEstados));
+        spinnerRegiao.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        swUsuario.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean bChecked) {
+                if (bChecked) {
+                    swUsuario.setText(R.string.switch_medico);
+                    edtCrm.setVisibility(View.VISIBLE);
+                    edtRegiao.setVisibility(View.VISIBLE);
+                    spinnerRegiao.setVisibility(View.VISIBLE);
+                    spinnerEspec.setVisibility(View.VISIBLE);
+
+                } else {
+                    swUsuario.setText(R.string.switch_paciente);
+                    edtCrm.setVisibility(View.INVISIBLE);
+                    edtRegiao.setVisibility(View.INVISIBLE);
+                    spinnerRegiao.setVisibility(View.INVISIBLE);
+                    spinnerEspec.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        //ArrayAdapter é usado para preparar a lista que será usada no Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, listaSexo);
+
+        spinnerSexo = findViewById(R.id.spnSexo3);
+        spinnerSexo.setAdapter(adapter);
+
+        //Metodo para quando um elemento do Spinner é selecionado()
+        spinnerSexo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, listaTipoSangue);
+        spinnerTipoSangue = findViewById(R.id.spnTipoSangue3);
+        spinnerTipoSangue.setAdapter(adapter2);
+        spinnerTipoSangue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    public void onClickCadastrar(View view){
+        String email            = edtEmail.getText().toString();
+        String senha            = edtSenha.getText().toString();
+        String nome             = edtNome.getText().toString();
+        String sexo             = (String) spinnerSexo.getSelectedItem();
+        String cpf              = edtCpf.getText().toString();
+        String dataNasc         = edtNasc.getText().toString();
+        String tipoSangue       = (String) spinnerTipoSangue.getSelectedItem();
+        String crm              = edtCrm.getText().toString();
+        String estado           = (String) spinnerRegiao.getSelectedItem();
+        String especialidade    = (String) spinnerEspec.getSelectedItem();
+
+        ValidaCadastro validaCadastro = new ValidaCadastro();
+        boolean valido = true;
+
+        if(!validaCadastro.isCrmValido(crm) && swUsuario.isChecked()){
+            edtCrm.requestFocus();
+            edtCrm.setError(getString(R.string.error_invalid_crm));
+            valido = false;
+        }
+
+        if(!validaCadastro.isDataNascimento(dataNasc)){
+            edtNasc.requestFocus();
+            edtNasc.setError(getString(R.string.error_invalid_date));
+            valido = false;
+        }
+
+        if(!validaCadastro.isCpfValida(cpf)){
+            edtCpf.requestFocus();
+            edtCpf.setError(getString(R.string.error_invalid_cpf));
+            valido = false;
+        }
+
+        if(validaCadastro.isCampoVazio(nome)){
+            edtNome.requestFocus();
+            edtNome.setError(getString(R.string.error_invalid_name));
+            valido = false;
+        }
+
+        if(!validaCadastro.isSenhaValida(senha)){
+            edtSenha.requestFocus();
+            edtSenha.setError(getString(R.string.error_invalid_password));
+            valido = false;
+        }
+
+        if(!validaCadastro.isEmail(email)){
+            edtEmail.requestFocus();
+            edtEmail.setError(getString(R.string.error_invalid_email));
+            valido = false;
+        }
+
+        if(valido && !swUsuario.isChecked()){
+            Servicos servicos = new Servicos(getApplicationContext());
+            try{
+                servicos.cadastrarPaciente(email, senha, nome, sexo, dataNasc, cpf, tipoSangue);
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                GuiUtil.myToast(this, getString(R.string.prompt_paciente_cadastrado_sucesso));
+            } catch (Exception e) {
+                GuiUtil.myToast(this, e);
+            }
+        } else if(valido && swUsuario.isChecked()) {
+            Servicos servicos = new Servicos(getApplicationContext());
+            try{
+                servicos.cadastrarMedico(email, senha, nome, sexo, dataNasc, cpf, tipoSangue, crm, estado, especialidade);
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                GuiUtil.myToast(this, getString(R.string.prompt_medico_cadastrado_sucesso));
+            } catch (Exception e) {
+                GuiUtil.myToast(this, e);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.mudarTela(LoginActivity.class);
+    }
+
+    public void voltarTelaLogin(View view){
+        this.mudarTela(LoginActivity.class);
+    }
+
+    public void mudarTela(Class tela){
+        Intent intent = new Intent(this, tela);
+        startActivity(intent);
+        finish();
+    }
+}

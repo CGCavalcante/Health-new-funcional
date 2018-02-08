@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#111223</color>
+    <color name="colorPrimaryDark">#111223</color>
+    <color name="colorAccent">#212121</color>
+    <color name="colorButoes">#000066</color>
+    <color name="colorText">#0000CD</color>
+    <color name="colorTextoBut">#ffffff</color>
+    <color name="colorFundo">#CCFFFF</color>
+    <color name="colorTextoNormal">#0d0d0d</color>
+    <color name="divider">#000</color>
+    <color name="fundoBotton">#FFCCCC</color>
+
+</resources>

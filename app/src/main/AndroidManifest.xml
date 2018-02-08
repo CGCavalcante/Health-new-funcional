@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.maishealth.maishealth">
+
+    <!-- To auto-complete the email text field in logarogin form with the user's emails -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/icon_launcher_new_logo_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/icon_launcher_new_logo_round"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".usuario.gui.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".usuario.gui.LoginActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".usuario.gui.Cadastrar" />
+        <activity android:name=".usuario.gui.MenuPaciente" />
+        <activity android:name=".usuario.gui.MeuHistoricoActivity" />
+        <activity
+            android:name=".usuario.gui.ConsultasPendentesActivity"
+            android:label="@string/label_consultas_pendentes" />
+        <activity
+            android:name=".usuario.gui.AcharPostoActivity"
+            android:label="@string/label_mapa_dos_postos" />
+        <activity android:name=".usuario.gui.MenuMedicoActivity" />
+        <activity
+            android:name=".usuario.gui.AtualizarPerfilActivity"
+            android:label="@string/label_atualizar_perfil" />
+        <activity
+            android:name=".usuario.gui.ConfirmarConsulta"
+            android:label="@string/label_confirmar_consulta" />
+        <activity
+            android:name=".usuario.gui.ConsultaAtualMedActivity"
+            android:label="@string/label_consulta_atual" />
+        <activity
+            android:name=".usuario.gui.ConsultaEscolhidaActivity"
+            android:label="@string/label_consulta_escolhida" />
+        <activity
+            android:name=".usuario.gui.EscolherDiaDaConsultaActivity"
+            android:label="@string/label_escolher_dia_da_consulta" />
+        <activity
+            android:name=".usuario.gui.ListaDeConsultasParaMedicoActivity"
+            android:label="@string/label_lista_consultas_medico" />
+        <activity android:name=".usuario.gui.HorarioMedicoAct" />
+        <activity android:name=".usuario.gui.CalendarioDialog" />
+        <activity android:name=".usuario.gui.SetarHorario" />
+        <activity android:name=".usuario.gui.ListaMedicos" />
+        <activity android:name=".usuario.gui.DetalhesMedico" />
+        <activity android:name=".usuario.gui.ListaEspecialidade" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".usuario.gui.MapsActivity"
+            android:label="@string/title_activity_maps"/>
+    </application>
+
+</manifest>
