@@ -63,9 +63,9 @@ public class ConsultaDAO {
         long idPaciente = consulta.getIdPaciente();
         values.put(colunaPaciente, idPaciente);
 
-        String colunaIdDataHorario = DataBase.ID_EST_MEDICO_CON;
-        long idDataHorario = consulta.getIdMedico();
-        values.put(colunaIdDataHorario, idDataHorario);
+        String colunaIdMedico = DataBase.ID_EST_MEDICO_CON;
+        long idMedico = consulta.getIdMedico();
+        values.put(colunaIdMedico, idMedico);
 
         String colunaData = DataBase.DATA;
         String data = consulta.getData();

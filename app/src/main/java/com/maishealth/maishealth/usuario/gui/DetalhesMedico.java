@@ -106,10 +106,10 @@ public class DetalhesMedico extends AppCompatActivity {
                     // marca consulta para o paciente, por hora o paciente pode marcar quantas consultas ele quiser
                     // por isso temos que por uma validação aqui para ver se o paciente já tem uma consulta marcada
                     // para esse medico, dia e turno.
-                    if ( servicosPaciente.marcarConsulta(idmedico,data,turno) !=0){
-                       GuiUtil.myToast(DetalhesMedico.this,"Paciente já possui consulta marcada neste horario");
-                    }else {
+                    if ( servicosPaciente.marcarConsulta(idmedico,data,turno) != 0){
                         GuiUtil.myToast(DetalhesMedico.this, "Consulta Marcada com sucesso!");
+                    }else {
+                        GuiUtil.myToast(DetalhesMedico.this,"Paciente já possui consulta marcada neste horario");
                     }
 
                 }
