@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.maishealth.maishealth.infra.DataBase;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
+import com.maishealth.maishealth.usuario.dominio.EnumStatusConsulta;
+
+import java.util.ArrayList;
 
 public class ConsultaDAO {
     private SQLiteDatabase liteDatabase;
@@ -142,17 +145,111 @@ public class ConsultaDAO {
         return consulta;
     }
 
-    public Consulta getConsulta(long idMedico, String data, String turno) {
+    public Consulta getConsulta(long idConsulta){
+        String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
+                " WHERE " + DataBase.ID_CONSULTA + " LIKE ?";
+
+        String idConsultaString   = Long.toString(idConsulta);
+        String[] argumentos  = {idConsultaString};
+
+        return this.getConsulta(query, argumentos);
+    }
+
+    public Consulta getConsultaDisponivel(long idMedico, String data, String turno) {
         String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
                 " WHERE " + DataBase.ID_EST_MEDICO_CON + " LIKE ?" +
                 " AND " + DataBase.DATA + " LIKE ?" +
-                    " AND " + DataBase.EST_TURNO + " LIKE ?";
+                " AND " + DataBase.EST_TURNO + " LIKE ?" +
+                " AND " + DataBase.STATUS_CONSULTA  + " LIKE ?";
 
         String idMedicoString = Long.toString(idMedico);
+        String status = EnumStatusConsulta.DISPONIVEL.toString();
 
-        String[] argumentos = {idMedicoString, data, turno};
+        String[] argumentos = {idMedicoString, data, turno, status};
 
         return this.getConsulta(query, argumentos);
+    }
+
+    public Consulta getConsultaDisponivelPaciente(long idMedico, String data, String turno, long idPaciente) {
+        String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
+                " WHERE " + DataBase.ID_EST_MEDICO_CON + " LIKE ?" +
+                " AND " + DataBase.ID_EST_PACIENTE_CON  + " LIKE ?" +
+                " AND " + DataBase.DATA + " LIKE ?" +
+                " AND " + DataBase.EST_TURNO + " LIKE ?" +
+                " AND " + DataBase.STATUS_CONSULTA  + " LIKE ?";
+
+        String idMedicoString = Long.toString(idMedico);
+        String status = EnumStatusConsulta.DISPONIVEL.toString();
+
+        String idPacienteString = Long.toString(idPaciente);
+
+        String[] argumentos = {idMedicoString, idPacienteString, data, turno, status};
+
+        return this.getConsulta(query, argumentos);
+    }
+
+    public ArrayList<Consulta> getConsultaEmAndamento (long idPaciente){
+        liteDatabase = dataBaseHelper.getReadableDatabase();
+        ArrayList<Consulta> listaConsultas = new ArrayList<>();
+
+        String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
+                " WHERE " + DataBase.ID_EST_PACIENTE_CON + " LIKE ?" +
+                " AND " + DataBase.STATUS_CONSULTA  + " LIKE ?";
+
+        String idPacienteString = Long.toString(idPaciente);
+        String status = EnumStatusConsulta.EMANDAMENTO.toString();
+
+        String[] argumentos = {idPacienteString, status};
+
+        Cursor cursor = liteDatabase.rawQuery(query, argumentos);
+
+        String colunaIdConsulta = DataBase.ID_CONSULTA;
+        int indexColunaIdConsulta = cursor.getColumnIndex(colunaIdConsulta);
+
+        Consulta consulta;
+
+        while (cursor.moveToNext()){
+            long idConsulta = cursor.getInt(indexColunaIdConsulta);
+            consulta = getConsulta(idConsulta);
+            listaConsultas.add(consulta);
+        }
+        cursor.close();
+
+        return listaConsultas;
+
+    }
+
+    public ArrayList<Consulta> getConsultasAtuais (long idMedico, String data){
+        liteDatabase = dataBaseHelper.getReadableDatabase();
+        ArrayList<Consulta> listaConsultas = new ArrayList<>();
+
+        String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
+                " WHERE " + DataBase.ID_EST_MEDICO_CON + " LIKE ?" +
+                " AND " + DataBase.DATA + " LIKE ?" +
+                " AND " + DataBase.STATUS_CONSULTA  + " LIKE ?" +
+                " ORDER BY " + DataBase.ID_CONSULTA + " DESC";
+
+        String idMedicoString = Long.toString(idMedico);
+        String status = EnumStatusConsulta.EMANDAMENTO.toString();
+
+        String[] argumentos = {idMedicoString, data, status};
+
+        Cursor cursor = liteDatabase.rawQuery(query, argumentos);
+
+        String colunaIdConsulta = DataBase.ID_CONSULTA;
+        int indexColunaIdMedico = cursor.getColumnIndex(colunaIdConsulta);
+
+        Consulta consulta;
+
+        while (cursor.moveToNext()){
+            long idConsulta = cursor.getInt(indexColunaIdMedico);
+            consulta = getConsulta(idConsulta);
+            listaConsultas.add(consulta);
+        }
+        cursor.close();
+
+        return listaConsultas;
+
     }
 
 }

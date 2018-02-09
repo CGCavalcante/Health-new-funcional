@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.maishealth.maishealth.R;
+import com.maishealth.maishealth.infra.FormataData;
 import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 
@@ -77,39 +78,15 @@ public class CalendarioDialog extends AppCompatActivity {
         DatePickerDialog dp = new DatePickerDialog(CalendarioDialog.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                // verifica se o tamanho do dia e do mês é 1, se for acrescenta um zero na frente.
-                // para uniformizar o tamanho da data.
-                String dMonth = Long.toString(dayOfMonth);
-                String mMonth = Long.toString(month + 1);
-                if (dMonth.length()==1){
-                    dMonth = "0" + dMonth;
-                }
-                if (mMonth.length() == 1){
-                    mMonth = "0" + mMonth;
-                }
-                // recupera a data para verificar se é uma data válida.
-                data =  dMonth + "/" + mMonth +"/"+ year;
+                //Recupera a data no formato dd/MM/YYYY
+                FormataData formataData = new FormataData();
+                data = formataData.corrigeData(year, month, dayOfMonth);
                 textData.setText(data);
+
                 // recupera o dia da semana para validar se é um dia comercial.
                 GregorianCalendar date = new GregorianCalendar(year, month, dayOfMonth-1);
                 dayOfWeek =date.get(date.DAY_OF_WEEK);
-
-                if (dayOfWeek == 1) {
-                    diaSemana = "Segunda";
-                }
-                if (dayOfWeek == 2) {
-                    diaSemana = "Terca";
-                }
-                if (dayOfWeek == 3) {
-                    diaSemana = "Quarta";
-                }
-                if (dayOfWeek == 4) {
-                    diaSemana = "Quinta";
-                }
-                if (dayOfWeek == 5){
-                        diaSemana = "Sexta";
-                }
-
+                diaSemana = formataData.getDiaSemana(dayOfWeek);
 
             }
         }, ano, mes, dia);

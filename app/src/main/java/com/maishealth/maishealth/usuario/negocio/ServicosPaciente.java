@@ -33,19 +33,21 @@ public class ServicosPaciente {
 
         return cadastrarPaciente(paciente);
     }
-/*
+
     private long marcarConsulta(Consulta consulta){ return consultaDAO.atualizarConsulta(consulta);
     }
 
-    public long marcarConsulta( String data, String turno){
+    public long marcarConsulta( Long idMedico, String data, String turno){
         long idPaciente = 0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
 
-        Consulta consulta = consultaDAO.getConsultaByData(data, turno);
-        consulta.setIdPaciente(paciente.getId());
-        consulta.setStatus(EnumStatusConsulta.MARCADA.toString());
-
-        return marcarConsulta(consulta);
+        Consulta consulta = consultaDAO.getConsultaDisponivelPaciente(idMedico, data, turno, idPaciente);
+        if (consulta == null) {
+            consulta.setIdPaciente(paciente.getId());
+            consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
+            return marcarConsulta(consulta);
+        }
+        return 0;
     }
-*/
+
 }

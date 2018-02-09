@@ -2,21 +2,45 @@ package com.maishealth.maishealth.usuario.negocio;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
+import com.maishealth.maishealth.infra.FormataData;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.EnumStatusConsulta;
 import com.maishealth.maishealth.usuario.dominio.HorarioMedico;
+import com.maishealth.maishealth.usuario.dominio.Medico;
+import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.persistencia.ConsultaDAO;
 import com.maishealth.maishealth.usuario.persistencia.HorarioMedicoDAO;
+import com.maishealth.maishealth.usuario.persistencia.MedicoDAO;
+import com.maishealth.maishealth.usuario.persistencia.PacienteDAO;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACIENTE_PREFERENCES;
+import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
 
 public class ServicosConsulta {
 
-    private ConsultaDAO consultaDAO;
     private HorarioMedicoDAO horarioMedicoDAO;
+    private PacienteDAO pacienteDAO;
+    private ConsultaDAO consultaDAO;
+    private MedicoDAO medicoDAO;
+    private SharedPreferences sharedPreferences;
+    private long idMedico;
+    private long idPaciente;
 
     public ServicosConsulta(Context context) {
         consultaDAO = new ConsultaDAO(context);
         horarioMedicoDAO = new HorarioMedicoDAO(context);
+        sharedPreferences = context.getSharedPreferences(TITLE_PREFERENCES, Context.MODE_PRIVATE);
+        pacienteDAO = new PacienteDAO(context);
+        consultaDAO = new ConsultaDAO(context);
+        medicoDAO = new MedicoDAO(context);
+
     }
 
     private void cadastrarConsulta (Consulta consulta){
@@ -33,29 +57,53 @@ public class ServicosConsulta {
     }
 
     public void atualizarConsulta (long idMedico, String data, String turno ,long idPaciente){
-        Consulta consulta = consultaDAO.getConsulta(idMedico, data, turno);
-         if (consulta != null){
-             consulta.setTurno(turno);
-             consulta.setData(data);
-             consulta.setIdMedico(idMedico);
-             consulta.setIdPaciente(idPaciente);
-             consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
-             consultaDAO.atualizarConsulta(consulta);
-         }
+        Consulta consulta = consultaDAO.getConsultaDisponivel(idMedico, data, turno);
+        if (consulta != null){
+            consulta.setTurno(turno);
+            consulta.setData(data);
+            consulta.setIdMedico(idMedico);
+            consulta.setIdPaciente(idPaciente);
+            consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
+            consultaDAO.atualizarConsulta(consulta);
+        }
 
     }
 
     public void gerarConsultas(long idMedico, String turno, String data, String diaSemana){
         HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(idMedico, diaSemana, turno);
         if (horarioMedico != null){
-           String vagasString = Long.toString(horarioMedico.getVagas()) ;
-           int vagas = Integer.getInteger(vagasString);
-           int contador = 0;
+            long vagas = horarioMedico.getVagas() ;
+            //int vagas = Integer.getInteger(vagasString);
+            int contador = 0;
             while (contador < vagas ){
                 cadastrarConsulta(idMedico,data,turno);
+                contador++;
             }
         }
-
     }
+
+    public Consulta getConsulta(long idMedico, String turno, String data){
+        return consultaDAO.getConsultaDisponivel(idMedico, data, turno);
+    }
+
+    public ArrayList<Consulta> getConsultasDoDiaMedico(){
+        String data;
+        Calendar cal = Calendar.getInstance();
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        int mes = cal.get(Calendar.MONTH);
+        int ano = cal.get(Calendar.YEAR);
+        FormataData formataData = new FormataData();
+        data = formataData.corrigeData(ano, mes, dia);
+
+        Medico medico = medicoDAO.getMedico(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idMedico));
+        return consultaDAO.getConsultasAtuais(idMedico,data);
+    }
+    public ArrayList<Consulta> getConsultasPendetes(){
+
+        long idPaciente = 0;
+        Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
+        return  consultaDAO.getConsultaEmAndamento(idPaciente);
+    }
+
 
 }

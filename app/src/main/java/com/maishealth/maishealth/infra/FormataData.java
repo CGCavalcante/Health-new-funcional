@@ -3,9 +3,11 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
-    /**
+/**
      * Classe contém vários métodos que formatam datas que serão utilizadas em diferentes funcionalidades
      */
 
@@ -245,6 +247,44 @@ import java.util.Date;
                 num = "0" + num;
             }
             return num;
+        }
+
+        public String corrigeData(int year, int month, int dayOfMonth){
+            // verifica se o tamanho do dia e do mês é 1, se for acrescenta um zero na frente.
+            // para uniformizar o tamanho da data.
+            String data;
+            String dMonth = Long.toString(dayOfMonth);
+            String mMonth = Long.toString(month + 1);
+            if (dMonth.length()==1){
+                dMonth = "0" + dMonth;
+            }
+            if (mMonth.length() == 1){
+                mMonth = "0" + mMonth;
+            }
+            data =  dMonth + "/" + mMonth +"/"+ year;
+            return data;
+        }
+
+        public  String getDiaSemana(int dayOfWeek){
+            // recupera o dia da semana para validar se é um dia comercial.
+            String diaSemana = "";
+
+            if (dayOfWeek == 1) {
+                diaSemana = "Segunda";
+            }
+            if (dayOfWeek == 2) {
+                diaSemana = "Terca";
+            }
+            if (dayOfWeek == 3) {
+                diaSemana = "Quarta";
+            }
+            if (dayOfWeek == 4) {
+                diaSemana = "Quinta";
+            }
+            if (dayOfWeek == 5){
+                diaSemana = "Sexta";
+            }
+            return diaSemana;
         }
 
     }
