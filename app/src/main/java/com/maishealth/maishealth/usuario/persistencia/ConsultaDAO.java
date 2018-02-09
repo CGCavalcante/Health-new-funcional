@@ -170,7 +170,7 @@ public class ConsultaDAO {
         return this.getConsulta(query, argumentos);
     }
 
-    public Consulta getConsultaDisponivelPaciente(long idMedico, String data, String turno, long idPaciente) {
+    public Consulta getConsultaByPaciente(long idMedico, String data, String turno, long idPaciente) {
         String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
                 " WHERE " + DataBase.ID_EST_MEDICO_CON + " LIKE ?" +
                 " AND " + DataBase.ID_EST_PACIENTE_CON  + " LIKE ?" +
@@ -179,7 +179,7 @@ public class ConsultaDAO {
                 " AND " + DataBase.STATUS_CONSULTA  + " LIKE ?";
 
         String idMedicoString = Long.toString(idMedico);
-        String status = EnumStatusConsulta.DISPONIVEL.toString();
+        String status = EnumStatusConsulta.EMANDAMENTO.toString();
 
         String idPacienteString = Long.toString(idPaciente);
 

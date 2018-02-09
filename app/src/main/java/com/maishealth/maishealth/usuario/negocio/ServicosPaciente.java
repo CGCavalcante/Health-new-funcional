@@ -39,15 +39,19 @@ public class ServicosPaciente {
 
     public long marcarConsulta( long idMedico, String data, String turno){
         long idPaciente = 0;
+        long retorno = 0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
         idPaciente = paciente.getId();
         Consulta consulta = consultaDAO.getConsultaDisponivel(idMedico,data,turno);
-        Consulta verificaConsulta = consultaDAO.getConsultaDisponivelPaciente(idMedico, data, turno, idPaciente);
+        Consulta verificaConsulta = consultaDAO.getConsultaByPaciente(idMedico, data, turno, idPaciente);
         if (verificaConsulta == null) {
             consulta.setIdPaciente(idPaciente);
             consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
+            retorno = marcarConsulta(consulta);
+        }else {
+            retorno= 0;
         }
-        return marcarConsulta(consulta);
+        return retorno;
     }
 
 }

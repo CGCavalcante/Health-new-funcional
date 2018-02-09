@@ -54,11 +54,21 @@ public class ConstantePopularBanco {
             "('Lasartana');";
 
     public static final String INSERIR_HORARIO_MEDICO = "INSERT INTO `horario_medico` (`dia_da_semana`,`vagas`,`turno`,`id_est_medico`) VALUES " +
-            "('Segunda',20,'Tarde',1)," +
-            "('Terça',15,'Manhã',2)," +
-            "('Quarta',2,'Tarde',3)," +
-            "('Quinta',25,'Tarde',4)," +
-            "('Sexta',27,'Manhã',5);";
+            "('Segunda',8,'Manhã',4)," +
+            "('Segunda',7,'Tarde',4)," +
+            "('Segunda',6,'Noite',4)," +
+            "('Terça',5,'Manhã',4)," +
+            "('Terça',6,'Tarde',4)," +
+            "('Terça',4,'Noite',4)," +
+            "('Quarta',1,'Manhã',4)," +
+            "('Quarta',9,'Noite',4)," +
+            "('Quarta',2,'Noite',4)," +
+            "('Quinta',4,'Tarde',4)," +
+            "('Quinta',5,'Noite',4)," +
+            "('Quinta',7,'Manhã',4)," +
+            "('Sexta',6,'Manhã',4);" +
+            "('Sexta',2,'Tarde',4);" +
+            "('Sexta',3,'Noite',4);";
 
     public static final String INSERIR_POSTO = "INSERT INTO 'posto' ('nome','local') VALUES" +
             "('Posto Maria Lucinda','Rua A')," +
