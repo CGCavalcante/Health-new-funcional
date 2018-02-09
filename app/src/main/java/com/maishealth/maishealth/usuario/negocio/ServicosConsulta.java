@@ -92,7 +92,7 @@ public class ServicosConsulta {
         return consultaDAO.getConsultaDisponivel(idMedico, data, turno);
     }
 
-    public ArrayList<Consulta> getConsultasDoDiaMedico(){
+    private ArrayList<Consulta> getConsultasDoDiaMedico(){
         String data;
         Calendar cal = Calendar.getInstance();
         int dia = cal.get(Calendar.DAY_OF_MONTH);
@@ -106,7 +106,7 @@ public class ServicosConsulta {
         idMedico = medico.getId();
         return consultaDAO.getConsultasAtuais(idMedico,data);
     }
-    public ArrayList<Consulta> getConsultasPendetes(){
+    private ArrayList<Consulta> getConsultasPendetes(){
         long idPaciente = 0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
         idPaciente = paciente.getId();

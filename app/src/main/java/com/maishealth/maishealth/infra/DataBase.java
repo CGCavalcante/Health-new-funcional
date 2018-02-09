@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper; // Cria banco de dados
 
+import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_CONSULTA;
 import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_MEDICO;
 import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_MEDICO_POSTO;
 import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_PACIENTE;
@@ -134,6 +135,7 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(INSERIR_POSTO);
         db.execSQL(INSERIR_MEDICO_POSTO);
         db.execSQL(INSERIR_HORARIO_MEDICO);
+        db.execSQL(INSERIR_CONSULTA);
     }
 
     //Atualização da tabela

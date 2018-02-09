@@ -61,7 +61,7 @@ public class ConstantePopularBanco {
             "('Terça',6,'Tarde',4)," +
             "('Terça',4,'Noite',4)," +
             "('Quarta',1,'Manhã',4)," +
-            "('Quarta',9,'Noite',4)," +
+            "('Quarta',9,'Tarde',4)," +
             "('Quarta',2,'Noite',4)," +
             "('Quinta',4,'Tarde',4)," +
             "('Quinta',5,'Noite',4)," +
@@ -83,5 +83,18 @@ public class ConstantePopularBanco {
             "(3,1)," +
             "(4,1)," +
             "(5,1);";
+    public static final String INSERIR_CONSULTA = "INSERT INTO 'consulta' " +
+            "('id_medico','id_paciente','data','turno','status_consulta') VALUES " +
+            "(4,0,'09/02/2018','Manhã','DISPONIVEL')," +
+            "(4,0,'09/02/2018','Manhã','DISPONIVEL')," +
+            "(4,0,'09/02/2018','Manhã','DISPONIVEL')," +
+            "(4,0,'09/02/2018','Manhã','DISPONIVEL')," +
+            "(4,8,'09/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,9,'09/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,10,'09/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,10,'10/02/2018','Manhã','EMANDAMENTO')," +
+            "(5,10,'10/02/2018','Manhã','EMANDAMENTO')," +
+            "(3,10,'11/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,7,'09/02/2018','Manhã','EMANDAMENTO');";
 
 }
