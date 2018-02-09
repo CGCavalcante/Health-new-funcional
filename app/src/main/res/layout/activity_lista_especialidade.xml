@@ -6,10 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.maishealth.maishealth.usuario.gui.ListaEspecialidade">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView15"
@@ -26,14 +32,14 @@
             android:layout_height="450dp"
             android:dividerHeight="7dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/voltarPac"
-            android:layout_width="wrap_content"
+            android:layout_width="67dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:onClick="voltarPac"
-            android:text="Voltar" />
+            app:srcCompat="@android:drawable/ic_delete" />
     </LinearLayout>
 
 

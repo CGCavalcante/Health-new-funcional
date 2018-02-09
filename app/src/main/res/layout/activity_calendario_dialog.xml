@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorButoes"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/materialup.toolbar"
@@ -43,7 +45,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialup.appbar" />
+        app:layout_constraintTop_toBottomOf="@+id/materialup.appbar"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/editTextInicioHorMed"
@@ -58,10 +61,10 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toEndOf="@+id/textViewHorMedico"
-        app:layout_constraintTop_toBottomOf="@+id/data"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.615" />
 
     <TextView
         android:id="@+id/textViewHorMedico"
@@ -78,35 +81,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.605" />
 
-    <Button
+    <ImageView
         android:id="@+id/buttonCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:background="@color/colorButoes"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="voltarMenuMed1"
-        android:text="@string/button_cancelar"
-        android:textColor="@color/colorTextoBut"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bt_confirmar_hor_montado_med"
-        app:layout_constraintHorizontal_bias="0.274"
-        app:layout_constraintStart_toStartOf="@+id/textViewHorMedico"
-        app:layout_constraintTop_toBottomOf="@+id/editTextInicioHorMed" />
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHorMedico"
+        app:layout_constraintVertical_bias="0.939"
+        app:srcCompat="@android:drawable/ic_delete" />
 
-    <Button
+    <ImageView
         android:id="@+id/bt_confirmar_hor_montado_med"
-        android:layout_width="93dp"
-        android:layout_height="47dp"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
-        android:background="@color/colorButoes"
-        android:text="@string/button_confirmar_hor_mont_med"
+        android:layout_marginTop="120dp"
         android:onClick="marcaConsulta"
-        android:textColor="@color/colorTextoBut"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextInicioHorMed" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextInicioHorMed"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/ic_launcher_ok" />
 
     <TextView
         android:id="@+id/data"
@@ -116,16 +122,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/data"
-        android:textSize="40dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:text="@string/data"
+        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintHorizontal_bias="0.367"
         app:layout_constraintStart_toEndOf="@+id/btndata"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHorarioMed"
-        app:layout_constraintVertical_bias="0.179" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29" />
 
 
     <Button
@@ -141,6 +147,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHorarioMed"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.286" />
 </android.support.constraint.ConstraintLayout>

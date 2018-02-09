@@ -29,7 +29,9 @@ public class AcharPostoActivity extends AppCompatActivity {
         finish();
     }
 
-    public void initMap(View view){this.mudarTela(MapsActivity.class);}
+    public void initMap(View view) {
+        this.mudarTela(MapsActivity.class);
+    }
     
     @Override
     public void onBackPressed() {
