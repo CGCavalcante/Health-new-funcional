@@ -51,7 +51,7 @@ public class MenuPaciente extends AppCompatActivity {
     }
 
     public void telaConsultasPendentes(View view){
-        this.mudarTela(ConsultasPendentesActivity.class);
+        this.mudarTela(ListaConsPac.class);
     }
 
     public void telaAcharPosto(View view){
