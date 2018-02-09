@@ -11,12 +11,13 @@ import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.AdpConsMed;
 import com.maishealth.maishealth.usuario.dominio.DadosConsMed;
+import com.maishealth.maishealth.usuario.negocio.ServicosConsulta;
 
 import java.util.ArrayList;
 
 public class ListaConsMed extends AppCompatActivity {
-    ListView lista;
-    ArrayList<DadosConsMed> listaCons;
+    private ListView lista;
+    private ArrayList<DadosConsMed> listaCons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class ListaConsMed extends AppCompatActivity {
         setContentView(R.layout.activity_lista_cons_med);
 
         lista = findViewById(R.id.lstConsMed);
-        listaCons = new ArrayList<DadosConsMed>();
+        listaCons = preencher();
 
         listaCons.add(new DadosConsMed(1, 1, "paciente1", "data1", "turno1"));
         listaCons.add(new DadosConsMed(2, 2, "paciente2", "data2", "turno2"));
@@ -44,6 +45,12 @@ public class ListaConsMed extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private ArrayList<DadosConsMed> preencher() {
+        ServicosConsulta servicosConsulta = new ServicosConsulta(getApplicationContext());
+
+        return servicosConsulta.preencherMed();
     }
 
     private void mudarTela(Class tela) {

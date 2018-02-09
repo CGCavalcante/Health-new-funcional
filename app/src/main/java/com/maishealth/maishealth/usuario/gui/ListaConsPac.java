@@ -11,6 +11,7 @@ import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.AdpConsPac;
 import com.maishealth.maishealth.usuario.dominio.DadosConsPac;
+import com.maishealth.maishealth.usuario.negocio.ServicosConsulta;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,8 @@ public class ListaConsPac extends AppCompatActivity {
         setContentView(R.layout.activity_lista_cons_pac);
 
         lista = findViewById(R.id.lstConsPac);
-        listaCons = new ArrayList<DadosConsPac>();
+        listaCons = preencher();
+        GuiUtil.myToast(getApplicationContext(), "tamanho:" + listaCons.size());
 
         listaCons.add(new DadosConsPac(1, 1, "medico1", "espec1", "data1", "turno1"));
         listaCons.add(new DadosConsPac(2, 2, "medico2", "espec2", "data2", "turno2"));
@@ -46,6 +48,13 @@ public class ListaConsPac extends AppCompatActivity {
             }
         });
     }
+
+    private ArrayList<DadosConsPac> preencher() {
+        ServicosConsulta servicosConsulta = new ServicosConsulta(getApplicationContext());
+
+        return servicosConsulta.preencherPac();
+    }
+
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
