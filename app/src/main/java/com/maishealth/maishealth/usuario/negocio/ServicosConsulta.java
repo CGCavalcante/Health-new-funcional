@@ -95,13 +95,15 @@ public class ServicosConsulta {
         FormataData formataData = new FormataData();
         data = formataData.corrigeData(ano, mes, dia);
 
+        long idMedico = 0;
         Medico medico = medicoDAO.getMedico(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idMedico));
+        idMedico = medico.getId();
         return consultaDAO.getConsultasAtuais(idMedico,data);
     }
     public ArrayList<Consulta> getConsultasPendetes(){
-
         long idPaciente = 0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
+        idPaciente = paciente.getId();
         return  consultaDAO.getConsultaEmAndamento(idPaciente);
     }
 

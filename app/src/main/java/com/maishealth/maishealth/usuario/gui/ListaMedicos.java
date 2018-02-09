@@ -58,9 +58,6 @@ public class ListaMedicos extends AppCompatActivity {
                 passar.putExtra("turno1", turno );
                 passar.putExtra("diaSemana1", diaSemana);
 
-
-                GuiUtil.myToast(getApplicationContext(), "data" + data + "\nturno" + turno + "\n diaSemana " + diaSemana );
-
                 startActivity(passar);
             }
         });

@@ -62,7 +62,6 @@ public class DetalhesMedico extends AppCompatActivity {
         crm = findViewById(R.id.idTxtCrm);
         confirmar = findViewById(R.id.btnConfirmarMarcar);
 
-
         Intent intent = getIntent();
         final String data =  intent.getStringExtra("data1");
         final String turno  =  intent.getStringExtra("turno1");
@@ -75,14 +74,11 @@ public class DetalhesMedico extends AppCompatActivity {
         servicosConsulta = new ServicosConsulta(getApplicationContext());
         servicosPaciente = new ServicosPaciente(getApplicationContext());
 
-
         medico = servicosMedico.getMedico(idmedico);
         pessoaMedico = servicosPessoa.searchPessoaByIdUsuario(medico.getIdUsuario());
         nomeMedicoString = pessoaMedico.getNome();
         especString = medico.getEspecialidade();
         crmString = medico.getCrm();
-
-        GuiUtil.myToast(getApplicationContext(), "data" + data + "\nturno" + turno + "\nidmedico" + idmedico + "\ndiaSemana " + diaSemana);
 
         dataCons.setText(data);
         turnoCons.setText(turno);
@@ -91,6 +87,7 @@ public class DetalhesMedico extends AppCompatActivity {
         crm.setText(crmString);
 
         // esse metodo gera consultas para o dia selecionado pelo paciente
+        // caso o dia selecionado não esteja no banco
         Consulta verificaConsulta  =  servicosConsulta.getConsulta(idmedico, turno, data);
         if (verificaConsulta == null) {
             servicosConsulta.gerarConsultas(idmedico, turno, data, diaSemana);
@@ -103,9 +100,7 @@ public class DetalhesMedico extends AppCompatActivity {
                 // o status disponivel  do enum status da consulta voltou para auxilar nas listagens das consultas.
                 Consulta consulta = servicosConsulta.getConsulta(idmedico, turno, data);
                 if (consulta != null) {
-                    // marca consulta para o paciente, por hora o paciente pode marcar quantas consultas ele quiser
-                    // por isso temos que por uma validação aqui para ver se o paciente já tem uma consulta marcada
-                    // para esse medico, dia e turno.
+                    // marca consulta para o paciente
                     if ( servicosPaciente.marcarConsulta(idmedico,data,turno) != 0){
                         GuiUtil.myToast(DetalhesMedico.this, "Consulta Marcada com sucesso!");
                     }else {

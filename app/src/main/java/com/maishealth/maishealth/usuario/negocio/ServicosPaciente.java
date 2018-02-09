@@ -44,9 +44,6 @@ public class ServicosPaciente {
         Consulta consulta = consultaDAO.getConsultaDisponivel(idMedico,data,turno);
         Consulta verificaConsulta = consultaDAO.getConsultaDisponivelPaciente(idMedico, data, turno, idPaciente);
         if (verificaConsulta == null) {
-            //consulta.setIdMedico(idMedico);
-            //consulta.setData(data);
-            //consulta.setTurno(turno);
             consulta.setIdPaciente(idPaciente);
             consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
         }
