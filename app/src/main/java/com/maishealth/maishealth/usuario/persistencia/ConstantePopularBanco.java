@@ -46,13 +46,6 @@ public class ConstantePopularBanco {
             "('111.103.',4,'SP','Cardiologia')," +
             "('111.104.',5,'BA','Cardiologia');";
 
-    public static final String INSERIR_MEDICAMENTO = "INSERT INTO 'medicamento' ('nome') VALUES" +
-            "('rivotril')," +
-            "('Neosaldina')," +
-            "('Dorflex')," +
-            "('Diazepan')," +
-            "('Lasartana');";
-
     public static final String INSERIR_HORARIO_MEDICO = "INSERT INTO `horario_medico` (`dia_da_semana`,`vagas`,`turno`,`id_est_medico`) VALUES " +
             "('Segunda',8,'Manhã',4)," +
             "('Segunda',7,'Tarde',4)," +
@@ -98,14 +91,14 @@ public class ConstantePopularBanco {
             "(4,7,'09/02/2018','Manhã','EMANDAMENTO');";
 
     public static final String ISERIR_RECOMENDACAO = " INSERT INTO 'recomendacao' " +
-            "( 'id_paciente', 'id_medico', 'nota' ) VALUES " +
-            "(10,4,5)," +
-            "(9,4,5)," +
-            "(8,4,5)," +
-            "(7,4,5)," +
-            "(10,5,5)," +
-            "(9,5,5)," +
-            "(8,5,5)," +
-            "(7,5,5);";
+            "( 'id_paciente', 'id_medico', 'nota','descricao' ) VALUES " +
+            "(10,4,4,'Mal educado')," +
+            "(9,4,3,'Prescrição com lucro farmaceutico')," +
+            "(8,4,3,'Diagnostico errado')," +
+            "(7,4,4,'preconceito')," +
+            "(10,5,2,'')," +
+            "(9,5,1,'')," +
+            "(8,5,3,'')," +
+            "(7,5,3,'');";
 
 }

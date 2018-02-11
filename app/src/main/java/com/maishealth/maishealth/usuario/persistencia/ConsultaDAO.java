@@ -58,7 +58,6 @@ public class ConsultaDAO {
 
         String tabela = DataBase.TABELA_CONSULTA;
 
-
         String colunaPaciente = DataBase.ID_EST_PACIENTE_CON;
         long idPaciente = consulta.getIdPaciente();
         values.put(colunaPaciente, idPaciente);
@@ -100,9 +99,9 @@ public class ConsultaDAO {
         int indexColunaIdPaciente = cursor.getColumnIndex(colunaIdPaciente);
         long idPaciente = cursor.getInt(indexColunaIdPaciente);
 
-        String colunaIdDataHorario = DataBase.ID_EST_MEDICO_CON;
-        int indexColunaIdDataHorario = cursor.getColumnIndex(colunaIdDataHorario);
-        long idDataHorario = cursor.getInt(indexColunaIdDataHorario);
+        String colunaIdMedico = DataBase.ID_EST_MEDICO_CON;
+        int indexColunaIdMedico = cursor.getColumnIndex(colunaIdMedico);
+        long idMedico = cursor.getInt(indexColunaIdMedico);
 
         String colunaData = DataBase.DATA;
         int indexColunaData = cursor.getColumnIndex(colunaData);
@@ -119,7 +118,7 @@ public class ConsultaDAO {
         Consulta consulta = new Consulta();
 
         consulta.setIdPaciente(idPaciente);
-        consulta.setIdMedico(idDataHorario);
+        consulta.setIdMedico(idMedico);
         consulta.setStatus(status);
         consulta.setId(idConsulta);
         consulta.setData(data);

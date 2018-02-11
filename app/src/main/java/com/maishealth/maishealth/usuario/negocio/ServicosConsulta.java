@@ -120,7 +120,7 @@ public class ServicosConsulta {
 
         DadosConsMed dados;
         int tamanho = consultas.size();
-        for (int i = 1; i < tamanho; i++) {
+        for (int i = 0; i < tamanho; i++) {
             Consulta consulta = consultas.get(i);
             Paciente paciente = pacienteDAO.getPaciente(consulta.getIdPaciente());
             Pessoa pessoa = servicosPessoa.searchPessoaByIdUsuario(paciente.getIdUsuario());
@@ -142,7 +142,7 @@ public class ServicosConsulta {
 
         DadosConsPac dados;
         int tamanho = consultas.size();
-        for (int i = 1; i < tamanho; i++) {
+        for (int i = 0; i < tamanho; i++) {
             Consulta consulta = consultas.get(i);
             Medico medico = medicoDAO.getMedico(consulta.getIdMedico());
             Pessoa pessoa = servicosPessoa.searchPessoaByIdUsuario(medico.getIdUsuario());
