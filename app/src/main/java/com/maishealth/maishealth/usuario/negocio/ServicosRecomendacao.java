@@ -35,14 +35,13 @@ public class ServicosRecomendacao {
     }
     private void criarConsulta ( Recomendacao recomendacao ){recomendacaoDAO.inserirRecomendacao(recomendacao);}
 
-    public void criarRecomendacao (long idConsulta, long idMedico, int nota){
+    public void criarRecomendacao (long idMedico, int nota){
 
         long idPaciente = 0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
-        Recomendacao recomendacao = recomendacaoDAO.getRecomendacaoMedico( idConsulta, idPaciente );
+        Recomendacao recomendacao = recomendacaoDAO.getRecomendacaoByPaciente( idPaciente );
         if (recomendacao != null){
-            recomendacao.setIdConsulta(idConsulta);
-            recomendacao.setIdMedico(idMedico);
+             recomendacao.setIdMedico(idMedico);
             recomendacao.setIdPaciente(paciente.getId());
             recomendacao.setNota(nota);
 

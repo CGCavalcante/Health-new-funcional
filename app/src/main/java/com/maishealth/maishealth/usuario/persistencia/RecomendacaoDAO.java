@@ -10,7 +10,6 @@ import com.maishealth.maishealth.usuario.dominio.Recomendacao;
 
 import java.util.ArrayList;
 
-import static com.maishealth.maishealth.infra.DataBase.ID_EST_CONSULTA;
 
 public class RecomendacaoDAO {
     private SQLiteDatabase liteDatabase;
@@ -33,17 +32,9 @@ public class RecomendacaoDAO {
         long idMedico = recomendacao.getIdMedico();
         values.put(colunaIdMedico, idMedico);
 
-        String colunaIdConsulta = DataBase.ID_EST_CONSULTA;
-        long idConsulta = recomendacao.getIdConsulta();
-        values.put(colunaIdConsulta, idConsulta);
-
         String colunaNota = DataBase.NOTA;
         long nota = recomendacao.getNota();
         values.put(colunaNota, nota);
-
-        String colunaDesc = DataBase.DESCRICAO;
-        String desc = recomendacao.getDescricao();
-        values.put(colunaDesc, desc);
 
         long id = liteDatabase.insert(tabela, null, values);
 
@@ -71,10 +62,6 @@ public class RecomendacaoDAO {
         long nota = recomendacao.getNota();
         values.put(colunaNota, nota);
 
-        String colunaDesc = DataBase.DESCRICAO;
-        String desc = recomendacao.getDescricao();
-        values.put(colunaDesc, desc);
-
         String whereClause = DataBase.ID_RECOMENDACAO + " = ? ";
         String[] parametros = new String[1];
         parametros[0] = String.valueOf(recomendacao.getId());
@@ -97,25 +84,15 @@ public class RecomendacaoDAO {
          int indexColunaIdMedico = cursor.getColumnIndex(colunaIdMedico);
          long idMedico = cursor.getInt(indexColunaIdMedico);
 
-         String colunaIdConsulta = DataBase.ID_EST_CONSULTA;
-         int indexColunaIdConsulta = cursor.getColumnIndex(colunaIdConsulta);
-         long idConsulta = cursor.getInt(indexColunaIdConsulta);
-
          String colunaNota = DataBase.NOTA;
          int indexColunaNota = cursor.getColumnIndex(colunaNota);
          int nota = cursor.getInt(indexColunaNota);
-
-         String colunaDesc = DataBase.DESCRICAO;
-         int indexColunaDesc = cursor.getColumnIndex(colunaDesc);
-         String desc = cursor.getString(indexColunaDesc);
 
          Recomendacao recomendacao = new Recomendacao();
 
          recomendacao.setIdPaciente(idPaciente);
          recomendacao.setIdMedico(idMedico);
          recomendacao.setNota(nota);
-         recomendacao.setIdConsulta(idConsulta);
-         recomendacao.setDescricao(desc);
 
          return recomendacao;
      }
@@ -147,20 +124,18 @@ public class RecomendacaoDAO {
         return this.getRecomendacao(query, argumentos);
 
     }
-    public  Recomendacao getRecomendacaoByConsulta(long idConsulta, long idPaciente){
+    public  Recomendacao getRecomendacaoByPaciente(long idPaciente){
         String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_EST_CONSULTA + " LIKE ? " +
-                " AND " + DataBase.ID_EST_PACIENTE_REC + " LIKE ?";
+                " WHERE " + DataBase.ID_EST_PACIENTE_REC + " LIKE ? ";
 
-        String idConsultaString   = Long.toString(idConsulta);
         String idPacienteString   = Long.toString(idPaciente);
-        String[] argumentos  = {idConsultaString, idPacienteString};
+        String[] argumentos  = {idPacienteString};
 
         return this.getRecomendacao(query, argumentos);
 
     }
 
-    public  Recomendacao getRecomendacaoPaciente(long idMedico, long idPaciente){
+    public  Recomendacao getRecomendacaoByMedicoPaciente(long idMedico, long idPaciente){
         String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
                 " WHERE " + DataBase.ID_EST_MEDICO_REC + " LIKE ? " +
                     " AND " + DataBase.ID_EST_PACIENTE_REC + " LIKE ";
@@ -175,14 +150,12 @@ public class RecomendacaoDAO {
     }
 
 
-    public  Recomendacao getRecomendacaoMedico(long idMedico, long idConsulta){
+    public  Recomendacao getRecomendacaoMedico(long idMedico){
         String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_EST_MEDICO_REC + " LIKE ? " +
-                " AND " + DataBase.ID_EST_CONSULTA+ " LIKE ? ";
+                " WHERE " + DataBase.ID_EST_MEDICO_REC + " LIKE ? ";
 
         String idMedicoString   = Long.toString(idMedico);
-        String idConsultaString   = Long.toString(idConsulta);
-        String[] argumentos  = {idMedicoString, idConsultaString};
+        String[] argumentos  = {idMedicoString};
 
         return this.getRecomendacao(query, argumentos);
 

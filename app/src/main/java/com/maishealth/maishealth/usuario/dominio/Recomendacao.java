@@ -5,10 +5,7 @@ public class Recomendacao {
     private long id;
     private long idPaciente;
     private long idMedico;
-    private long idConsulta;
     private int nota;
-    private String descricao;
-
 
     /**
      * Construtor para instanciar.
@@ -66,20 +63,4 @@ public class Recomendacao {
         this.nota=nota;
     }
 
-    public long getIdConsulta() {
-        return idConsulta;
-    }
-
-    public void setIdConsulta(long idConsulta) {
-        this.idConsulta=idConsulta;
-    }
-
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao=descricao;
-    }
 }

@@ -91,14 +91,14 @@ public class ConstantePopularBanco {
             "(4,7,'09/02/2018','Manhã','EMANDAMENTO');";
 
     public static final String ISERIR_RECOMENDACAO = " INSERT INTO 'recomendacao' " +
-            "( 'id_paciente', 'id_medico', 'nota','descricao' ) VALUES " +
-            "(10,4,4,'Mal educado')," +
-            "(9,4,3,'Prescrição com lucro farmaceutico')," +
-            "(8,4,3,'Diagnostico errado')," +
-            "(7,4,4,'preconceito')," +
-            "(10,5,2,'')," +
-            "(9,5,1,'')," +
-            "(8,5,3,'')," +
-            "(7,5,3,'');";
+            "('id_paciente', 'id_medico', 'nota') VALUES " +
+            "(10,4,4)," +
+            "(9,4,3)," +
+            "(8,4,3)," +
+            "(7,4,4)," +
+            "(10,5,2)," +
+            "(9,5,1)," +
+            "(8,5,3)," +
+            "(7,5,3);";
 
 }

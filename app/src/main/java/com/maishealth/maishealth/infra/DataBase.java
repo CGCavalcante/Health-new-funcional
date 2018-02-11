@@ -74,8 +74,6 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String ID_EST_PACIENTE_REC = "id_paciente";
     public static final String ID_EST_MEDICO_REC = "id_medico";
     public static final String NOTA  = "nota";
-    public static final String ID_EST_CONSULTA = "id_consulta";
-    public static final String DESCRICAO = "descricao";
 
     private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "dbmaishealth";
@@ -140,9 +138,7 @@ public class DataBase extends SQLiteOpenHelper {
                 ID_RECOMENDACAO  + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 ID_EST_PACIENTE_REC + " INTEGER, " +
                 ID_EST_MEDICO_REC + " INTEGER, " +
-                ID_EST_CONSULTA + " INTEGER, " +
-                NOTA + " INTEGER, " +
-                DESCRICAO + " TEXT NOT NULL);");
+                NOTA + " INTEGER);");
 
         db.execSQL(INSERIR_USUARIO);
         db.execSQL(INSERIR_PESSOA);
