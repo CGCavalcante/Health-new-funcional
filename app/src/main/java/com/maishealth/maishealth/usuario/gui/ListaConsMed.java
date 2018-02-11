@@ -27,10 +27,6 @@ public class ListaConsMed extends AppCompatActivity {
         lista = findViewById(R.id.lstConsMed);
         listaCons = preencher();
 
-        listaCons.add(new DadosConsMed(1, 1, "paciente1", "data1", "turno1"));
-        listaCons.add(new DadosConsMed(2, 2, "paciente2", "data2", "turno2"));
-        listaCons.add(new DadosConsMed(3, 3, "paciente3", "data3", "turno3"));
-
         AdpConsMed adp = new AdpConsMed(getApplicationContext(), listaCons);
         lista.setAdapter(adp);
 
@@ -42,7 +38,10 @@ public class ListaConsMed extends AppCompatActivity {
                 GuiUtil.myToast(getApplicationContext(), "idCons:" + consMed.getIdCons());
 
                 Intent intent = new Intent(getApplicationContext(), DetalhesConsMed.class);
+                String idCons = Long.toString(consMed.getIdCons());
+                intent.putExtra("idCons", idCons);
                 startActivity(intent);
+                finish();
             }
         });
     }

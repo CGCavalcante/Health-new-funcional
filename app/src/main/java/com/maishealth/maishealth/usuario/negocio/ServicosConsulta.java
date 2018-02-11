@@ -133,7 +133,7 @@ public class ServicosConsulta {
             String data = consulta.getData();
             String turno = consulta.getTurno();
 
-            dados = new DadosConsMed(i, consulta.getId(), pessoa.getNome(), data, turno);
+            dados = new DadosConsMed(i + 1, consulta.getId(), pessoa.getNome(), data, turno);
 
             consMeds.add(dados);
 
@@ -155,13 +155,19 @@ public class ServicosConsulta {
             String data = consulta.getData();
             String turno = consulta.getTurno();
 
-            dados = new DadosConsPac(1, consulta.getId(), pessoa.getNome(), medico.getEspecialidade(), data, turno);
+            dados = new DadosConsPac(i + 1, consulta.getId(), pessoa.getNome(), medico.getEspecialidade(), data, turno);
 
             consPacs.add(dados);
 
 
         }
         return consPacs;
+    }
+
+    public Consulta getConsultaById(long idcons) {
+        Consulta consulta = consultaDAO.getConsulta(idcons);
+
+        return consulta;
     }
 
 

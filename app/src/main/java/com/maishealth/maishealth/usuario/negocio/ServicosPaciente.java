@@ -54,4 +54,8 @@ public class ServicosPaciente {
         return retorno;
     }
 
+    public Paciente getPacienteById(long id) {
+        return pacienteDAO.getPaciente(id);
+    }
+
 }

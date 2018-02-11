@@ -28,10 +28,6 @@ public class ListaConsPac extends AppCompatActivity {
         listaCons = preencher();
         GuiUtil.myToast(getApplicationContext(), "tamanho:" + listaCons.size());
 
-        listaCons.add(new DadosConsPac(1, 1, "medico1", "espec1", "data1", "turno1"));
-        listaCons.add(new DadosConsPac(2, 2, "medico2", "espec2", "data2", "turno2"));
-        listaCons.add(new DadosConsPac(3, 3, "medico2", "espec3", "data3", "turno3"));
-
         AdpConsPac adp = new AdpConsPac(getApplicationContext(), listaCons);
         lista.setAdapter(adp);
 
@@ -43,7 +39,10 @@ public class ListaConsPac extends AppCompatActivity {
                 GuiUtil.myToast(getApplicationContext(), "idCons:" + consPac.getIdCons());
 
                 Intent intent = new Intent(getApplicationContext(), DetalhesConsPac.class);
+                String idCons = Long.toString(consPac.getIdCons());
+                intent.putExtra("idCons", idCons);
                 startActivity(intent);
+                finish();
 
             }
         });

@@ -51,7 +51,6 @@ public class ListaMedicos extends AppCompatActivity {
 
 
                 Intent passar = new Intent(getApplicationContext(), DetalhesMedico.class);
-                //passar.putExtra("objeto", (Serializable) obj);
                 String idMedico = Long.toString( obj.getIdmedico());
                 passar.putExtra("idmedico", idMedico);
                 passar.putExtra("data1", data);
