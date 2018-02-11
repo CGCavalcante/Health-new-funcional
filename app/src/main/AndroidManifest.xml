@@ -89,7 +89,9 @@
         <activity android:name=".usuario.gui.ListaConsPac" />
         <activity android:name=".usuario.gui.ListaConsMed" />
         <activity android:name=".usuario.gui.DetalhesConsPac" />
-        <activity android:name=".usuario.gui.DetalhesConsMed"></activity>
+        <activity android:name=".usuario.gui.DetalhesConsMed" />
+        <activity android:name=".usuario.gui.ConsultasFuturas" />
+        <activity android:name=".usuario.gui.ListaConsFut"></activity>
     </application>
 
 </manifest>

@@ -69,4 +69,8 @@ public class MenuMedicoActivity extends AppCompatActivity {
         this.mudarTela(ListaConsMed.class);
     }
 
+    public void telaConsultasFuturas(View view) {
+        this.mudarTela(ConsultasFuturas.class);
+    }
+
 }
