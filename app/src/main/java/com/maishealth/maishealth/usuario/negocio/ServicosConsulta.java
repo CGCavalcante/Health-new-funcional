@@ -113,6 +113,12 @@ public class ServicosConsulta {
         return  consultaDAO.getConsultaEmAndamento(idPaciente);
     }
 
+    private ArrayList<Consulta> getConsultasConcluidas(){
+        long idPaciente = 0;
+        Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
+        idPaciente = paciente.getId();
+        return  consultaDAO.getConsultaConcluidas(idPaciente);
+    }
 
     public ArrayList<DadosConsMed> preencherMed() {
         ArrayList<Consulta> consultas = getConsultasDoDiaMedico();
