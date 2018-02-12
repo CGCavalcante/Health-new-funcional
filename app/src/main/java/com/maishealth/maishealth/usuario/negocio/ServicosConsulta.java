@@ -3,6 +3,7 @@ package com.maishealth.maishealth.usuario.negocio;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 import com.maishealth.maishealth.infra.FormataData;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
@@ -142,8 +143,18 @@ public class ServicosConsulta {
         return consMeds;
     }
 
-    public ArrayList<DadosConsPac> preencherPac() {
+    public ArrayList<DadosConsPac> preencherConsPac() {
         ArrayList<Consulta> consultas = getConsultasPendetes();
+        return getConsPacs(consultas);
+    }
+
+    public ArrayList<DadosConsPac> preencherHistPac() {
+        ArrayList<Consulta> consultas = getConsultasConcluidas();
+        return getConsPacs(consultas);
+    }
+
+    @NonNull
+    private ArrayList<DadosConsPac> getConsPacs(ArrayList<Consulta> consultas) {
         ArrayList<DadosConsPac> consPacs = new ArrayList<>();
 
         DadosConsPac dados;
@@ -158,7 +169,6 @@ public class ServicosConsulta {
             dados = new DadosConsPac(i + 1, consulta.getId(), pessoa.getNome(), medico.getEspecialidade(), data, turno);
 
             consPacs.add(dados);
-
 
         }
         return consPacs;

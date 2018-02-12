@@ -43,7 +43,7 @@ public class MenuPaciente extends AppCompatActivity {
 
 
     public void telaMeuHistorico(View view){
-        this.mudarTela(MeuHistoricoActivity.class);
+        this.mudarTela(ListaHistPac.class);
     }
 
     public void telaMarcarConsulta(View view) {

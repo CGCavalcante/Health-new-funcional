@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.maishealth.maishealth.usuario.gui.ListaConsFutMed">
+
+    <TextView
+        android:id="@+id/consFutMed"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:text="Consultas Futuras"
+        android:textSize="20dp" />
+
+    <ListView
+        android:id="@+id/lstConsFutMed"
+        android:layout_width="match_parent"
+        android:layout_height="478dp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="voltarConsFutMed"
+        android:text="Voltar" />
+
+
+</LinearLayout>

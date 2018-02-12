@@ -15,16 +15,16 @@ import com.maishealth.maishealth.usuario.negocio.ServicosConsulta;
 
 import java.util.ArrayList;
 
-public class ListaConsPac extends AppCompatActivity {
+public class ListaHistPac extends AppCompatActivity {
     ListView lista;
     ArrayList<DadosConsPac> listaCons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_cons_pac);
+        setContentView(R.layout.activity_lista_hist_pac);
 
-        lista = findViewById(R.id.lstConsPac);
+        lista = findViewById(R.id.lsthistPac);
         listaCons = preencher();
         GuiUtil.myToast(getApplicationContext(), "tamanho:" + listaCons.size());
 
@@ -38,7 +38,7 @@ public class ListaConsPac extends AppCompatActivity {
 
                 GuiUtil.myToast(getApplicationContext(), "idCons:" + consPac.getIdCons());
 
-                Intent intent = new Intent(getApplicationContext(), DetalhesConsPac.class);
+                Intent intent = new Intent(getApplicationContext(), DetalhesHistPac.class);
                 String idCons = Long.toString(consPac.getIdCons());
                 intent.putExtra("idCons", idCons);
                 startActivity(intent);
@@ -51,7 +51,7 @@ public class ListaConsPac extends AppCompatActivity {
     private ArrayList<DadosConsPac> preencher() {
         ServicosConsulta servicosConsulta = new ServicosConsulta(getApplicationContext());
 
-        return servicosConsulta.preencherConsPac();
+        return servicosConsulta.preencherHistPac();
     }
 
 
@@ -66,7 +66,7 @@ public class ListaConsPac extends AppCompatActivity {
         this.mudarTela(MenuPaciente.class);
     }
 
-    public void voltarConsPac(View view) {
+    public void voltarHistPac(View view) {
         this.mudarTela(MenuPaciente.class);
     }
 }

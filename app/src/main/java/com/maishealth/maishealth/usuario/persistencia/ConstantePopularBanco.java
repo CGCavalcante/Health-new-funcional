@@ -85,9 +85,15 @@ public class ConstantePopularBanco {
             "(4,8,'09/02/2018','Manhã','EMANDAMENTO')," +
             "(4,9,'09/02/2018','Manhã','EMANDAMENTO')," +
             "(4,10,'09/02/2018','Manhã','EMANDAMENTO')," +
-            "(4,10,'10/02/2018','Manhã','EMANDAMENTO')," +
-            "(5,10,'10/02/2018','Manhã','EMANDAMENTO')," +
-            "(3,10,'11/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,10,'10/02/2018','Manhã','CONCLUIDA')," +
+            "(5,10,'12/02/2018','Manhã','EMANDAMENTO')," +
+            "(3,10,'11/02/2018','Manhã','CONCLUIDA')," +
+            "(2,10,'11/02/2018','Manhã','CONCLUIDA')," +
+            "(1,10,'11/03/2018','Manhã','EMANDAMENTO')," +
+            "(1,9,'11/03/2018','Manhã','EMANDAMENTO')," +
+            "(1,10,'12/02/2018','Manhã','EMANDAMENTO')," +
+            "(1,9,'12/02/2018','Manhã','EMANDAMENTO')," +
+            "(5,8,'11/02/2018','Manhã','CONCLUIDA')," +
             "(4,7,'09/02/2018','Manhã','EMANDAMENTO');";
 
     public static final String ISERIR_RECOMENDACAO = " INSERT INTO 'recomendacao' " +

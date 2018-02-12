@@ -87,7 +87,7 @@ public class ConsultasFuturas extends AppCompatActivity {
         }
         if (valido) {
             GuiUtil.myToast(this, "Data Valida = " + valido);
-            this.mudarTela(ListaConsFut.class);
+            this.mudarTela(ListaConsFutMed.class);
         }
     }
 

@@ -9,51 +9,48 @@ import android.widget.ListView;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
-import com.maishealth.maishealth.usuario.dominio.AdpConsPac;
-import com.maishealth.maishealth.usuario.dominio.DadosConsPac;
+import com.maishealth.maishealth.usuario.dominio.AdpConsMed;
+import com.maishealth.maishealth.usuario.dominio.DadosConsMed;
 import com.maishealth.maishealth.usuario.negocio.ServicosConsulta;
 
 import java.util.ArrayList;
 
-public class ListaConsPac extends AppCompatActivity {
-    ListView lista;
-    ArrayList<DadosConsPac> listaCons;
+public class ListaConsFutMed extends AppCompatActivity {
+    private ListView lista;
+    private ArrayList<DadosConsMed> listaCons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_cons_pac);
+        setContentView(R.layout.activity_lista_cons_fut_med);
 
-        lista = findViewById(R.id.lstConsPac);
+        lista = findViewById(R.id.lstConsFutMed);
         listaCons = preencher();
-        GuiUtil.myToast(getApplicationContext(), "tamanho:" + listaCons.size());
 
-        AdpConsPac adp = new AdpConsPac(getApplicationContext(), listaCons);
+        AdpConsMed adp = new AdpConsMed(getApplicationContext(), listaCons);
         lista.setAdapter(adp);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DadosConsPac consPac = (DadosConsPac) parent.getItemAtPosition(position);
+                DadosConsMed consMed = (DadosConsMed) parent.getItemAtPosition(position);
 
-                GuiUtil.myToast(getApplicationContext(), "idCons:" + consPac.getIdCons());
+                GuiUtil.myToast(getApplicationContext(), "idCons:" + consMed.getIdCons());
 
-                Intent intent = new Intent(getApplicationContext(), DetalhesConsPac.class);
-                String idCons = Long.toString(consPac.getIdCons());
+                Intent intent = new Intent(getApplicationContext(), DetalhesConsFutMed.class);
+                String idCons = Long.toString(consMed.getIdCons());
                 intent.putExtra("idCons", idCons);
                 startActivity(intent);
                 finish();
-
             }
         });
     }
 
-    private ArrayList<DadosConsPac> preencher() {
+    private ArrayList<DadosConsMed> preencher() {
         ServicosConsulta servicosConsulta = new ServicosConsulta(getApplicationContext());
 
-        return servicosConsulta.preencherConsPac();
+        return servicosConsulta.preencherMed();
     }
-
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
@@ -63,10 +60,10 @@ public class ListaConsPac extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        this.mudarTela(MenuPaciente.class);
+        this.mudarTela(MenuMedicoActivity.class);
     }
 
-    public void voltarConsPac(View view) {
-        this.mudarTela(MenuPaciente.class);
+    public void voltarConsFutMed(View view) {
+        this.mudarTela(MenuMedicoActivity.class);
     }
 }
