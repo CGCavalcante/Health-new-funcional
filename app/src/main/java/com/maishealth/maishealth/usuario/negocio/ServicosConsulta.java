@@ -19,8 +19,6 @@ import com.maishealth.maishealth.usuario.persistencia.HorarioMedicoDAO;
 import com.maishealth.maishealth.usuario.persistencia.MedicoDAO;
 import com.maishealth.maishealth.usuario.persistencia.PacienteDAO;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -80,7 +78,6 @@ public class ServicosConsulta {
         HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(idMedico, diaSemana, turno);
         if (horarioMedico != null){
             long vagas = horarioMedico.getVagas() ;
-            //int vagas = Integer.getInteger(vagasString);
             int contador = 0;
             while (contador < vagas ){
                 cadastrarConsulta(idMedico,data,turno);
@@ -88,6 +85,10 @@ public class ServicosConsulta {
             }
         }
     }
+
+   /* public ArrayList<Consulta> getConsultasPassadas(){
+
+    }*/
 
     public Consulta getConsulta(long idMedico, String turno, String data){
         return consultaDAO.getConsultaDisponivel(idMedico, data, turno);

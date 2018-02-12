@@ -281,5 +281,38 @@ public class ConsultaDAO {
         return listaConsultas;
 
     }
+    public ArrayList<Consulta> getConsultaFuturas (long idMedico, String data){
+        liteDatabase = dataBaseHelper.getReadableDatabase();
+        ArrayList<Consulta> listaConsultas = new ArrayList<>();
+
+        String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
+                " WHERE " + DataBase.ID_EST_MEDICO_CON + " LIKE ?" +
+                " AND " + DataBase.DATA + " LIKE ? " +
+                " AND " + DataBase.STATUS_CONSULTA  + " LIKE ?";
+
+        String idMedicoeString = Long.toString(idMedico);
+        String status = EnumStatusConsulta.EMANDAMENTO.toString();
+
+        String[] argumentos = {idMedicoeString, data, status};
+
+        Cursor cursor = liteDatabase.rawQuery(query, argumentos);
+
+        String colunaIdConsulta = DataBase.ID_CONSULTA;
+        int indexColunaIdConsulta = cursor.getColumnIndex(colunaIdConsulta);
+
+        Consulta consulta;
+
+        while (cursor.moveToNext()){
+            long idConsulta = cursor.getInt(indexColunaIdConsulta);
+            consulta = getConsulta(idConsulta);
+            listaConsultas.add(consulta);
+        }
+        cursor.close();
+
+        return listaConsultas;
+
+    }
+
+
 
 }

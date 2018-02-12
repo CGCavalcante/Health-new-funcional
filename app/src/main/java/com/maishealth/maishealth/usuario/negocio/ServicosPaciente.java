@@ -3,6 +3,7 @@ package com.maishealth.maishealth.usuario.negocio;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.maishealth.maishealth.infra.FormataData;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.EnumStatusConsulta;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
@@ -56,6 +57,46 @@ public class ServicosPaciente {
 
     public Paciente getPacienteById(long id) {
         return pacienteDAO.getPaciente(id);
+    }
+
+    public void reagendarConsulta ( long idConsultaAntiga,long idMedico, String data, String turno ){
+        Consulta consulta = consultaDAO.getConsultaDisponivel(idMedico, data, turno);
+        if (consulta != null){
+            long idPaciente = 0;
+            Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
+            idPaciente = paciente.getId();
+            consulta.setTurno(turno);
+            consulta.setData(data);
+            consulta.setIdMedico(idMedico);
+            consulta.setIdPaciente(idPaciente);
+            consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
+            consultaDAO.atualizarConsulta(consulta);
+
+            Consulta disponibilizar = consultaDAO.getConsulta(idConsultaAntiga);
+            disponibilizar.setIdPaciente(0);
+            disponibilizar.setStatus(EnumStatusConsulta.DISPONIVEL.toString());
+            consultaDAO.atualizarConsulta(disponibilizar);
+        }
+
+    }
+
+    public void cancelarConsulta ( long idConsultaAntiga,long idMedico, String data, String turno ){
+        Consulta consulta = consultaDAO.getConsulta(idConsultaAntiga);
+
+        if (consulta != null){
+
+            String dataAntiga = consulta.getData();
+
+            if (!FormataData.dataMaiorOuIgualQueAtual(dataAntiga)) {
+                consulta.setIdPaciente(0);
+                consulta.setStatus(EnumStatusConsulta.DISPONIVEL.toString());
+                consultaDAO.atualizarConsulta(consulta);
+            }else {
+                consulta.setStatus(EnumStatusConsulta.CANCELADA.toString());
+                consultaDAO.atualizarConsulta(consulta);
+            }
+        }
+
     }
 
 }

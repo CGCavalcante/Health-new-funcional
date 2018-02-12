@@ -84,6 +84,26 @@ public class ServicosMedico {
         }
     }
 
+    public void  concluirConsulta(long idConsulta){
+        Consulta consulta = consultaDAO.getConsulta(idConsulta);
+
+        if (consulta != null){
+            consulta.setStatus(EnumStatusConsulta.CONCLUIDA.toString());
+            consultaDAO.atualizarConsulta(consulta);
+        }
+    }
+
+    public ArrayList<Consulta> getConsultasFuturas(String data){
+        ArrayList<Consulta> listaConsultas;
+
+        long idMedico = 0;
+        Medico medico = medicoDAO.getMedico(sharedPreferences.getLong(ID_MEDICO_PREFERENCES, idMedico));
+        idMedico = medico.getId();
+        listaConsultas = consultaDAO.getConsultaFuturas(idMedico,data);
+
+        return listaConsultas;
+    }
+
     public ArrayList<Medico> getMedicoByEspec(String espec){
         ArrayList<Medico> listaMedicos = new ArrayList<>();
         listaMedicos = medicoDAO.getMedicoByEspecialidade(espec);
