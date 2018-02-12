@@ -103,5 +103,4 @@ public class DetalhesConsFutMed extends AppCompatActivity {
     public void onBackPressed() {
         this.mudarTela(ListaConsFutMed.class);
     }
-
 }
