@@ -89,10 +89,10 @@ public class ConstantePopularBanco {
             "(5,10,'12/02/2018','Manhã','EMANDAMENTO')," +
             "(3,10,'11/02/2018','Manhã','CONCLUIDA')," +
             "(2,10,'11/02/2018','Manhã','CONCLUIDA')," +
-            "(1,10,'11/03/2018','Manhã','EMANDAMENTO')," +
-            "(1,9,'11/03/2018','Manhã','EMANDAMENTO')," +
-            "(1,10,'12/02/2018','Manhã','EMANDAMENTO')," +
-            "(1,9,'12/02/2018','Manhã','EMANDAMENTO')," +
+            "(1,10,'12/03/2018','Manhã','EMANDAMENTO')," +
+            "(1,9,'12/03/2018','Manhã','EMANDAMENTO')," +
+            "(1,10,'19/02/2018','Manhã','EMANDAMENTO')," +
+            "(1,9,'19/02/2018','Manhã','EMANDAMENTO')," +
             "(5,8,'11/02/2018','Manhã','CONCLUIDA')," +
             "(4,7,'09/02/2018','Manhã','EMANDAMENTO');";
 

@@ -24,8 +24,11 @@ public class ListaConsFutMed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_cons_fut_med);
 
+        Intent intent = getIntent();
+        final String dataFut = intent.getStringExtra("data");
+
         lista = findViewById(R.id.lstConsFutMed);
-        listaCons = preencher();
+        listaCons = preencher(dataFut);
 
         AdpConsMed adp = new AdpConsMed(getApplicationContext(), listaCons);
         lista.setAdapter(adp);
@@ -46,10 +49,10 @@ public class ListaConsFutMed extends AppCompatActivity {
         });
     }
 
-    private ArrayList<DadosConsMed> preencher() {
+    private ArrayList<DadosConsMed> preencher(String data) {
         ServicosConsulta servicosConsulta = new ServicosConsulta(getApplicationContext());
 
-        return servicosConsulta.preencherMed();
+        return servicosConsulta.preencherFuturasMed(data);
     }
 
     private void mudarTela(Class tela) {

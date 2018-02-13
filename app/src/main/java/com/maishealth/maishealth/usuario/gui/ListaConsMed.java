@@ -49,7 +49,7 @@ public class ListaConsMed extends AppCompatActivity {
     private ArrayList<DadosConsMed> preencher() {
         ServicosConsulta servicosConsulta = new ServicosConsulta(getApplicationContext());
 
-        return servicosConsulta.preencherMed();
+        return servicosConsulta.preencherAtualMed();
     }
 
     private void mudarTela(Class tela) {

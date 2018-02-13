@@ -99,7 +99,7 @@ public class ServicosMedico {
         long idMedico = 0;
         Medico medico = medicoDAO.getMedico(sharedPreferences.getLong(ID_MEDICO_PREFERENCES, idMedico));
         idMedico = medico.getId();
-        listaConsultas = consultaDAO.getConsultaFuturas(idMedico,data);
+        listaConsultas = consultaDAO.getConsultasFuturas(idMedico, data);
 
         return listaConsultas;
     }

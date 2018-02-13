@@ -281,7 +281,8 @@ public class ConsultaDAO {
         return listaConsultas;
 
     }
-    public ArrayList<Consulta> getConsultaFuturas (long idMedico, String data){
+
+    public ArrayList<Consulta> getConsultasFuturas(long idMedico, String data) {
         liteDatabase = dataBaseHelper.getReadableDatabase();
         ArrayList<Consulta> listaConsultas = new ArrayList<>();
 

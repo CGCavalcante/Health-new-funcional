@@ -71,7 +71,6 @@ public class ServicosConsulta {
             consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
             consultaDAO.atualizarConsulta(consulta);
         }
-
     }
 
     public void gerarConsultas(long idMedico, String turno, String data, String diaSemana){
@@ -108,6 +107,14 @@ public class ServicosConsulta {
         idMedico = medico.getId();
         return consultaDAO.getConsultasAtuais(idMedico,data);
     }
+
+    private ArrayList<Consulta> getConsultasFuturasMedico(String data) {
+        long idMedico = 0;
+        Medico medico = medicoDAO.getMedico(sharedPreferences.getLong(ID_MEDICO_PREFERENCES, idMedico));
+        idMedico = medico.getId();
+        return consultaDAO.getConsultasFuturas(idMedico, data);
+    }
+
     private ArrayList<Consulta> getConsultasPendetes(){
         long idPaciente = 0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
@@ -122,8 +129,18 @@ public class ServicosConsulta {
         return  consultaDAO.getConsultaConcluidas(idPaciente);
     }
 
-    public ArrayList<DadosConsMed> preencherMed() {
+    public ArrayList<DadosConsMed> preencherAtualMed() {
         ArrayList<Consulta> consultas = getConsultasDoDiaMedico();
+        return getConsMeds(consultas);
+    }
+
+    public ArrayList<DadosConsMed> preencherFuturasMed(String data) {
+        ArrayList<Consulta> consultas = getConsultasFuturasMedico(data);
+        return getConsMeds(consultas);
+    }
+
+    @NonNull
+    private ArrayList<DadosConsMed> getConsMeds(ArrayList<Consulta> consultas) {
         ArrayList<DadosConsMed> consMeds = new ArrayList<>();
 
         DadosConsMed dados;
@@ -140,7 +157,6 @@ public class ServicosConsulta {
             consMeds.add(dados);
 
         }
-
         return consMeds;
     }
 

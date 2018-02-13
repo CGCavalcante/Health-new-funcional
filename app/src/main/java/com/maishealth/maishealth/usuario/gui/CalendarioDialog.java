@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,7 +23,6 @@ import java.util.GregorianCalendar;
 
 public class CalendarioDialog extends AppCompatActivity {
     private final String[] listaHorarioMedico = {"Manhã", "Tarde", "Noite"};
-    Button btnConfirmarConsultas;
     Button btnClick;
     TextView textData;
     private Spinner spinnerHorarioMedico;
@@ -42,7 +42,6 @@ public class CalendarioDialog extends AppCompatActivity {
         espec = intent.getStringExtra("espec");
 
         spinnerHorarioMedico = findViewById(R.id.editTextInicioHorMed);
-        btnConfirmarConsultas = findViewById(R.id.bt_confirmar_hor_montado_med);
 
         btnClick = (Button) findViewById(R.id.btndata);
         textData = (TextView) findViewById(R.id.data);
