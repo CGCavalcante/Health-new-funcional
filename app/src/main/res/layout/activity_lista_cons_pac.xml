@@ -20,12 +20,13 @@
     <ListView
         android:id="@+id/lstConsPac"
         android:layout_width="match_parent"
-        android:layout_height="478dp" />
+        android:layout_height="450dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:layout_gravity="center_horizontal"
         android:onClick="voltarConsPac"
-        android:text="Voltar" />
+        app:srcCompat="@android:drawable/ic_delete" />
 </LinearLayout>

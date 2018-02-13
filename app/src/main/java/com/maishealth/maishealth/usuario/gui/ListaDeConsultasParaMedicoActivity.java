@@ -42,6 +42,10 @@ public class ListaDeConsultasParaMedicoActivity extends AppCompatActivity {
         finish();
     }
 
+    public void voltaMenuMedico(View view) {
+        this.mudarTela(MenuMedicoActivity.class);
+    }
+
     private void retornoMenuMedico() {
         this.mudarTela(MenuMedicoActivity.class);
     }
