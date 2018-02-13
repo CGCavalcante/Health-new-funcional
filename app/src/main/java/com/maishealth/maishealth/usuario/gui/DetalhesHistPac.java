@@ -53,6 +53,7 @@ public class DetalhesHistPac extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_hist_pac);
 
+
         Intent intent = getIntent();
         idConsS = intent.getStringExtra("idCons");
         final long idcons = Long.parseLong(idConsS);

@@ -44,12 +44,7 @@ public class AtualizarPerfilActivity extends AppCompatActivity {
                 Log.i("MenuPaciente", e.getMessage());
             }
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.materialup_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
     }
 
     private void mudarTela(Class tela){

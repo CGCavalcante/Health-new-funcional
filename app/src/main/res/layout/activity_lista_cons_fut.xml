@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.maishealth.maishealth.usuario.gui.ListaConsFut">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorButoes"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Consultas futuras"
+        app:titleTextColor="@color/colorFundo" />
+
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"

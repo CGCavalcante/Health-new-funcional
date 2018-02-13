@@ -11,14 +11,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView15"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Especialidades"
-            android:textSize="25dp" />
+            android:background="@color/colorButoes"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="Especialidades"
+            app:titleTextColor="@color/colorFundo" />
 
         <ListView
             android:id="@+id/lstEspec"
@@ -26,14 +27,15 @@
             android:layout_height="450dp"
             android:dividerHeight="7dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/voltarPac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:onClick="voltarPac"
-            android:text="Voltar" />
+            app:srcCompat="@android:drawable/ic_delete" />
     </LinearLayout>
 
 

@@ -31,12 +31,6 @@ public class EscolherDiaDaConsultaActivity extends AppCompatActivity {
         CustomAdapter customAdapter=new CustomAdapter();
 
         listView.setAdapter(customAdapter);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.materialup_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
 
     public void mudarTela(Class tela) {

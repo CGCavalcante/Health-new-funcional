@@ -14,15 +14,8 @@ public class ConfirmarConsulta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmar_consulta);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.materialup_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
-    
+
     public void mudarTela(Class tela){
         Intent intent = new Intent(this, tela);
         startActivity(intent);

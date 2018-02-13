@@ -34,12 +34,21 @@ public class ListaDeConsultasParaMedicoActivity extends AppCompatActivity {
 
         listView.setAdapter(customAdapter);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.materialup_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+    }
+
+    private void mudarTela(Class tela) {
+        Intent intent = new Intent(this, tela);
+        startActivity(intent);
+        finish();
+    }
+
+    private void retornoMenuMedico() {
+        this.mudarTela(MenuMedicoActivity.class);
+    }
+
+    //falta metodo para mostrar detalhes da consulta atual do medico(pegar o cliq da pessoa e mostrar essa tela)
+    public void telaConsultaAtualMedico(View view) {
+        this.mudarTela(ConsultaAtualMedActivity.class);
     }
 
     class CustomAdapter extends BaseAdapter {
@@ -77,13 +86,4 @@ public class ListaDeConsultasParaMedicoActivity extends AppCompatActivity {
             return view;
         }
     }
-    private void mudarTela(Class tela){
-            Intent intent=new Intent(this, tela);
-            startActivity(intent);
-            finish();
-    }
-    private  void retornoMenuMedico(){this.mudarTela(MenuMedicoActivity.class);}
-
-    //falta metodo para mostrar detalhes da consulta atual do medico(pegar o cliq da pessoa e mostrar essa tela)
-    public void telaConsultaAtualMedico(View view){this.mudarTela(ConsultaAtualMedActivity.class);}
 }

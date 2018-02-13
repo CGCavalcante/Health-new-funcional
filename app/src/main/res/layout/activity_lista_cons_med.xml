@@ -7,12 +7,15 @@
     android:orientation="vertical"
     tools:context="com.maishealth.maishealth.usuario.gui.ListaConsMed">
 
-    <TextView
-        android:id="@+id/consMed"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar8"
         android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:text="Conssultas"
-        android:textSize="20dp" />
+        android:layout_height="wrap_content"
+        android:background="@color/colorButoes"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Consultas"
+        app:titleTextColor="@color/colorFundo" />
 
     <ListView
         android:id="@+id/lstConsMed"

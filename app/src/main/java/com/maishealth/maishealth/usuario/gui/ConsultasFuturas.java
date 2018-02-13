@@ -1,5 +1,6 @@
 package com.maishealth.maishealth.usuario.gui;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maishealth.maishealth.R;
@@ -22,19 +24,20 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ConsultasFuturas extends AppCompatActivity {
-    Button btnClick;
+    ImageView btnClick;
     TextView textData;
     private String data;
     private int dayOfWeek;
     private String diaSemana;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultas_futuras);
 
 
-        btnClick = (Button) findViewById(R.id.btndataFut);
+        btnClick = (ImageView) findViewById(R.id.btndataFut);
         textData = (TextView) findViewById(R.id.dataFut);
 
         btnClick.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +103,10 @@ public class ConsultasFuturas extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        this.mudarTela(MenuMedicoActivity.class);
+    }
+
+    public void voltaMenu(View view) {
         this.mudarTela(MenuMedicoActivity.class);
     }
 

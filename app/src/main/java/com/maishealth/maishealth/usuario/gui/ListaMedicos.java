@@ -19,8 +19,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListaMedicos extends AppCompatActivity {
-    ListView listaMedicos;
     ArrayList<DadosMedico> lista;
+    private ListView listaMedicos;
     private String especialidade;
     private String data;
     private String turno;
@@ -31,7 +31,7 @@ public class ListaMedicos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_medicos);
 
-        listaMedicos = (ListView) findViewById(R.id.lstMedicos);
+        listaMedicos = findViewById(R.id.lstMedicos);
         Intent intent = getIntent();
         especialidade = intent.getStringExtra("espec");
         data = intent.getStringExtra("data");

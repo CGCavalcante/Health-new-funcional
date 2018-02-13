@@ -15,13 +15,6 @@ public class ConsultaAtualMedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta_atual_med);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.materialup_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
     }
     private void mudarTela(Class tela){
         Intent intent=new Intent(this, tela);

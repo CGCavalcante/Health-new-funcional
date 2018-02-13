@@ -31,13 +31,24 @@ public class ConsultasPendentesActivity extends AppCompatActivity {
             ConsultasPendentesActivity.CustomAdapter customAdapter=new ConsultasPendentesActivity.CustomAdapter();
 
         listView.setAdapter(customAdapter);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.materialup_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
+
+    public void mudarTela(Class tela) {
+        Intent intent = new Intent(this, tela);
+        startActivity(intent);
+        finish();
+    }
+    //falta metodo para mostrar detalhes da consulta pendente(pegar o cliq da pessoa e mostrar)
+
+    @Override
+    public void onBackPressed() {
+        this.mudarTela(MenuPaciente.class);
+    }
+
+    public void voltarMenuPac(View view) {
+        this.mudarTela(MenuPaciente.class);
+    }
+    
     class CustomAdapter extends BaseAdapter {
 
         @Override
@@ -73,21 +84,5 @@ public class ConsultasPendentesActivity extends AppCompatActivity {
 
             return view;
         }
-    }
-    //falta metodo para mostrar detalhes da consulta pendente(pegar o cliq da pessoa e mostrar)
-
-    public void mudarTela(Class tela){
-        Intent intent = new Intent(this, tela);
-        startActivity(intent);
-        finish();
-    }
-    
-    @Override
-    public void onBackPressed() {
-        this.mudarTela(MenuPaciente.class);
-    }
-    
-    public void voltarMenuPac(View view){
-        this.mudarTela(MenuPaciente.class);
     }
 }
