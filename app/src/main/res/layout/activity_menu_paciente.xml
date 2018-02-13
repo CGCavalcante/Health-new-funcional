@@ -165,15 +165,15 @@
                 android:text="Unidades Proximas"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.204"
+                app:layout_constraintHorizontal_bias="0.172"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.728" />
+                app:layout_constraintVertical_bias="0.727" />
 
             <ImageView
                 android:id="@+id/bt_posto_prox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="99dp"
+                android:layout_height="103dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="172dp"
@@ -182,8 +182,7 @@
                 app:layout_constraintHorizontal_bias="0.184"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher_foreground" />
-
+                app:srcCompat="@drawable/drugstore_icon" />
 
             <TextView
                 android:id="@+id/textView11"
