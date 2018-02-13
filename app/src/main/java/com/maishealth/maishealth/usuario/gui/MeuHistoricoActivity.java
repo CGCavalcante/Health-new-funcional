@@ -35,12 +35,23 @@ public class MeuHistoricoActivity extends AppCompatActivity {
         MeuHistoricoActivity.CustomAdapter customAdapter = new MeuHistoricoActivity.CustomAdapter();
 
         listView.setAdapter(customAdapter);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.materialup_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
+    }
+
+    public void mudarTela(Class tela) {
+        Intent intent = new Intent(this, tela);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.mudarTela(MenuPaciente.class);
+    }
+
+    //mudança de tela - retornando para a tela de paciente
+    public void voltarMenuPacI(View view) {
+        this.mudarTela(MenuPaciente.class);
 
     }
 
@@ -78,22 +89,5 @@ public class MeuHistoricoActivity extends AppCompatActivity {
 
             return view;
         }
-    }
-
-    public void mudarTela(Class tela){
-        Intent intent = new Intent(this, tela);
-        startActivity(intent);
-        finish();
-    }
-    
-    @Override
-    public void onBackPressed() {
-        this.mudarTela(MenuPaciente.class);
-    }
-    
-    //mudança de tela - retornando para a tela de paciente
-    public void voltarMenuPacI(View view) {
-        this.mudarTela(MenuPaciente.class);
-
     }
 }

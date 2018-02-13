@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="150dp"
         android:src="@drawable/logo_health" />
 
 </LinearLayout>

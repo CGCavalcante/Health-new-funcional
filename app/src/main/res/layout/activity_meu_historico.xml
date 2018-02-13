@@ -20,7 +20,6 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/materialup.toolbar"
-            style="@style/ToolBarWithNavigationBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
@@ -35,8 +34,15 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="450dp"></ListView>
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:onClick="voltarMenuPacI"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:ignore="OnClick" />
 
 
 </LinearLayout>
