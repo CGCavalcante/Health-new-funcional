@@ -1,9 +1,16 @@
 package com.maishealth.maishealth.usuario.gui;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
@@ -16,18 +23,17 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 
 public class DetalhesHistPac extends AppCompatActivity {
+    public RatingBar estrelinha;
     private String idConsS;
     private ServicosMedico servicosMedico;
     private ServicosPessoa servicosPessoa;
     private ServicosConsulta servicosConsulta;
     private ServicosPaciente servicosPaciente;
-
     private Consulta consulta;
     private TextView dataCons;
     private TextView turnoCons;
     private String data;
     private String turno;
-
     private Medico medico;
     private Pessoa pessoaMed;
     private String nomemed;
@@ -36,11 +42,11 @@ public class DetalhesHistPac extends AppCompatActivity {
     private TextView nomeMed;
     private TextView especMed;
     private TextView crmMed;
-
     private Paciente paciente;
     private Pessoa pessoaPac;
     private String nomepac;
     private TextView nomePac;
+    private ImageView confirmarAvaliacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +98,46 @@ public class DetalhesHistPac extends AppCompatActivity {
 
         nomePac.setText("Nome: " + nomepac);
 
+        addListenerOnRatingBar();
+        addListenerOnButton();
+    }
+
+    public void addListenerOnRatingBar() {
+        estrelinha = findViewById(R.id.estrelinha);
+        final TextView txtValorAvaliacao = findViewById(R.id.exemplo);
+
+        //se o valor de avaliação mudar,
+        //exiba o valor de avaliação atual no resultado (textview) automaticamente
+        estrelinha.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float avaliacao, boolean fromUser) {
+                txtValorAvaliacao.setText(String.valueOf(avaliacao));
+            }
+        });
+    }
+
+    public void addListenerOnButton() {
+        estrelinha = (RatingBar) findViewById(R.id.estrelinha);
+        confirmarAvaliacao = (ImageView) findViewById(R.id.confirmarAvaliacao);
+
+        //se o botão for clicado, exiba o valor de avaliação corrente.
+        confirmarAvaliacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetalhesHistPac.this,
+                        String.valueOf(estrelinha.getRating()),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
         startActivity(intent);
         finish();
+    }
+
+    public void cancelarAvaliacao(View view) {
+        this.mudarTela(ListaHistPac.class);
     }
 
     @Override
