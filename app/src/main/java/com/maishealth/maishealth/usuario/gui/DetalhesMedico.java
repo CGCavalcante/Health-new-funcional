@@ -114,4 +114,8 @@ public class DetalhesMedico extends AppCompatActivity {
             }
         });
     }
+
+    public  void  confirmarMarcarConsulta(){
+
+    }
 }
