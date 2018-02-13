@@ -198,4 +198,13 @@ public class ServicosConsulta {
     }
 
 
+    public void  concluirConsulta(long idConsulta){
+        Consulta consulta = consultaDAO.getConsulta(idConsulta);
+
+        if (consulta != null){
+            consulta.setStatus(EnumStatusConsulta.CONCLUIDA.toString());
+            consultaDAO.atualizarConsulta(consulta);
+        }
+    }
+
 }
