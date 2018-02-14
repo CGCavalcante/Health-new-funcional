@@ -99,9 +99,8 @@ public class DetalhesMedico extends AppCompatActivity {
                 this.mudarTela(MenuPaciente.class);
 
             } else {
-                GuiUtil.myToast(DetalhesMedico.this, "Paciente já possui consulta marcada neste horario");
+                GuiUtil.myToast(DetalhesMedico.this, "Paciente já possui consulta marcada neste horario!");
             }
-
         }
     }
 

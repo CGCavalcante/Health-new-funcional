@@ -202,4 +202,11 @@ public class ServicosConsulta {
         }
     }
 
+    public void cancelarConsulta(long idConsulta){
+        Consulta consulta = consultaDAO.getConsulta(idConsulta);
+        if(consulta != null) {
+            consultaDAO.deleteConsulta(idConsulta);
+        }
+    }
+
 }

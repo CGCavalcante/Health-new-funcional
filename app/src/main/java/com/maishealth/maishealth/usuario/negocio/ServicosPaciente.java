@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import com.maishealth.maishealth.infra.FormataData;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.EnumStatusConsulta;
+import com.maishealth.maishealth.usuario.dominio.HorarioMedico;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.persistencia.ConsultaDAO;
+import com.maishealth.maishealth.usuario.persistencia.HorarioMedicoDAO;
 import com.maishealth.maishealth.usuario.persistencia.PacienteDAO;
 
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACIENTE_PREFERENCES;
@@ -16,12 +18,16 @@ import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_P
 public class ServicosPaciente {
     private PacienteDAO pacienteDAO;
     private ConsultaDAO consultaDAO;
+    private HorarioMedicoDAO horarioMedicoDAO;
     private SharedPreferences sharedPreferences;
+    private ServicosConsulta servicosConsulta;
 
     public ServicosPaciente(Context context) {
         sharedPreferences = context.getSharedPreferences(TITLE_PREFERENCES, Context.MODE_PRIVATE);
         pacienteDAO = new PacienteDAO(context);
         consultaDAO = new ConsultaDAO(context);
+        horarioMedicoDAO = new HorarioMedicoDAO(context);
+        servicosConsulta = new ServicosConsulta(context);
     }
 
     private long cadastrarPaciente(Paciente paciente){ return pacienteDAO.inserirPaciente(paciente);
@@ -59,23 +65,21 @@ public class ServicosPaciente {
         return pacienteDAO.getPaciente(id);
     }
 
-    public void reagendarConsulta ( long idConsultaAntiga,long idMedico, String data, String turno ){
-        Consulta consulta = consultaDAO.getConsultaDisponivel(idMedico, data, turno);
+    public void reagendarConsulta ( long idConsulta, String data, String diaSemana ){
+        Consulta consultaAntiga = consultaDAO.getConsulta(idConsulta);
+        Consulta consulta = consultaDAO.getConsultaByData(data);
         if (consulta != null){
-            long idPaciente = 0;
-            Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
-            idPaciente = paciente.getId();
-            consulta.setTurno(turno);
-            consulta.setData(data);
-            consulta.setIdMedico(idMedico);
-            consulta.setIdPaciente(idPaciente);
             consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
+            consulta.setIdPaciente(consultaAntiga.getIdPaciente());
             consultaDAO.atualizarConsulta(consulta);
-
-            Consulta disponibilizar = consultaDAO.getConsulta(idConsultaAntiga);
-            disponibilizar.setIdPaciente(0);
-            disponibilizar.setStatus(EnumStatusConsulta.DISPONIVEL.toString());
-            consultaDAO.atualizarConsulta(disponibilizar);
+        }else {
+            HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(consultaAntiga.getIdMedico(), diaSemana,consultaAntiga.getTurno());
+            if (horarioMedico == null){
+                  servicosConsulta.gerarConsultas(consultaAntiga.getIdMedico(), consultaAntiga.getTurno(),data, diaSemana);
+                  consulta.setIdPaciente(consultaAntiga.getIdPaciente());
+                  consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
+                  consultaDAO.atualizarConsulta(consulta);
+            }
         }
     }
 

@@ -168,6 +168,14 @@ public class ConsultaDAO {
 
         return this.getConsulta(query, argumentos);
     }
+    public Consulta getConsultaByData( String data) {
+        String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
+                " WHERE " + DataBase.DATA + " LIKE ?";
+
+        String[] argumentos = {data};
+
+        return this.getConsulta(query, argumentos);
+    }
 
     public Consulta getConsultaByPaciente(long idMedico, String data, String turno, long idPaciente) {
         String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
@@ -314,6 +322,15 @@ public class ConsultaDAO {
 
     }
 
+    public void deleteConsulta(long idConsulta){
+        liteDatabase = dataBaseHelper.getWritableDatabase();
+        String idConsultaString   = Long.toString(idConsulta);
+        String table = DataBase.TABELA_CONSULTA;
+        String where = DataBase.ID_CONSULTA + " = " + idConsultaString;
+
+        liteDatabase.delete(table, where, null );
+        liteDatabase.close();
+    }
 
 
 }
