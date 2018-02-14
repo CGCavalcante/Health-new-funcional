@@ -3,6 +3,7 @@ package com.maishealth.maishealth.usuario.gui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.maishealth.maishealth.R;
@@ -17,6 +18,7 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 
 public class DetalhesConsMed extends AppCompatActivity {
     private String idConsS;
+    private long idConsLomg;
     private ServicosMedico servicosMedico;
     private ServicosPessoa servicosPessoa;
     private ServicosConsulta servicosConsulta;
@@ -50,14 +52,14 @@ public class DetalhesConsMed extends AppCompatActivity {
 
         Intent intent = getIntent();
         idConsS = intent.getStringExtra("idCons");
-        final long idcons = Long.parseLong(idConsS);
+        idConsLomg = Long.parseLong(idConsS);
 
         servicosMedico = new ServicosMedico(getApplicationContext());
         servicosPessoa = new ServicosPessoa(getApplicationContext());
         servicosConsulta = new ServicosConsulta(getApplicationContext());
         servicosPaciente = new ServicosPaciente(getApplicationContext());
 
-        consulta = servicosConsulta.getConsultaById(idcons);
+        consulta = servicosConsulta.getConsultaById(idConsLomg);
         turno = consulta.getTurno();
         data = consulta.getData();
 
@@ -103,5 +105,11 @@ public class DetalhesConsMed extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         this.mudarTela(ListaConsMed.class);
+    }
+
+    public void concluirConsulta(View view) {
+        servicosConsulta.concluirConsulta(idConsLomg);
+
+        this.mudarTela(MenuMedicoActivity.class);
     }
 }

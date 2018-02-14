@@ -77,10 +77,9 @@ public class ServicosPaciente {
             disponibilizar.setStatus(EnumStatusConsulta.DISPONIVEL.toString());
             consultaDAO.atualizarConsulta(disponibilizar);
         }
-
     }
 
-    public void cancelarConsulta ( long idConsultaAntiga,long idMedico, String data, String turno ){
+    public void cancelarConsulta(long idConsultaAntiga) {
         Consulta consulta = consultaDAO.getConsulta(idConsultaAntiga);
 
         if (consulta != null){
@@ -96,7 +95,6 @@ public class ServicosPaciente {
                 consultaDAO.atualizarConsulta(consulta);
             }
         }
-
     }
 
 }

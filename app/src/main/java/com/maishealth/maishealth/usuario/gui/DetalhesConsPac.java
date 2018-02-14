@@ -19,6 +19,7 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 
 public class DetalhesConsPac extends AppCompatActivity {
     private String idConsS;
+    private long idconsLong;
     private ServicosMedico servicosMedico;
     private ServicosPessoa servicosPessoa;
     private ServicosConsulta servicosConsulta;
@@ -51,14 +52,14 @@ public class DetalhesConsPac extends AppCompatActivity {
 
         Intent intent = getIntent();
         idConsS = intent.getStringExtra("idCons");
-        final long idcons = Long.parseLong(idConsS);
+        idconsLong = Long.parseLong(idConsS);
 
         servicosMedico = new ServicosMedico(getApplicationContext());
         servicosPessoa = new ServicosPessoa(getApplicationContext());
         servicosConsulta = new ServicosConsulta(getApplicationContext());
         servicosPaciente = new ServicosPaciente(getApplicationContext());
 
-        consulta = servicosConsulta.getConsultaById(idcons);
+        consulta = servicosConsulta.getConsultaById(idconsLong);
         turno = consulta.getTurno();
         data = consulta.getData();
 
@@ -98,6 +99,9 @@ public class DetalhesConsPac extends AppCompatActivity {
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
+        String idCons = Long.toString(consulta.getId());
+        intent.putExtra("idCons", idCons);
+        intent.putExtra("espec", espec);
         startActivity(intent);
         finish();
     }
@@ -107,6 +111,13 @@ public class DetalhesConsPac extends AppCompatActivity {
         this.mudarTela(ListaConsPac.class);
     }
 
+    public void reagendarDiaConsulta(View view) {
+        this.mudarTela(ReagendarDia.class);
+    }
 
+    public void cancelarConsulta(View view) {
+        servicosPaciente.cancelarConsulta(idconsLong);
+        this.mudarTela(MenuPaciente.class);
+    }
 
 }

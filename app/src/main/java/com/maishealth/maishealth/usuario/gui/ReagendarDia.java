@@ -19,7 +19,7 @@ import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class CalendarioDialog extends AppCompatActivity {
+public class ReagendarDia extends AppCompatActivity {
     private final String[] listaHorarioMedico = {"Manhã", "Tarde", "Noite"};
     Button btnClick;
     TextView textData;
@@ -27,21 +27,23 @@ public class CalendarioDialog extends AppCompatActivity {
     private String data;
     private String turno;
     private int dayOfWeek;
-    private String espec;
     private String diaSemana;
+
+    private String idConsS;
+    private String espec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_calendario_dialog);
+        setContentView(R.layout.activity_reagendar_dia);
 
         Intent intent = getIntent();
+        idConsS = intent.getStringExtra("idCons");
         espec = intent.getStringExtra("espec");
 
-        spinnerHorarioMedico = findViewById(R.id.editTextInicioHorMed);
-        btnClick = (Button) findViewById(R.id.btndata);
-        textData = (TextView) findViewById(R.id.data);
+        spinnerHorarioMedico = findViewById(R.id.RInicioHorMed);
+        btnClick = findViewById(R.id.btnRdata);
+        textData = findViewById(R.id.Rdata);
 
         btnClick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +63,6 @@ public class CalendarioDialog extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
     }
 
     private void pegarData() {
@@ -71,7 +72,7 @@ public class CalendarioDialog extends AppCompatActivity {
         int mes = c.get(Calendar.MONTH);
         int ano = c.get(Calendar.YEAR);
 
-        DatePickerDialog dp = new DatePickerDialog(CalendarioDialog.this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 //Recupera a data no formato dd/MM/YYYY
@@ -80,8 +81,8 @@ public class CalendarioDialog extends AppCompatActivity {
                 textData.setText(data);
 
                 // recupera o dia da semana para validar se é um dia comercial.
-                GregorianCalendar date = new GregorianCalendar(year, month, dayOfMonth-1);
-                dayOfWeek =date.get(date.DAY_OF_WEEK);
+                GregorianCalendar date = new GregorianCalendar(year, month, dayOfMonth - 1);
+                dayOfWeek = date.get(date.DAY_OF_WEEK);
                 diaSemana = formataData.getDiaSemana(dayOfWeek);
 
             }
@@ -95,38 +96,38 @@ public class CalendarioDialog extends AppCompatActivity {
         Intent intent = new Intent(this, tela);
         intent.putExtra("data", data);
         intent.putExtra("turno", turno);
-        intent.putExtra("espec", espec);
         intent.putExtra("diaS", diaSemana);
-
+        intent.putExtra("idCons", idConsS);
+        intent.putExtra("espec", espec);
         startActivity(intent);
         finish();
     }
 
-    public void voltarMenuMed1(View view) {
-        this.mudarTela(ListaEspecialidade.class);
+    public void voltarDetalheConsPen(View view) {
+        this.mudarTela(DetalhesConsPac.class);
     }
 
     @Override
     public void onBackPressed() {
-        this.mudarTela(ListaEspecialidade.class);
+        this.mudarTela(DetalhesConsPac.class);
     }
 
-    public void marcaConsulta(View view) {
+    public void reagendarListaMedicosConsulta(View view) {
         ValidaCadastro validaCadastro = new ValidaCadastro();
         boolean valido = true;
-        if (!validaCadastro.isDataNoPassado(data)){
+        if (!validaCadastro.isDataNoPassado(data)) {
             textData.requestFocus();
             textData.setError("Data inválida!");
             valido = false;
         }
-        if (dayOfWeek == 6 || dayOfWeek == 7){
+        if (dayOfWeek == 6 || dayOfWeek == 7) {
             textData.requestFocus();
             textData.setError("Data inválida!");
             valido = false;
         }
-        if (valido){
+        if (valido) {
             turno = (String) spinnerHorarioMedico.getSelectedItem();
-            this.mudarTela(ListaMedicos.class);
+            this.mudarTela(ReagendarListaMedicos.class);
         }
     }
 }

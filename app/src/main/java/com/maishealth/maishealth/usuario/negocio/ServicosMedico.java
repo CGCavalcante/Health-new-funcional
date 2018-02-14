@@ -43,7 +43,6 @@ public class ServicosMedico {
         return cadastrarMedico(medico);
     }
 
-
     public long criarHorario(HorarioMedico horarioMedico) {
         return horarioMedicoDAO.inserirHorarioMedico(horarioMedico);
     }

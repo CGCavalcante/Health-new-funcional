@@ -8,35 +8,36 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.maishealth.maishealth.R;
-import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.Adaptador;
+import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.DadosMedico;
-import com.maishealth.maishealth.usuario.dominio.Medico;
-import com.maishealth.maishealth.usuario.negocio.ServicosMedico;
 import com.maishealth.maishealth.usuario.negocio.ServicosPosto;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ListaMedicos extends AppCompatActivity {
+public class ReagendarListaMedicos extends AppCompatActivity {
+    ListView listaMedicos;
     ArrayList<DadosMedico> lista;
-    private ListView listaMedicos;
-    private String especialidade;
     private String data;
     private String turno;
     private String diaSemana;
 
+    private String idConsS;
+    private String especialidade;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_medicos);
+        setContentView(R.layout.activity_reagendar_lista_medicos);
+        listaMedicos = (ListView) findViewById(R.id.lstRMedicos);
 
-        listaMedicos = findViewById(R.id.lstMedicos);
         Intent intent = getIntent();
-        especialidade = intent.getStringExtra("espec");
         data = intent.getStringExtra("data");
         turno = intent.getStringExtra("turno");
         diaSemana = intent.getStringExtra("diaS");
+
+        idConsS = intent.getStringExtra("idCons");
+        especialidade = intent.getStringExtra("espec");
 
         lista = preencher(especialidade);
 
@@ -49,12 +50,15 @@ public class ListaMedicos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DadosMedico obj = (DadosMedico) parent.getItemAtPosition(position);
 
-                Intent passar = new Intent(getApplicationContext(), DetalhesMedico.class);
-                String idMedico = Long.toString( obj.getIdmedico());
+                Intent passar = new Intent(getApplicationContext(), ReagendarDetalhesMedico.class);
+                String idMedico = Long.toString(obj.getIdmedico());
                 passar.putExtra("idmedico", idMedico);
                 passar.putExtra("data1", data);
-                passar.putExtra("turno1", turno );
+                passar.putExtra("turno1", turno);
                 passar.putExtra("diaSemana1", diaSemana);
+
+                passar.putExtra("idCons", idConsS);
+                passar.putExtra("espec", especialidade);
 
                 startActivity(passar);
                 finish();
@@ -76,11 +80,11 @@ public class ListaMedicos extends AppCompatActivity {
     }
 
     public void voltar(View view) {
-        this.mudarTela(CalendarioDialog.class);
+        this.mudarTela(ReagendarDia.class);
     }
 
     @Override
     public void onBackPressed() {
-        this.mudarTela(CalendarioDialog.class);
+        this.mudarTela(ReagendarDia.class);
     }
 }

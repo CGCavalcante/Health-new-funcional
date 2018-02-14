@@ -63,10 +63,10 @@ public class ListaConsFutMed extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        this.mudarTela(MenuMedicoActivity.class);
+        this.mudarTela(ConsultasFuturas.class);
     }
 
     public void voltarConsFutMed(View view) {
-        this.mudarTela(MenuMedicoActivity.class);
+        this.mudarTela(ConsultasFuturas.class);
     }
 }

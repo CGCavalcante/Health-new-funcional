@@ -95,7 +95,10 @@
         <activity android:name=".usuario.gui.ListaHistPac" />
         <activity android:name=".usuario.gui.DetalhesHistPac" />
         <activity android:name=".usuario.gui.ListaConsFutMed" />
-        <activity android:name=".usuario.gui.DetalhesConsFutMed"></activity>
+        <activity android:name=".usuario.gui.DetalhesConsFutMed" />
+        <activity android:name=".usuario.gui.ReagendarDia" />
+        <activity android:name=".usuario.gui.ReagendarListaMedicos" />
+        <activity android:name=".usuario.gui.ReagendarDetalhesMedico"></activity>
     </application>
 
 </manifest>

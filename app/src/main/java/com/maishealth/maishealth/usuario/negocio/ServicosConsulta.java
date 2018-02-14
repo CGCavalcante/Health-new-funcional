@@ -193,7 +193,6 @@ public class ServicosConsulta {
         return consulta;
     }
 
-
     public void  concluirConsulta(long idConsulta){
         Consulta consulta = consultaDAO.getConsulta(idConsulta);
 
