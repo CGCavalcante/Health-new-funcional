@@ -53,7 +53,7 @@ public class ServicosRecomendacao {
 
     public Recomendacao getRecomendacao(long idMedico, long idPaciente){ return recomendacaoDAO.getRecomendacaoByMedicoPaciente(idMedico,idPaciente);}
 
-    public ArrayList<Recomendacao> getRecomendacao (long idMedico){
+    public ArrayList<Recomendacao> getRecomendacaoByMedico (long idMedico){
         return recomendacaoDAO.getRecomendacaoByMedico(idMedico);
     }
 }

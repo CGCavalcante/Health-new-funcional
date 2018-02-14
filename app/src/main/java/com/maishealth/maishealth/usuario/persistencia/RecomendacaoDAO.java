@@ -124,7 +124,7 @@ public class RecomendacaoDAO {
         return this.getRecomendacao(query, argumentos);
 
     }
-    public  Recomendacao getRecomendacaoByPaciente(long idPaciente){
+    public  Recomendacao getRecomendacaoPaciente(long idPaciente){
         String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
                 " WHERE " + DataBase.ID_EST_PACIENTE_REC + " LIKE ? ";
 
@@ -188,6 +188,61 @@ public class RecomendacaoDAO {
         return listaRecomendacao;
 
     }
+
+    public ArrayList<Recomendacao> getRecomendacoes(){
+        liteDatabase = dataBaseHelper.getReadableDatabase();
+        ArrayList<Recomendacao> listaRecomendacao = new ArrayList<>();
+
+        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO;
+
+        //String[] argumentos  = {};
+
+        Cursor cursor = liteDatabase.rawQuery(query, null);
+
+        String colunaId   = DataBase.ID_RECOMENDACAO;
+        int indexColunaId = cursor.getColumnIndex(colunaId);
+
+        Recomendacao recomendacao;
+
+        while (cursor.moveToNext()){
+            long idRecomendacao  = cursor.getInt(indexColunaId);
+            recomendacao = getRecomendacao(idRecomendacao);
+            listaRecomendacao.add(recomendacao);
+        }
+        cursor.close();
+
+        return listaRecomendacao;
+
+    }
+
+    public ArrayList<Recomendacao> getRecomendacaoByPaciente(long idPaciente){
+        liteDatabase = dataBaseHelper.getReadableDatabase();
+        ArrayList<Recomendacao> listaRecomendacao = new ArrayList<>();
+
+        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
+                " WHERE " + DataBase.ID_EST_PACIENTE_REC + " LIKE ? ";
+
+        String idPacienteString   = Long.toString(idPaciente);
+        String[] argumentos  = {idPacienteString};
+
+        Cursor cursor = liteDatabase.rawQuery(query, argumentos);
+
+        String colunaId   = DataBase.ID_RECOMENDACAO;
+        int indexColunaId = cursor.getColumnIndex(colunaId);
+
+        Recomendacao recomendacao;
+
+        while (cursor.moveToNext()){
+            long idRecomendacao  = cursor.getInt(indexColunaId);
+            recomendacao = getRecomendacao(idRecomendacao);
+            listaRecomendacao.add(recomendacao);
+        }
+        cursor.close();
+
+        return listaRecomendacao;
+
+    }
+
 
 
 }

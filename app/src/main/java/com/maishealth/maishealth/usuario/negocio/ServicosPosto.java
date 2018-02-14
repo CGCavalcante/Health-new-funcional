@@ -54,31 +54,6 @@ public class ServicosPosto {
 
     }
 
-    /*private ArrayList<DadosMedico> nomeEspecMedico(ArrayList<String> nomes, ArrayList<String> especs) {
-        ArrayList<DadosMedico> nomeEspec = new ArrayList<DadosMedico>();
-
-        long tamanho = nomes.size();
-        for (int i = 0; i < tamanho; i++) {
-            String nome = nomes.get(i);
-            String espec = especs.get(i);
-
-            nomeEspec.add(new DadosMedico(i + 1, nome, espec, R.drawable.user_avatar));
-
-        }
-        return nomeEspec;
-    }
-
-    public ArrayList<DadosMedico> returnNomeMedicos(long id) {
-        ArrayList<Medico> medicos = medicoPostoDAO.getMedicosByPosto(id);
-
-        ArrayList<String> pessoasMedico = getPessoaByMedico(medicos);
-        ArrayList<String> especMedico = getEspecByMedico(medicos);
-
-        ArrayList<DadosMedico> nomeEspec = nomeEspecMedico(pessoasMedico, especMedico);
-
-        return nomeEspec;
-    }*/
-
     public ArrayList<DadosMedico> medicosEspec(String espec){
         ArrayList<Medico> medicos = medicoDAO.getMedicoByEspecialidade(espec);
         ArrayList<String> pessoasMedico = getPessoaByMedico(medicos);

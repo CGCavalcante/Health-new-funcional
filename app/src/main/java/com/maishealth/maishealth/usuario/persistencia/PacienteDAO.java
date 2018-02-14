@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.maishealth.maishealth.infra.DataBase;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
 
+import java.util.ArrayList;
+
 public class PacienteDAO {
     private SQLiteDatabase liteDatabase;
     private DataBase dataBaseHelper;
@@ -119,5 +121,33 @@ public class PacienteDAO {
         String[] argumentos = {idString};
 
         return this.getPaciente(query, argumentos);
+    }
+
+    public ArrayList<Paciente> getPacientes(){
+        liteDatabase = dataBaseHelper.getReadableDatabase();
+        ArrayList<Paciente> listaPaciente = new ArrayList<>();
+
+        String query = "SELECT * FROM " + DataBase.TABELA_MEDICO;
+
+        //String[] argumentos = {};
+
+        Cursor cursor = liteDatabase.rawQuery(query, null);
+
+        String colunaIdMedico = DataBase.ID_MEDICO;
+        int indexColunaIdMedico = cursor.getColumnIndex(colunaIdMedico);
+
+        Paciente paciente;
+
+        while (cursor.moveToNext()) {
+            long idPaciente = cursor.getInt(indexColunaIdMedico);
+            paciente = getPaciente(idPaciente);
+            listaPaciente.add(paciente);
+
+        }
+        cursor.close();
+        liteDatabase.close();
+
+        return listaPaciente;
+
     }
 }
