@@ -14,23 +14,21 @@ import android.widget.TextView;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.FormataData;
+import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ReagendarDia extends AppCompatActivity {
-    private final String[] listaHorarioMedico = {"Manhã", "Tarde", "Noite"};
     Button btnClick;
     TextView textData;
-    private Spinner spinnerHorarioMedico;
     private String data;
-    private String turno;
     private int dayOfWeek;
     private String diaSemana;
 
     private String idConsS;
-    private String espec;
+    private long idconsLong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +37,9 @@ public class ReagendarDia extends AppCompatActivity {
 
         Intent intent = getIntent();
         idConsS = intent.getStringExtra("idCons");
-        espec = intent.getStringExtra("espec");
+        idconsLong = Long.parseLong(idConsS);
 
-        spinnerHorarioMedico = findViewById(R.id.RInicioHorMed);
+
         btnClick = findViewById(R.id.btnRdata);
         textData = findViewById(R.id.Rdata);
 
@@ -51,22 +49,9 @@ public class ReagendarDia extends AppCompatActivity {
                 pegarData();
             }
         });
-
-        // inicia os valores do spinner:
-        spinnerHorarioMedico.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, listaHorarioMedico));
-        spinnerHorarioMedico.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
     }
 
     private void pegarData() {
-
         Calendar c = Calendar.getInstance();
         int dia = c.get(Calendar.DAY_OF_MONTH);
         int mes = c.get(Calendar.MONTH);
@@ -87,18 +72,14 @@ public class ReagendarDia extends AppCompatActivity {
 
             }
         }, ano, mes, dia);
-
         dp.show();
-
     }
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
         intent.putExtra("data", data);
-        intent.putExtra("turno", turno);
         intent.putExtra("diaS", diaSemana);
         intent.putExtra("idCons", idConsS);
-        intent.putExtra("espec", espec);
         startActivity(intent);
         finish();
     }
@@ -114,6 +95,7 @@ public class ReagendarDia extends AppCompatActivity {
 
     public void reagendarListaMedicosConsulta(View view) {
         ValidaCadastro validaCadastro = new ValidaCadastro();
+        ServicosPaciente servicosPaciente = new ServicosPaciente(this);
         boolean valido = true;
         if (!validaCadastro.isDataNoPassado(data)) {
             textData.requestFocus();
@@ -126,8 +108,8 @@ public class ReagendarDia extends AppCompatActivity {
             valido = false;
         }
         if (valido) {
-            turno = (String) spinnerHorarioMedico.getSelectedItem();
-            this.mudarTela(ReagendarListaMedicos.class);
+            servicosPaciente.reagendarConsulta(idconsLong, data, diaSemana);
+            //this.mudarTela(MenuPaciente.class);
         }
     }
 }

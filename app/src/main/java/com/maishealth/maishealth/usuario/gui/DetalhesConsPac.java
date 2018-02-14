@@ -1,19 +1,10 @@
 package com.maishealth.maishealth.usuario.gui;
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
@@ -27,10 +18,8 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 
 public class DetalhesConsPac extends AppCompatActivity {
-    AlertDialog aviso;
-
     private String idConsS;
-    private long idcons;
+    private long idconsLong;
     private ServicosMedico servicosMedico;
     private ServicosPessoa servicosPessoa;
     private ServicosConsulta servicosConsulta;
@@ -63,14 +52,14 @@ public class DetalhesConsPac extends AppCompatActivity {
 
         Intent intent = getIntent();
         idConsS = intent.getStringExtra("idCons");
-        idcons = Long.parseLong(idConsS);
+        idconsLong = Long.parseLong(idConsS);
 
         servicosMedico = new ServicosMedico(getApplicationContext());
         servicosPessoa = new ServicosPessoa(getApplicationContext());
         servicosConsulta = new ServicosConsulta(getApplicationContext());
         servicosPaciente = new ServicosPaciente(getApplicationContext());
 
-        consulta = servicosConsulta.getConsultaById(idcons);
+        consulta = servicosConsulta.getConsultaById(idconsLong);
         turno = consulta.getTurno();
         data = consulta.getData();
 
@@ -105,10 +94,13 @@ public class DetalhesConsPac extends AppCompatActivity {
         crmMed.setText("CRM: " + crm);
 
         nomePac.setText("Nome: " + nomepac);
+
     }
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
+        String idCons = Long.toString(consulta.getId());
+        intent.putExtra("idCons", idCons);
         startActivity(intent);
         finish();
     }
@@ -118,29 +110,13 @@ public class DetalhesConsPac extends AppCompatActivity {
         this.mudarTela(ListaConsPac.class);
     }
 
-
-    @SuppressLint("WrongViewCast")
-    public void confirmarAcao(View view) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Aviso");
-        builder.setMessage("Deseja cancelar a consulta médica?");
-
-        builder.setPositiveButton("Não", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-                /**Toast.makeText(DetalhesConsPac.this, "", Toast.LENGTH_SHORT).show();*/
-
-            }
-        });
-        builder.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-
-                Toast.makeText(DetalhesConsPac.this, "Consulta Cancelada", Toast.LENGTH_SHORT).show();
-                servicosPaciente.cancelarConsulta(idcons);
-                mudarTela(MenuPaciente.class);
-            }
-        });
-        aviso = builder.create();
-        aviso.show();
+    public void reagendarDiaConsulta(View view) {
+        this.mudarTela(ReagendarDia.class);
     }
+
+    public void cancelarConsulta(View view) {
+        servicosPaciente.cancelarConsulta(idconsLong);
+        this.mudarTela(MenuPaciente.class);
+    }
+
 }

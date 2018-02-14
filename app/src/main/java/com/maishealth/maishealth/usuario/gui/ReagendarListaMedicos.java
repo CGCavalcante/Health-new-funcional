@@ -19,7 +19,6 @@ public class ReagendarListaMedicos extends AppCompatActivity {
     ListView listaMedicos;
     ArrayList<DadosMedico> lista;
     private String data;
-    private String turno;
     private String diaSemana;
 
     private String idConsS;
@@ -33,7 +32,6 @@ public class ReagendarListaMedicos extends AppCompatActivity {
 
         Intent intent = getIntent();
         data = intent.getStringExtra("data");
-        turno = intent.getStringExtra("turno");
         diaSemana = intent.getStringExtra("diaS");
 
         idConsS = intent.getStringExtra("idCons");
@@ -54,7 +52,6 @@ public class ReagendarListaMedicos extends AppCompatActivity {
                 String idMedico = Long.toString(obj.getIdmedico());
                 passar.putExtra("idmedico", idMedico);
                 passar.putExtra("data1", data);
-                passar.putExtra("turno1", turno);
                 passar.putExtra("diaSemana1", diaSemana);
 
                 passar.putExtra("idCons", idConsS);
