@@ -78,11 +78,11 @@ public class RecomendacaoDAO {
 
          String colunaIdPaciente= DataBase.ID_EST_PACIENTE_REC;
          int indexColunaIdPaciente = cursor.getColumnIndex(colunaIdPaciente);
-         long idPaciente = cursor.getInt(indexColunaIdPaciente);
+         long idPaciente = cursor.getLong(indexColunaIdPaciente);
 
          String colunaIdMedico = DataBase.ID_EST_MEDICO_REC;
          int indexColunaIdMedico = cursor.getColumnIndex(colunaIdMedico);
-         long idMedico = cursor.getInt(indexColunaIdMedico);
+         long idMedico = cursor.getLong(indexColunaIdMedico);
 
          String colunaNota = DataBase.NOTA;
          int indexColunaNota = cursor.getColumnIndex(colunaNota);
@@ -137,13 +137,13 @@ public class RecomendacaoDAO {
 
     public  Recomendacao getRecomendacaoByMedicoPaciente(long idMedico, long idPaciente){
         String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_EST_MEDICO_REC + " LIKE ? " +
-                    " AND " + DataBase.ID_EST_PACIENTE_REC + " LIKE ";
+                " WHERE " + DataBase.ID_EST_PACIENTE_REC    + " LIKE ? " +
+                    " AND " + DataBase.ID_EST_MEDICO_REC + " LIKE ? ";
 
 
         String idMedicoString   = Long.toString(idMedico);
         String idPacienteString   = Long.toString(idPaciente);
-        String[] argumentos  = {idMedicoString, idPacienteString};
+        String[] argumentos  = {idPacienteString,idMedicoString,};
 
         return this.getRecomendacao(query, argumentos);
 

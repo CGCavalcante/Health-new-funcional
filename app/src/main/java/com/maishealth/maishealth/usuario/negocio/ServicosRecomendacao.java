@@ -33,21 +33,25 @@ public class ServicosRecomendacao {
         recomendacaoDAO = new RecomendacaoDAO(context);
 
     }
-    private void criarConsulta ( Recomendacao recomendacao ){recomendacaoDAO.inserirRecomendacao(recomendacao);}
+    private long criarRecomendacao(Recomendacao recomendacao ){ return recomendacaoDAO.inserirRecomendacao(recomendacao);}
 
-    public void criarRecomendacao (long idMedico, int nota){
+    public long criarRecomendacao (long idMedico, int nota){
 
-        long idPaciente = 0;
+        long idPaciente =0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
-        Recomendacao recomendacao = recomendacaoDAO.getRecomendacaoByPaciente( idPaciente );
-        if (recomendacao != null){
-             recomendacao.setIdMedico(idMedico);
-            recomendacao.setIdPaciente(paciente.getId());
+        idPaciente = paciente.getId();
+        Recomendacao verificaRecomendacao = recomendacaoDAO.getRecomendacaoByMedicoPaciente( idMedico, idPaciente );
+        Recomendacao recomendacao = new Recomendacao();
+        if (verificaRecomendacao == null){
+
+            recomendacao.setIdMedico(idMedico);
+            recomendacao.setIdPaciente( paciente.getId());
             recomendacao.setNota(nota);
-
         }
-
+        return criarRecomendacao(recomendacao);
     }
+
+    public Recomendacao getRecomendacao(long idMedico, long idPaciente){ return recomendacaoDAO.getRecomendacaoByMedicoPaciente(idMedico,idPaciente);}
 
     public ArrayList<Recomendacao> getRecomendacao (long idMedico){
         return recomendacaoDAO.getRecomendacaoByMedico(idMedico);

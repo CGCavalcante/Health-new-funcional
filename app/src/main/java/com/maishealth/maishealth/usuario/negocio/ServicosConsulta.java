@@ -85,10 +85,6 @@ public class ServicosConsulta {
         }
     }
 
-   /* public ArrayList<Consulta> getConsultasPassadas(){
-
-    }*/
-
     public Consulta getConsulta(long idMedico, String turno, String data){
         return consultaDAO.getConsultaDisponivel(idMedico, data, turno);
     }

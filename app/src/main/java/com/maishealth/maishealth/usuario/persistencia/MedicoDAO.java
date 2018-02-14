@@ -167,18 +167,6 @@ public class MedicoDAO {
         String colunaIdMedico = DataBase.ID_MEDICO;
         int indexColunaIdMedico = cursor.getColumnIndex(colunaIdMedico);
 
-        /*String colunaCRM = DataBase.CRM;
-        int indexColunaCRM = cursor.getColumnIndex(colunaCRM);
-        String crm = cursor.getString(indexColunaCRM);
-
-        String colunaEstado = DataBase.ESTADO;
-        int indexColunaEstado = cursor.getColumnIndex(colunaEstado);
-        String estado = cursor.getString(indexColunaEstado);
-
-        String colunaIdUsuario = DataBase.ID_EST_USUARIO_PE;
-        int indexColunaIdUsuario = cursor.getColumnIndex(colunaIdUsuario);
-        long idUsuario = cursor.getInt(indexColunaIdUsuario);*/
-
         Medico medico;
 
         while (cursor.moveToNext()) {

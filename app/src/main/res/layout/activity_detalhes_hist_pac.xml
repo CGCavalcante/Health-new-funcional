@@ -192,6 +192,7 @@
                 android:layout_width="61dp"
                 android:layout_height="61dp"
                 android:layout_weight="1"
+                android:onClick="confirmarAvaliacao"
                 app:srcCompat="@mipmap/ic_launcher_ok" />
 
         </LinearLayout>

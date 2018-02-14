@@ -13,14 +13,17 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.maishealth.maishealth.R;
+import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.Medico;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.dominio.Pessoa;
+import com.maishealth.maishealth.usuario.dominio.Recomendacao;
 import com.maishealth.maishealth.usuario.negocio.ServicosConsulta;
 import com.maishealth.maishealth.usuario.negocio.ServicosMedico;
 import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
+import com.maishealth.maishealth.usuario.negocio.ServicosRecomendacao;
 
 public class DetalhesHistPac extends AppCompatActivity {
     public RatingBar estrelinha;
@@ -47,6 +50,8 @@ public class DetalhesHistPac extends AppCompatActivity {
     private String nomepac;
     private TextView nomePac;
     private ImageView confirmarAvaliacao;
+    private long idMed;
+    private long idPac;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +72,16 @@ public class DetalhesHistPac extends AppCompatActivity {
         turno = consulta.getTurno();
         data = consulta.getData();
 
-        final long idmed = consulta.getIdMedico();
-        medico = servicosMedico.getMedico(idmed);
+        idMed = consulta.getIdMedico();
+        medico = servicosMedico.getMedico(idMed);
         espec = medico.getEspecialidade();
         crm = medico.getCrm();
         final long idUserMed = medico.getIdUsuario();
         pessoaMed = servicosPessoa.searchPessoaByIdUsuario(idUserMed);
         nomemed = pessoaMed.getNome();
 
-        final long idpac = consulta.getIdPaciente();
-        paciente = servicosPaciente.getPacienteById(idpac);
+        idPac = consulta.getIdPaciente();
+        paciente = servicosPaciente.getPacienteById(idPac);
         final long idUserPac = paciente.getIdUsuario();
         pessoaPac = servicosPessoa.searchPessoaByIdUsuario(idUserPac);
         nomepac = pessoaPac.getNome();
@@ -117,18 +122,24 @@ public class DetalhesHistPac extends AppCompatActivity {
     }
 
     public void addListenerOnButton() {
-        estrelinha = (RatingBar) findViewById(R.id.estrelinha);
+        estrelinha =findViewById(R.id.estrelinha);
         confirmarAvaliacao = (ImageView) findViewById(R.id.confirmarAvaliacao);
 
-        //se o botão for clicado, exiba o valor de avaliação corrente.
-        confirmarAvaliacao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(DetalhesHistPac.this,
-                        String.valueOf(estrelinha.getRating()),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+    }
+
+    public void confirmarAvaliacao(View view){
+        Toast.makeText(DetalhesHistPac.this,
+                String.valueOf(estrelinha.getRating()),
+                Toast.LENGTH_SHORT).show();
+        int valor =(int) estrelinha.getRating();
+
+        ServicosRecomendacao servicosRecomendacao = new ServicosRecomendacao(getApplicationContext());
+        Recomendacao VerificaRecomendacao = servicosRecomendacao.getRecomendacao(idMed,idPac);
+
+        if (VerificaRecomendacao == null) {
+            servicosRecomendacao.criarRecomendacao(idMed, valor);
+            GuiUtil.myToast(DetalhesHistPac.this, "Obrigado por avaliar!");
+        }
     }
 
     private void mudarTela(Class tela) {

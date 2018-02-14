@@ -94,10 +94,10 @@ public class DataBase extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABELA_HORARIO_MEDICO + " (" +
                 ID_HOR_MEDICO + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ID_EST_MEDICO + " INTEGER," +
                 DIA_DA_SEMANA + " TEXT NOT NULL, " +
                 VAGAS + " INTEGER," +
-                TURNO + " TEXT NOT NULL," +
-                ID_EST_MEDICO + " INTEGER);");
+                TURNO + " TEXT NOT NULL);");
 
         db.execSQL("CREATE TABLE " + TABELA_USUARIO + " (" +
                 ID_USUARIO + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
