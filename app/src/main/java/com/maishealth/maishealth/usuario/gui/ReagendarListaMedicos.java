@@ -50,7 +50,7 @@ public class ReagendarListaMedicos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DadosMedico obj = (DadosMedico) parent.getItemAtPosition(position);
 
-                Intent passar = new Intent(getApplicationContext(), ReagendarDetalhesMedico.class);
+                Intent passar = new Intent(getApplicationContext(), MenuPaciente.class);
                 String idMedico = Long.toString(obj.getIdmedico());
                 passar.putExtra("idmedico", idMedico);
                 passar.putExtra("data1", data);

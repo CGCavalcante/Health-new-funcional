@@ -189,6 +189,8 @@
     <string name="voltar">Voltar</string>
     <string name="turnos">Turnos</string>
     <string name="title_activity_maps">Localização de postos</string>
+    <string name="reagendar_consulta">Reagendar Consulta</string>
+    <string name="cancelar_consulta">Cancelar Consulta</string>
 
 
 </resources>
