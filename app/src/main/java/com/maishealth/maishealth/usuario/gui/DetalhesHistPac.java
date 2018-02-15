@@ -120,7 +120,7 @@ public class DetalhesHistPac extends AppCompatActivity {
 
     public void addListenerOnButton() {
         estrelinha =findViewById(R.id.estrelinha);
-        confirmarAvaliacao = (ImageView) findViewById(R.id.confirmarAvaliacao);
+        confirmarAvaliacao = findViewById(R.id.confirmarAvaliacao);
 
     }
 

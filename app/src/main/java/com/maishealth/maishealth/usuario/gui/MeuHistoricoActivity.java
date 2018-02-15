@@ -82,8 +82,6 @@ public class MeuHistoricoActivity extends AppCompatActivity {
             TextView textView_name = view.findViewById(R.id.textView_name);
             TextView textView_description = view.findViewById(R.id.textView_descriptions);
 
-
-            //imageView.setImageResource(IMAGES2[i]);
             textView_name.setText(NAMES2[i]);
             textView_description.setText(DESCRIPTION2[i]);
 

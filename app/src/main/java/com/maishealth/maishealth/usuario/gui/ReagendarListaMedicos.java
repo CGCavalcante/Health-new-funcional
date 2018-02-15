@@ -28,7 +28,7 @@ public class ReagendarListaMedicos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reagendar_lista_medicos);
-        listaMedicos = (ListView) findViewById(R.id.lstRMedicos);
+        listaMedicos = findViewById(R.id.lstRMedicos);
 
         Intent intent = getIntent();
         data = intent.getStringExtra("data");

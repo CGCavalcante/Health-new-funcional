@@ -49,9 +49,9 @@ public class Adaptador extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(contexto);
         vista = inflater.inflate(R.layout.lista_medico_by_posto, null);
 
-        ImageView imagem = (ImageView) vista.findViewById(R.id.imagem);
-        TextView nomeMedico = (TextView) vista.findViewById(R.id.nomeMedico);
-        TextView especMedico = (TextView) vista.findViewById(R.id.especMedico);
+        ImageView imagem = vista.findViewById(R.id.imagem);
+        TextView nomeMedico = vista.findViewById(R.id.nomeMedico);
+        TextView especMedico = vista.findViewById(R.id.especMedico);
 
         nomeMedico.setText(listaMedicos.get(position).getNome().toString());
         especMedico.setText(listaMedicos.get(position).getEspecialidade().toString());

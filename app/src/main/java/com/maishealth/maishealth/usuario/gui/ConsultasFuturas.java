@@ -37,8 +37,8 @@ public class ConsultasFuturas extends AppCompatActivity {
         setContentView(R.layout.activity_consultas_futuras);
 
 
-        btnClick = (ImageView) findViewById(R.id.btndataFut);
-        textData = (TextView) findViewById(R.id.dataFut);
+        btnClick = findViewById(R.id.btndataFut);
+        textData = findViewById(R.id.dataFut);
 
         btnClick.setOnClickListener(new View.OnClickListener() {
             @Override

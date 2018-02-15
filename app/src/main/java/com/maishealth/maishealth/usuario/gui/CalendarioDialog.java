@@ -40,8 +40,8 @@ public class CalendarioDialog extends AppCompatActivity {
         espec = intent.getStringExtra("espec");
 
         spinnerHorarioMedico = findViewById(R.id.editTextInicioHorMed);
-        btnClick = (Button) findViewById(R.id.btndata);
-        textData = (TextView) findViewById(R.id.data);
+        btnClick = findViewById(R.id.btndata);
+        textData = findViewById(R.id.data);
 
         btnClick.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -36,23 +36,12 @@ public class SlopeOne {
     private ServicosPaciente servicosPaciente;
     private ServicosMedico servicosMedico;
 
-    //private Map<Integer, Map<Integer, Double>> matrizDiferenca;
-    //private Map<Integer, Map<Integer, Integer>> matrizFrequencia;
-    //private Map<Integer, Map<Integer, Double>> data = new HashMap<Integer, Map<Integer, Double>>();
     private ServicosAvaliacao servicosAvaliacao;
     private Map<Long, Map<Long, Double>> dadosAv = new HashMap<>();
     private Map<Long, Map<Long, Double>> matrizDiferenca1;
     private Map<Long, Map<Long, Integer>> matrizFrequencia1;
 
-    /*private static List<Livro> todosLivros = new ArrayList<>();
-    private static List<Pessoa> todosUsuarios = new ArrayList<>();
-    private static List<Avaliacao> produtosClassificados = new ArrayList<>();
-    private static List<Livro> produtosRecomendadosOrdenados;*/
-
     public SlopeOne(Context context) {
-        /*buscaLivro = new ReadLivro(context);
-        buscaPessoa = new ReadPessoa(context);
-        buscaAvaliacao = new AvaliacaoDao(context);*/
         servicosAvaliacao = new ServicosAvaliacao(context);
         servicosMedico = new ServicosMedico(context);
         servicosPaciente = new ServicosPaciente(context);
@@ -63,9 +52,6 @@ public class SlopeOne {
         return ordenarCompare(notasUsuario, paciente);
     }
 
-    /*public static Set<Integer> getRecomendacao(Map<Integer, Double> notasUsuario, Pessoa usuario) {
-        return ordenarCompare(notasUsuario, usuario);
-    }*/
 
     public static Set<Long> ordenarCompare(Map<Long, Double> map, Paciente paciente) {
         Comparador comparador = new Comparador(map);
