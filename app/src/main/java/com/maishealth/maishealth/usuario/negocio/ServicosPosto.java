@@ -78,7 +78,7 @@ public class ServicosPosto {
             String espec = medico.getEspecialidade();
 
             int j = 1;
-            nomeEspec.add(new DadosMedico(j, nome, espec, R.drawable.user_avatar, medico.getId()));
+            nomeEspec.add(new DadosMedico(j, nome, espec, medico.getId()));
             j++;
         }
         return nomeEspec;

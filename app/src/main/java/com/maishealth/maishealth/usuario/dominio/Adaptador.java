@@ -55,7 +55,7 @@ public class Adaptador extends BaseAdapter {
 
         nomeMedico.setText(listaMedicos.get(position).getNome().toString());
         especMedico.setText(listaMedicos.get(position).getEspecialidade().toString());
-        imagem.setImageResource(listaMedicos.get(position).getImagem());
+        imagem.setImageResource(R.drawable.user_avatar);
 
         return vista;
     }
