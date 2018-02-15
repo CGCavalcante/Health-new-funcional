@@ -1,16 +1,13 @@
 package com.maishealth.maishealth.usuario.gui;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
@@ -18,12 +15,12 @@ import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.Medico;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.dominio.Pessoa;
-import com.maishealth.maishealth.usuario.dominio.Recomendacao;
+import com.maishealth.maishealth.usuario.dominio.Avaliacao;
 import com.maishealth.maishealth.usuario.negocio.ServicosConsulta;
 import com.maishealth.maishealth.usuario.negocio.ServicosMedico;
 import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
-import com.maishealth.maishealth.usuario.negocio.ServicosRecomendacao;
+import com.maishealth.maishealth.usuario.negocio.ServicosAvaliacao;
 
 public class DetalhesHistPac extends AppCompatActivity {
     public RatingBar estrelinha;
@@ -133,11 +130,11 @@ public class DetalhesHistPac extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         int valor =(int) estrelinha.getRating();
 
-        ServicosRecomendacao servicosRecomendacao = new ServicosRecomendacao(getApplicationContext());
-        Recomendacao VerificaRecomendacao = servicosRecomendacao.getRecomendacao(idMed,idPac);
+        ServicosAvaliacao servicosAvaliacao = new ServicosAvaliacao(getApplicationContext());
+        Avaliacao verificaAvaliacao = servicosAvaliacao.getRecomendacao(idMed, idPac);
 
-        if (VerificaRecomendacao == null) {
-            servicosRecomendacao.criarRecomendacao(idMed, valor);
+        if (verificaAvaliacao == null) {
+            servicosAvaliacao.criarRecomendacao(idMed, valor);
             GuiUtil.myToast(DetalhesHistPac.this, "Obrigado por avaliar!");
         }
     }

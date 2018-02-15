@@ -3,58 +3,70 @@ package com.maishealth.maishealth.usuario.negocio;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
-import com.maishealth.maishealth.usuario.dominio.Recomendacao;
+import com.maishealth.maishealth.usuario.dominio.Avaliacao;
 import com.maishealth.maishealth.usuario.persistencia.ConsultaDAO;
 import com.maishealth.maishealth.usuario.persistencia.MedicoDAO;
 import com.maishealth.maishealth.usuario.persistencia.PacienteDAO;
-import com.maishealth.maishealth.usuario.persistencia.RecomendacaoDAO;
+import com.maishealth.maishealth.usuario.persistencia.AvaliacaoDAO;
 
 import java.util.ArrayList;
 
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACIENTE_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
 
-public class ServicosRecomendacao {
+public class ServicosAvaliacao {
     private PacienteDAO pacienteDAO;
     private ConsultaDAO consultaDAO;
     private MedicoDAO medicoDAO;
     private ServicosPessoa servicosPessoa;
     private SharedPreferences sharedPreferences;
-    private RecomendacaoDAO recomendacaoDAO;
+    private AvaliacaoDAO avaliacaoDAO;
 
-    public  ServicosRecomendacao (Context context){
+    public ServicosAvaliacao(Context context) {
         sharedPreferences = context.getSharedPreferences(TITLE_PREFERENCES, Context.MODE_PRIVATE);
         pacienteDAO = new PacienteDAO(context);
         medicoDAO = new MedicoDAO(context);
         servicosPessoa = new ServicosPessoa(context);
         consultaDAO = new ConsultaDAO(context);
-        recomendacaoDAO = new RecomendacaoDAO(context);
+        avaliacaoDAO = new AvaliacaoDAO(context);
 
     }
-    private long criarRecomendacao(Recomendacao recomendacao ){ return recomendacaoDAO.inserirRecomendacao(recomendacao);}
+
+    private long criarRecomendacao(Avaliacao avaliacao) {
+        return avaliacaoDAO.inserirRecomendacao(avaliacao);
+    }
 
     public long criarRecomendacao (long idMedico, int nota){
 
         long idPaciente =0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
         idPaciente = paciente.getId();
-        Recomendacao verificaRecomendacao = recomendacaoDAO.getRecomendacaoByMedicoPaciente( idMedico, idPaciente );
-        Recomendacao recomendacao = new Recomendacao();
-        if (verificaRecomendacao == null){
+        Avaliacao verificaAvaliacao = avaliacaoDAO.getRecomendacaoByMedicoPaciente(idMedico, idPaciente);
+        Avaliacao avaliacao = new Avaliacao();
+        if (verificaAvaliacao == null) {
 
-            recomendacao.setIdMedico(idMedico);
-            recomendacao.setIdPaciente( paciente.getId());
-            recomendacao.setNota(nota);
+            avaliacao.setIdMedico(idMedico);
+            avaliacao.setIdPaciente(paciente.getId());
+            avaliacao.setNota(nota);
         }
-        return criarRecomendacao(recomendacao);
+        return criarRecomendacao(avaliacao);
     }
 
-    public Recomendacao getRecomendacao(long idMedico, long idPaciente){ return recomendacaoDAO.getRecomendacaoByMedicoPaciente(idMedico,idPaciente);}
+    public Avaliacao getRecomendacao(long idMedico, long idPaciente) {
+        return avaliacaoDAO.getRecomendacaoByMedicoPaciente(idMedico, idPaciente);
+    }
 
-    public ArrayList<Recomendacao> getRecomendacaoByMedico (long idMedico){
-        return recomendacaoDAO.getRecomendacaoByMedico(idMedico);
+    public ArrayList<Avaliacao> getRecomendacaoByMedico(long idMedico) {
+        return avaliacaoDAO.getRecomendacaoByMedico(idMedico);
+    }
+
+    public ArrayList<Avaliacao> getRecomendacoes() {
+        return avaliacaoDAO.getRecomendacoes();
+    }
+
+    public ArrayList<Avaliacao> getRecomendacaoByPaciente(long idPaciente) {
+        return avaliacaoDAO.getRecomendacaoByPaciente(idPaciente);
     }
 }
 

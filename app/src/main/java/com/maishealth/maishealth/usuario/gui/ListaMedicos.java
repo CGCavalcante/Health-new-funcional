@@ -12,7 +12,9 @@ import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.Adaptador;
 import com.maishealth.maishealth.usuario.dominio.DadosMedico;
 import com.maishealth.maishealth.usuario.dominio.Medico;
+import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosMedico;
+import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPosto;
 
 import java.io.Serializable;
@@ -65,8 +67,10 @@ public class ListaMedicos extends AppCompatActivity {
 
     private ArrayList<DadosMedico> preencher(String espec) {
         ServicosPosto servicosPosto = new ServicosPosto(getApplicationContext());
+        ServicosPaciente servicosPaciente = new ServicosPaciente(getApplicationContext());
+        Paciente paciente = servicosPaciente.getPacienteById(10);
 
-        return servicosPosto.medicosEspec(espec);
+        return servicosPosto.medicosEspec(paciente, espec);
     }
 
     private void mudarTela(Class tela) {

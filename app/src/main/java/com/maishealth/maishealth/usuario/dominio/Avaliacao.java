@@ -1,23 +1,23 @@
 package com.maishealth.maishealth.usuario.dominio;
 
 
-public class Recomendacao {
+public class Avaliacao {
     private long id;
     private long idPaciente;
     private long idMedico;
-    private int nota;
+    private double nota;
 
     /**
      * Construtor para instanciar.
      */
-    public Recomendacao() {
+    public Avaliacao() {
     }
 
     /**
      * Construtor para buscar no banco.
      */
 
-    public Recomendacao( long id, long idPaciente, long idMedico, int nota) {
+    public Avaliacao(long id, long idPaciente, long idMedico, int nota) {
         this.id = id;
         this.idPaciente = idPaciente;
         this.idMedico = idMedico;
@@ -25,7 +25,7 @@ public class Recomendacao {
     }
 
     //Construtor para inserir.
-    public Recomendacao(long idPaciente, long idMedico, int nota) {
+    public Avaliacao(long idPaciente, long idMedico, int nota) {
         this.idPaciente = idPaciente;
         this.idMedico = idMedico;
         this.nota = nota;
@@ -55,11 +55,11 @@ public class Recomendacao {
         this.idMedico=idMedico;
     }
 
-    public int getNota() {
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(double nota) {
         this.nota=nota;
     }
 

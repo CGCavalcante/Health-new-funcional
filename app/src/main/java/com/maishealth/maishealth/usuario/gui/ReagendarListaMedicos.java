@@ -37,7 +37,7 @@ public class ReagendarListaMedicos extends AppCompatActivity {
         idConsS = intent.getStringExtra("idCons");
         especialidade = intent.getStringExtra("espec");
 
-        lista = preencher(especialidade);
+        lista = new ArrayList<>();
 
         Adaptador adaptador = new Adaptador(getApplication(), lista);
 
@@ -64,11 +64,11 @@ public class ReagendarListaMedicos extends AppCompatActivity {
 
     }
 
-    private ArrayList<DadosMedico> preencher(String espec) {
+    /*private ArrayList<DadosMedico> preencher(String espec) {
         ServicosPosto servicosPosto = new ServicosPosto(getApplicationContext());
 
         return servicosPosto.medicosEspec(espec);
-    }
+    }*/
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);

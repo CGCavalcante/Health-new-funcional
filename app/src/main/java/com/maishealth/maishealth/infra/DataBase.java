@@ -138,7 +138,7 @@ public class DataBase extends SQLiteOpenHelper {
                 ID_RECOMENDACAO  + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 ID_EST_PACIENTE_REC + " INTEGER, " +
                 ID_EST_MEDICO_REC + " INTEGER, " +
-                NOTA + " INTEGER);");
+                NOTA + " DOUBLE NOT NULL);");
 
         db.execSQL(INSERIR_USUARIO);
         db.execSQL(INSERIR_PESSOA);

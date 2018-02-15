@@ -67,10 +67,6 @@ public class ServicosPaciente {
         return pacienteDAO.getPaciente(id);
     }
 
-    public ArrayList<Paciente> getPacientes() {
-        return pacienteDAO.getPacientes();
-    }
-
     public boolean reagendarConsulta(long idConsulta, String data, String diaSemana) {
         Consulta consultaAntiga = consultaDAO.getConsulta(idConsulta);
         long idmedico = consultaAntiga.getIdMedico();
@@ -117,9 +113,12 @@ public class ServicosPaciente {
                 consultaDAO.atualizarConsulta(consulta);
             }else {
                 consulta.setStatus(EnumStatusConsulta.CANCELADA.toString());
-                consultaDAO.atualizarConsulta(consulta);
+                consultaDAO.deleteConsulta(consulta.getId());
             }
         }
     }
 
+    public ArrayList<Paciente> getPacientes() {
+        return pacienteDAO.getPacientes();
+    }
 }
