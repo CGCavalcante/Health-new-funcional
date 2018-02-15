@@ -642,5 +642,4 @@ public class ConstantePopularBanco {
             "(20,13,2)," +
             "(20,14,2)," +
             "(20,15,2);" ;
-
 }
