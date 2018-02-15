@@ -12,6 +12,8 @@ import com.maishealth.maishealth.usuario.persistencia.ConsultaDAO;
 import com.maishealth.maishealth.usuario.persistencia.HorarioMedicoDAO;
 import com.maishealth.maishealth.usuario.persistencia.PacienteDAO;
 
+import java.util.ArrayList;
+
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACIENTE_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
 
@@ -65,25 +67,41 @@ public class ServicosPaciente {
         return pacienteDAO.getPaciente(id);
     }
 
-    public void reagendarConsulta ( long idConsulta, String data, String diaSemana ){
+    public ArrayList<Paciente> getPacientes() {
+        return pacienteDAO.getPacientes();
+    }
+
+    public boolean reagendarConsulta(long idConsulta, String data, String diaSemana) {
         Consulta consultaAntiga = consultaDAO.getConsulta(idConsulta);
-        Consulta consulta = consultaDAO.getConsultaByData(data);
+        long idmedico = consultaAntiga.getIdMedico();
+        String turno = consultaAntiga.getTurno();
+        Consulta consulta = consultaDAO.getConsultaDisponivel(idmedico, data, turno);
         if (consulta != null){
             consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
             consulta.setIdPaciente(consultaAntiga.getIdPaciente());
             consultaDAO.atualizarConsulta(consulta);
+
+            consultaAntiga.setStatus(EnumStatusConsulta.DISPONIVEL.toString());
+            consultaAntiga.setIdPaciente(0);
+            consultaDAO.atualizarConsulta(consultaAntiga);
+            return true;
+
         }else {
             HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(consultaAntiga.getIdMedico(), diaSemana,consultaAntiga.getTurno());
             if (horarioMedico != null) {
                 servicosConsulta.gerarConsultas(consultaAntiga.getIdMedico(), consultaAntiga.getTurno(),data, diaSemana);
-                consulta = consultaDAO.getConsultaByData(data);
+                consulta = consultaDAO.getConsultaDisponivel(idmedico, data, turno);
                 consulta.setIdPaciente(consultaAntiga.getIdPaciente());
-                consulta.setTurno(consultaAntiga.getTurno());
-                consulta.setIdMedico(consultaAntiga.getIdMedico());
                 consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
                 consultaDAO.atualizarConsulta(consulta);
+
+                consultaAntiga.setStatus(EnumStatusConsulta.DISPONIVEL.toString());
+                consultaAntiga.setIdPaciente(0);
+                consultaDAO.atualizarConsulta(consultaAntiga);
+                return true;
             }
         }
+        return false;
     }
 
     public void cancelarConsulta(long idConsultaAntiga) {

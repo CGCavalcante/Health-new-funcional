@@ -153,6 +153,7 @@ public class MedicoDAO {
 
         return this.getMedico(query, argumentos);
     }
+
     public ArrayList<Medico>getMedicoByEspecialidade(String especialidade){
         liteDatabase = dataBaseHelper.getReadableDatabase();
         ArrayList<Medico> listaMedicos = new ArrayList<>();

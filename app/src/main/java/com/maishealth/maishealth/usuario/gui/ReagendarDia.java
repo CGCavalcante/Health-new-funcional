@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.FormataData;
+import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 
@@ -93,7 +94,7 @@ public class ReagendarDia extends AppCompatActivity {
         this.mudarTela(DetalhesConsPac.class);
     }
 
-    public void reagendarListaMedicosConsulta(View view) {
+    public void reagendarConsulta(View view) {
         ValidaCadastro validaCadastro = new ValidaCadastro();
         ServicosPaciente servicosPaciente = new ServicosPaciente(this);
         boolean valido = true;
@@ -108,8 +109,14 @@ public class ReagendarDia extends AppCompatActivity {
             valido = false;
         }
         if (valido) {
-            servicosPaciente.reagendarConsulta(idconsLong, data, diaSemana);
-            //this.mudarTela(MenuPaciente.class);
+            valido = servicosPaciente.reagendarConsulta(idconsLong, data, diaSemana);
+
+            if (valido) {
+                GuiUtil.myToast(this, "Consulta Reagendada");
+                this.mudarTela(MenuPaciente.class);
+            } else {
+                GuiUtil.myToast(this, "Nao existe disponibilidade");
+            }
         }
     }
 }

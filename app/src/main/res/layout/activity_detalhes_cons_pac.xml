@@ -136,6 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_weight="1"
+            android:onClick="reagendarDiaConsulta"
             app:srcCompat="@mipmap/ic_launcher_foreground" />
 
         <ImageView
@@ -174,7 +175,7 @@
         android:layout_width="67dp"
         android:layout_height="67dp"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         app:srcCompat="@android:drawable/ic_delete" />
 
 </LinearLayout>

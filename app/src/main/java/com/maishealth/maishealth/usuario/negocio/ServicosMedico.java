@@ -28,7 +28,6 @@ public class ServicosMedico {
         consultaDAO = new ConsultaDAO(context);
         horarioMedicoDAO = new HorarioMedicoDAO(context);    }
 
-
     private long cadastrarMedico(Medico medico){
         return medicoDAO.inserirMedico(medico);
     }
