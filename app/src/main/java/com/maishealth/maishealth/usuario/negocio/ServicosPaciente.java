@@ -75,14 +75,13 @@ public class ServicosPaciente {
         }else {
             HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(consultaAntiga.getIdMedico(), diaSemana,consultaAntiga.getTurno());
             if (horarioMedico != null) {
-
-                  servicosConsulta.gerarConsultas(consultaAntiga.getIdMedico(), consultaAntiga.getTurno(),data, diaSemana);
+                servicosConsulta.gerarConsultas(consultaAntiga.getIdMedico(), consultaAntiga.getTurno(),data, diaSemana);
                 consulta = consultaDAO.getConsultaByData(data);
-                  consulta.setIdPaciente(consultaAntiga.getIdPaciente());
+                consulta.setIdPaciente(consultaAntiga.getIdPaciente());
                 consulta.setTurno(consultaAntiga.getTurno());
                 consulta.setIdMedico(consultaAntiga.getIdMedico());
-                  consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
-                  consultaDAO.atualizarConsulta(consulta);
+                consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
+                consultaDAO.atualizarConsulta(consulta);
             }
         }
     }
