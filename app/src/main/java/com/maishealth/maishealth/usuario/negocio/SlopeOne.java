@@ -14,24 +14,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-/*import com.projeto.bookfast.bookfast.livro.dominio.Livro;
-import com.projeto.bookfast.bookfast.livro.persistencia.ReadLivro;
-import com.projeto.bookfast.bookfast.pessoa.dominio.Pessoa;
-import com.projeto.bookfast.bookfast.pessoa.persistencia.ReadPessoa;
-import com.projeto.bookfast.bookfast.recomendacao.dominio.Avaliacao;
-import com.projeto.bookfast.bookfast.recomendacao.persistencia.AvaliacaoDao;*/
 
 /**
- * classe SlopeOne ler os dados no banco atravÃ©s do ReadPessoa e ReadLivro cria um atributo Context, cria as matrizes de diferenÃ§a e de frequencia.
+ * classe SlopeOne ler os dados no banco atraves do ReadPessoa e ReadLivro cria um atributo Context, cria as matrizes de diferenÃ§a e de frequencia.
  */
 
 public class SlopeOne {
     private static List<Paciente> todosPacientes = new ArrayList<>();
     private static List<Medico> todosMedicos = new ArrayList<>();
     private static List<Avaliacao> medicosAvaliados = new ArrayList<>();
-    /*private AvaliacaoDao buscaAvaliacao;
-    private ReadPessoa buscaPessoa;
-    private ReadLivro buscaLivro;*/
+
     private static List<Medico> medicosRecomendados = new ArrayList<>();
     private ServicosPaciente servicosPaciente;
     private ServicosMedico servicosMedico;
@@ -52,7 +44,6 @@ public class SlopeOne {
         return ordenarCompare(notasUsuario, paciente);
     }
 
-
     public static Set<Long> ordenarCompare(Map<Long, Double> map, Paciente paciente) {
         Comparador comparador = new Comparador(map);
         Map<Long, Double> sorted_map = new TreeMap<>(comparador);
@@ -66,9 +57,11 @@ public class SlopeOne {
 
         for (Paciente paciente : todosPacientes) {
             HashMap<Long, Double> notasPac = new HashMap<>();
-            medicosAvaliados = servicosAvaliacao.getRecomendacaoByPaciente(paciente.getId());
+            medicosAvaliados = servicosAvaliacao.getRecomendacaoByPacienteAndEspec(paciente.getId(), todosMedicos);
 
             for (Avaliacao remomendcaoMedico : medicosAvaliados) {
+                long idmed = remomendcaoMedico.getIdMedico();
+                double nota = remomendcaoMedico.getNota();
                 notasPac.put(remomendcaoMedico.getIdMedico(), remomendcaoMedico.getNota());
             }
             dadosAv.put(paciente.getId(), notasPac);
@@ -76,7 +69,7 @@ public class SlopeOne {
 
     }
 
-    public List listaRecomendacao1(Paciente paciente, String espec) {
+    public Map<Long, Double> listaRecomendacao1(Paciente paciente, String espec) {
         leituraDados1(espec);
         return calculaRecomendacoes1(dadosAv, paciente);
     }
@@ -126,6 +119,9 @@ public class SlopeOne {
             for (Long k : matrizDiferenca1.keySet()) {
                 try {
                     Double novoValor = (matrizDiferenca1.get(k).get(j).doubleValue() + notasUsuario.get(j).doubleValue()) * matrizFrequencia1.get(k).get(j).intValue();
+                    predictions.put(k, predictions.get(k) + novoValor);
+                    frequences.put(k, frequences.get(k) + matrizFrequencia1.get(k).get(j).intValue());
+
                 } catch (NullPointerException e) {
                 }
             }
@@ -142,15 +138,34 @@ public class SlopeOne {
         return cleanpredictions;
     }
 
-    private List<Long> calculaRecomendacoes1(Map<Long, Map<Long, Double>> dadosAv, Paciente paciente) {
+    private Map<Long, Double> calculaRecomendacoes1(Map<Long, Map<Long, Double>> dadosAv, Paciente paciente) {
         criarMatrizDiferenca1(dadosAv);
 
-        Set<Long> listIdOrdenados = getRecomendacao(predict(dadosAv.get(paciente.getId())), paciente);
-        List<Long> medicosRecomendadosOrdenados = new ArrayList<>();
-        for (Long i : listIdOrdenados) {
-            medicosRecomendadosOrdenados.add(i);
+        //HashMap<Long,Double> listIdOrdenados;
+
+        return ordenar(predict(dadosAv.get(paciente.getId())));
+    }
+
+    public Map<Long, Double> ordenar(Map<Long, Double> notasUsuario) {
+        Map<Long, Double> saida = new HashMap<>();
+
+        for (int j = 0; j < notasUsuario.size(); j++) {
+            double maior = 0.0;
+            long chave = 0;
+            for (long i : notasUsuario.keySet()) {
+                double novoItem = 0.0;
+
+                if (!saida.containsKey(i)) {
+                    novoItem = notasUsuario.get(i);
+                }
+                if (novoItem > maior) {
+                    maior = novoItem;
+                    chave = i;
+                }
+            }
+            saida.put(chave, maior);
         }
-        return medicosRecomendadosOrdenados;
+        return saida;
     }
 
     public static class Comparador implements java.util.Comparator {

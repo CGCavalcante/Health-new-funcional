@@ -16,6 +16,7 @@ import com.maishealth.maishealth.usuario.persistencia.UsuarioDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Wenderson de Souza on 31/01/2018.
@@ -59,24 +60,26 @@ public class ServicosPosto {
     }
 
     public ArrayList<DadosMedico> medicosEspec(Paciente paciente, String espec) {
-        //List<Long> idmedicos = slopeOne.listaRecomendacao1(paciente, espec);
-        ArrayList<Medico> medicos = medicoDAO.getMedicoByEspecialidade(espec);
-        ArrayList<String> pessoasMedico = getPessoaByMedico(medicos);
+        Map<Long, Double> idmedicos = slopeOne.listaRecomendacao1(paciente, espec);
 
-        ArrayList<DadosMedico> nomeEspec = setarDadosMedico(medicos,pessoasMedico);
+        ArrayList<DadosMedico> nomeEspec = setarDadosMedico(idmedicos);
 
         return nomeEspec;
     }
 
-    private ArrayList<DadosMedico> setarDadosMedico(ArrayList<Medico> medicos, ArrayList<String> pessoasMedico) {
+    private ArrayList<DadosMedico> setarDadosMedico(Map<Long, Double> idmedicos) {
         ArrayList<DadosMedico> nomeEspec = new ArrayList<DadosMedico>();
-        long tamanho = medicos.size();
-        for (int i = 0; i < tamanho; i++) {
-            Medico medico = medicos.get(i);
-            String nome = pessoasMedico.get(i);
+
+        for (long id : idmedicos.keySet()) {
+            Medico medico = medicoDAO.getMedico(id);
+            Pessoa pessoa = pessoaDAO.getPessoaByIdUsuario(medico.getIdUsuario());
+
+            String nome = pessoa.getNome();
             String espec = medico.getEspecialidade();
 
-            nomeEspec.add(new DadosMedico(i + 1, nome, espec, R.drawable.user_avatar,medico.getId()));
+            int j = 1;
+            nomeEspec.add(new DadosMedico(j, nome, espec, R.drawable.user_avatar, medico.getId()));
+            j++;
         }
         return nomeEspec;
     }

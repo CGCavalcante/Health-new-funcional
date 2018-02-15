@@ -127,19 +127,19 @@ public class PacienteDAO {
         liteDatabase = dataBaseHelper.getReadableDatabase();
         ArrayList<Paciente> listaPaciente = new ArrayList<>();
 
-        String query = "SELECT * FROM " + DataBase.TABELA_MEDICO;
+        String query = "SELECT * FROM " + DataBase.TABELA_PACIENTE;
 
         //String[] argumentos = {};
 
         Cursor cursor = liteDatabase.rawQuery(query, null);
 
-        String colunaIdMedico = DataBase.ID_MEDICO;
-        int indexColunaIdMedico = cursor.getColumnIndex(colunaIdMedico);
+        String colunaIdPaciente = DataBase.ID_PACIENTE;
+        int indexColunaIdPaciente = cursor.getColumnIndex(colunaIdPaciente);
 
         Paciente paciente;
 
         while (cursor.moveToNext()) {
-            long idPaciente = cursor.getInt(indexColunaIdMedico);
+            long idPaciente = cursor.getInt(indexColunaIdPaciente);
             paciente = getPaciente(idPaciente);
             listaPaciente.add(paciente);
 

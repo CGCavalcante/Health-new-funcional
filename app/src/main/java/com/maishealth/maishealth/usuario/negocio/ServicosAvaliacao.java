@@ -3,6 +3,7 @@ package com.maishealth.maishealth.usuario.negocio;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.maishealth.maishealth.usuario.dominio.Medico;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.dominio.Avaliacao;
 import com.maishealth.maishealth.usuario.persistencia.ConsultaDAO;
@@ -11,6 +12,7 @@ import com.maishealth.maishealth.usuario.persistencia.PacienteDAO;
 import com.maishealth.maishealth.usuario.persistencia.AvaliacaoDAO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACIENTE_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
@@ -65,8 +67,12 @@ public class ServicosAvaliacao {
         return avaliacaoDAO.getRecomendacoes();
     }
 
-    public ArrayList<Avaliacao> getRecomendacaoByPaciente(long idPaciente) {
-        return avaliacaoDAO.getRecomendacaoByPaciente(idPaciente);
+    public ArrayList<Avaliacao> getRecomendacaoByPacienteAndEspec(long idPaciente, List<Medico> medicos) {
+        ArrayList<Avaliacao> medicosAvaliados = new ArrayList<>();
+        for (Medico medico : medicos) {
+            medicosAvaliados.add(avaliacaoDAO.getRecomendacaoByMedicoPaciente(medico.getId(), idPaciente));
+        }
+        return medicosAvaliados;
     }
 }
 
