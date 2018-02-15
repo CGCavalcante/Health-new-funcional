@@ -1,10 +1,19 @@
 package com.maishealth.maishealth.usuario.gui;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
@@ -18,6 +27,8 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 
 public class DetalhesConsPac extends AppCompatActivity {
+    AlertDialog aviso;
+
     private String idConsS;
     private long idconsLong;
     private ServicosMedico servicosMedico;
@@ -117,6 +128,31 @@ public class DetalhesConsPac extends AppCompatActivity {
     public void cancelarConsulta(View view) {
         servicosPaciente.cancelarConsulta(idconsLong);
         this.mudarTela(MenuPaciente.class);
+    }
+
+    @SuppressLint("WrongViewCast")
+    public void confirmarAcao(View view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Aviso");
+        builder.setMessage("Deseja cancelar a consulta médica?");
+
+        builder.setPositiveButton("Não", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                /**Toast.makeText(DetalhesConsPac.this, "", Toast.LENGTH_SHORT).show();*/
+
+            }
+        });
+        builder.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+                Toast.makeText(DetalhesConsPac.this, "Consulta Cancelada", Toast.LENGTH_SHORT).show();
+                servicosPaciente.cancelarConsulta(idconsLong);
+                mudarTela(MenuPaciente.class);
+            }
+        });
+        aviso = builder.create();
+        aviso.show();
     }
 
 }
