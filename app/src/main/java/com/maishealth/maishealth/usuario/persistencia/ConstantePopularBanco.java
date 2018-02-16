@@ -642,4 +642,17 @@ public class ConstantePopularBanco {
             "(20,13,2)," +
             "(20,14,2)," +
             "(20,15,2);" ;
+
+    public static final String INSERIR_MEDICAMENTO = " INSERT INTO 'medicamento' "+
+            "('id_medicamento','nome_medicamento','fornecedor') VALUES " +
+            "(1, 'Dipirona','Lafepe')," +
+            "(2, 'Vitamina A','EMS')," +
+            "(3, 'Biotonico Fontora','Fontora')," +
+            "(4, 'Vitamina C','SMS')," +
+            "(5, 'Complexo B','Bayer')," +
+            "(6, 'Rifocina','Lafepe')," +
+            "(7, 'Floratil','Bayer')," +
+            "(8, 'Omeprazol','EMS')," +
+            "(9, 'Diclofenaco de Sódio','Lafepe')," +
+            "(10,'Nemisulida','Lafepe');";
 }

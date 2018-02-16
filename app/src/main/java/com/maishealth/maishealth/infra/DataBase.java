@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper; // Cria banco de dados
 import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_CONSULTA;
+import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_MEDICAMENTO;
 import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_MEDICO;
 import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_MEDICO_POSTO;
 import static com.maishealth.maishealth.usuario.persistencia.ConstantePopularBanco.INSERIR_PACIENTE;
@@ -74,6 +75,11 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String ID_EST_PACIENTE_REC = "id_paciente";
     public static final String ID_EST_MEDICO_REC = "id_medico";
     public static final String NOTA  = "nota";
+    //TABELA MEDICAMENTO
+    public static  final String TABELA_MEDICAMENTO ="medicamento";
+    public static  final String ID_MEDICAMENTO = "id_medicamento";
+    public static  final String NOME_MEDICAMENTO = "nome_medicamento";
+    public static  final String FORNECEDOR = "fornecedor";
 
     private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "dbmaishealth";
@@ -140,6 +146,11 @@ public class DataBase extends SQLiteOpenHelper {
                 ID_EST_MEDICO_REC + " INTEGER, " +
                 NOTA + " DOUBLE NOT NULL);");
 
+        db.execSQL("CREATE TABLE " + TABELA_MEDICAMENTO  + " (" +
+                ID_MEDICAMENTO + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                NOME_MEDICAMENTO + " TEXT NOT NULL, " +
+                FORNECEDOR + " TEXT NOT NULL); ");
+
         db.execSQL(INSERIR_USUARIO);
         db.execSQL(INSERIR_PESSOA);
         db.execSQL(INSERIR_PACIENTE);
@@ -149,6 +160,7 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(INSERIR_HORARIO_MEDICO);
         db.execSQL(INSERIR_CONSULTA);
         db.execSQL(ISERIR_RECOMENDACAO);
+        db.execSQL(INSERIR_MEDICAMENTO);
     }
 
     //Atualização da tabela
@@ -181,6 +193,8 @@ public class DataBase extends SQLiteOpenHelper {
         String query16 = "DROP TABLE IF EXISTS " + TABELA_RECOMENDACAO;
         db.execSQL(query16);
 
+        String query17 = "DROP TABLE IF EXISTS " + TABELA_MEDICAMENTO;
+        db.execSQL(query17);
         this.onCreate(db);
     }
 }
