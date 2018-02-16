@@ -75,6 +75,8 @@ public class RemedioCadastrar extends AppCompatActivity {
 
             ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
             servicosMedicamento.cadastrarMedicamento(nomeRemedioString, fornecedorString);
+            GuiUtil.myToast(getApplicationContext(), "Medicamento Cadastrado");
+            this.mudarTela(RemedioMenu.class);
 
         }
 
