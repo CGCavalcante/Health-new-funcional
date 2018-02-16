@@ -4,6 +4,7 @@ package com.maishealth.maishealth.usuario.negocio;
 import android.content.Context;
 
 import com.maishealth.maishealth.usuario.dominio.Medicamento;
+import com.maishealth.maishealth.usuario.dominio.RemedioDados;
 import com.maishealth.maishealth.usuario.persistencia.MedicamentoDAO;
 
 import java.util.ArrayList;
@@ -46,6 +47,19 @@ public class ServicosMedicamento {
         if (medicamento != null){
             medicamentoDAO.deleteMedicamento(idMedicamento);
         }
+    }
+
+    public ArrayList<RemedioDados> preencher() {
+        ArrayList<Medicamento> remedios = getMedicamentos();
+        ArrayList<RemedioDados> remedioDados = new ArrayList<>();
+        int j = 1;
+        for (Medicamento i : remedios) {
+            RemedioDados remedio = new RemedioDados(j, i.getNomeMedicamento(), i.getId());
+            j++;
+
+            remedioDados.add(remedio);
+        }
+        return remedioDados;
     }
 
 }

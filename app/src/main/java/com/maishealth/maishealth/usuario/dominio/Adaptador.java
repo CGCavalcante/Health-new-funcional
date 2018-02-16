@@ -13,10 +13,6 @@ import com.maishealth.maishealth.usuario.dominio.DadosMedico;
 
 import java.util.List;
 
-/**
- * Created by Wenderson de Souza on 01/02/2018.
- */
-
 public class Adaptador extends BaseAdapter {
 
     Context contexto;
