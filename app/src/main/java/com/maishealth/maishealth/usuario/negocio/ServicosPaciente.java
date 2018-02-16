@@ -121,4 +121,8 @@ public class ServicosPaciente {
     public ArrayList<Paciente> getPacientes() {
         return pacienteDAO.getPacientes();
     }
+
+    public Paciente getPacienteByIdUsuario(long idUsuario) {
+        return pacienteDAO.getPacienteByIdUsuario(idUsuario);
+    }
 }
