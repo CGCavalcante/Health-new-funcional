@@ -91,6 +91,7 @@ public class RemedioAtualizar extends AppCompatActivity {
             if (medicamento != null) {
                 servicosMedicamento.atualizarMedicamento(idRemdedio, nomeRemedioString, fornecedorString);
                 GuiUtil.myToast (this,"Medicamento Atualizado com Sucesso!");
+                this.mudarTela(RemedioMenu.class);
             }
 
         }

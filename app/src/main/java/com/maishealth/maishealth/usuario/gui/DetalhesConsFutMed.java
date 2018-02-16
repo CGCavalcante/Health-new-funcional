@@ -3,6 +3,7 @@ package com.maishealth.maishealth.usuario.gui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.maishealth.maishealth.R;
@@ -99,9 +100,12 @@ public class DetalhesConsFutMed extends AppCompatActivity {
         finish();
     }
 
-
     @Override
     public void onBackPressed() {
-        this.mudarTela(ListaConsFutMed.class);
+        this.mudarTela(MenuMedicoActivity.class);
+    }
+
+    public void sairConsultaFut(View view) {
+        this.mudarTela(MenuMedicoActivity.class);
     }
 }

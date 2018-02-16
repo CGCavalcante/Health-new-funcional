@@ -76,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Data"
             android:textSize="17dp" />
 
@@ -84,6 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Turno"
             android:textSize="17dp" />
     </LinearLayout>
@@ -129,6 +131,8 @@
         android:id="@+id/imageView5"
         android:layout_width="67dp"
         android:layout_height="67dp"
+        android:layout_gravity="center"
+        android:onClick="sairConsultaFut"
         app:srcCompat="@android:drawable/ic_delete" />
 
 </LinearLayout>

@@ -35,6 +35,7 @@ public class ListaEspecialidade extends AppCompatActivity {
                 Intent proximo = new Intent(getApplicationContext(), CalendarioDialog.class);
                 proximo.putExtra("espec", espec);
                 startActivity(proximo);
+                finish();
             }
         });
     }
