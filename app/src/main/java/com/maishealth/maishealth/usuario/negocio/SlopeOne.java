@@ -40,17 +40,6 @@ public class SlopeOne {
 
     }
 
-    public static Set<Long> getRecomendacao(Map<Long, Double> notasUsuario, Paciente paciente) {
-        return ordenarCompare(notasUsuario, paciente);
-    }
-
-    public static Set<Long> ordenarCompare(Map<Long, Double> map, Paciente paciente) {
-        Comparador comparador = new Comparador(map);
-        Map<Long, Double> sorted_map = new TreeMap<>(comparador);
-        sorted_map.putAll(map);
-        return sorted_map.keySet();
-    }
-
     public void leituraDados1(String espec) {
         todosPacientes = servicosPaciente.getPacientes();
         todosMedicos = servicosMedico.getMedicoByEspec(espec);
@@ -108,7 +97,7 @@ public class SlopeOne {
         }
     }
 
-    public Map<Long, Double> predict(Map<Long, Double> notasUsuario) {
+    private Map<Long, Double> predict(Map<Long, Double> notasUsuario) {
         HashMap<Long, Double> predictions = new HashMap<>();
         HashMap<Long, Integer> frequences = new HashMap<>();
         for (Long j : matrizDiferenca1.keySet()) {
@@ -141,12 +130,10 @@ public class SlopeOne {
     private Map<Long, Double> calculaRecomendacoes1(Map<Long, Map<Long, Double>> dadosAv, Paciente paciente) {
         criarMatrizDiferenca1(dadosAv);
 
-        //HashMap<Long,Double> listIdOrdenados;
-
         return ordenar(predict(dadosAv.get(paciente.getId())));
     }
 
-    public Map<Long, Double> ordenar(Map<Long, Double> notasUsuario) {
+    private Map<Long, Double> ordenar(Map<Long, Double> notasUsuario) {
         Map<Long, Double> saida = new HashMap<>();
 
         for (int j = 0; j < notasUsuario.size(); j++) {
@@ -166,23 +153,6 @@ public class SlopeOne {
             saida.put(chave, maior);
         }
         return saida;
-    }
-
-    public static class Comparador implements java.util.Comparator {
-        private Map m = null; // the original map
-
-        public Comparador(Map map) {
-            this.m = map;
-        }
-
-        public int compare(Object o1, Object o2) {
-            // handle some exceptions here
-            Double v1 = (Double) m.get(o1);
-            Double v2 = (Double) m.get(o2);
-            // make sure the values implement Comparable
-            return v1.compareTo(v2);
-        }
-        // do something similar in equals.
     }
 
 }

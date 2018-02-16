@@ -98,6 +98,12 @@
         <activity android:name=".usuario.gui.DetalhesConsFutMed" />
         <activity android:name=".usuario.gui.ReagendarDia" />
         <activity android:name=".usuario.gui.ReagendarListaMedicos" />
+        <activity android:name=".usuario.gui.ReagendarDetalhesMedico" />
+        <activity android:name=".usuario.gui.RemedioMenu" />
+        <activity android:name=".usuario.gui.RemedioCadastrar" />
+        <activity android:name=".usuario.gui.RemedioLista" />
+        <activity android:name=".usuario.gui.RemedioDetalhes" />
+        <activity android:name=".usuario.gui.RemedioAtualizar"></activity>
     </application>
 
 </manifest>

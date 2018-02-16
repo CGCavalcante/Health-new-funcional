@@ -64,13 +64,16 @@ public class MenuMedicoActivity extends AppCompatActivity {
         this.mudarTela(HorarioMedicoAct.class);
     }
 
-
     public void telaMinhasConsultas(View view) {
         this.mudarTela(ListaConsMed.class);
     }
 
     public void telaConsultasFuturas(View view) {
         this.mudarTela(ConsultasFuturas.class);
+    }
+
+    public void telaMenuRemedio(View view) {
+        this.mudarTela(RemedioMenu.class);
     }
 
 }
