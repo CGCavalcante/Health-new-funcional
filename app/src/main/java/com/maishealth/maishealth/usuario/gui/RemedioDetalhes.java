@@ -1,16 +1,21 @@
 package com.maishealth.maishealth.usuario.gui;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.usuario.dominio.Medicamento;
 import com.maishealth.maishealth.usuario.negocio.ServicosMedicamento;
 
 public class RemedioDetalhes extends AppCompatActivity {
+    AlertDialog aviso;
     private long idRemdedio;
     private String idR;
     private ServicosMedicamento servicosMedicamento;
@@ -38,6 +43,31 @@ public class RemedioDetalhes extends AppCompatActivity {
         nomeRemedio.setText(nome.toString());
         fornecedorRemedio.setText(fornecedor.toString());
 
+    }
+
+    @SuppressLint("WrongViewCast")
+    public void confirmarAcao(View view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Aviso");
+        builder.setMessage("Deseja deletar o medicamento?");
+
+        builder.setPositiveButton("Não", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                /**Toast.makeText(DetalhesConsPac.this, "", Toast.LENGTH_SHORT).show();*/
+
+            }
+        });
+        builder.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+                Toast.makeText(RemedioDetalhes.this, "Medicamento Deletado", Toast.LENGTH_SHORT).show();
+                servicosMedicamento.excluirMedicamento(idRemdedio);
+                mudarTela(MenuMedicoActivity.class);
+            }
+        });
+        aviso = builder.create();
+        aviso.show();
     }
 
     private void mudarTela(Class tela) {

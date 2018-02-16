@@ -85,20 +85,6 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/bt_recuperar_senha"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="125dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorText"
-                    android:onClick="emConstrucao"
-                    android:text="@string/link_esqueceu_senha"
-                    android:textColor="@color/colorTextoBut"
-                    android:textStyle="bold" />
-
-                <Button
                     android:id="@+id/bt_cadastro"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="125dp"
