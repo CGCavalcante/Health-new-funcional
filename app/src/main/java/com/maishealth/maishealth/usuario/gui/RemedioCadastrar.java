@@ -12,7 +12,6 @@ import com.maishealth.maishealth.usuario.negocio.ServicosMedicamento;
 import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 
 public class RemedioCadastrar extends AppCompatActivity {
-    private EditText nomeRemedio, fornecedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +40,8 @@ public class RemedioCadastrar extends AppCompatActivity {
 
         ValidaCadastro validaCadastro = new ValidaCadastro();
 
-        nomeRemedio = findViewById(R.id.nomeMedicamento);
-        fornecedor = findViewById(R.id.fornecedorMedicamento);
+        EditText nomeRemedio=findViewById(R.id.nomeMedicamento);
+        EditText fornecedor=findViewById(R.id.fornecedorMedicamento);
 
         String nomeRemedioString = nomeRemedio.getText().toString();
         String fornecedorString = fornecedor.getText().toString();
