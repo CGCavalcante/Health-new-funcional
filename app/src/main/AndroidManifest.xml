@@ -98,7 +98,6 @@
         <activity android:name=".usuario.gui.DetalhesConsFutMed" />
         <activity android:name=".usuario.gui.ReagendarDia" />
         <activity android:name=".usuario.gui.ReagendarListaMedicos" />
-        <activity android:name=".usuario.gui.ReagendarDetalhesMedico"></activity>
     </application>
 
 </manifest>
