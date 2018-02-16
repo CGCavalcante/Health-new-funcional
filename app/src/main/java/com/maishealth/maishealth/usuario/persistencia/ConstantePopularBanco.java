@@ -329,6 +329,11 @@ public class ConstantePopularBanco {
             "(4,10,'10/02/2018','Manhã','CONCLUIDA')," +
             "(5,10,'12/02/2018','Manhã','EMANDAMENTO')," +
             "(3,10,'11/02/2018','Manhã','CONCLUIDA')," +
+            "(1,10,'05/02/2018','Manhã','CONCLUIDA')," +
+            "(2,10,'06/02/2018','Manhã','CONCLUIDA')," +
+            "(3,10,'07/02/2018','Manhã','CONCLUIDA')," +
+            "(4,10,'08/02/2018','Manhã','CONCLUIDA')," +
+            "(5,10,'09/02/2018','Manhã','CONCLUIDA')," +
             "(2,10,'11/02/2018','Manhã','CONCLUIDA')," +
             "(1,10,'13/02/2018','Manhã','EMANDAMENTO')," +
             "(1,9,'13/02/2018','Manhã','EMANDAMENTO')," +
@@ -337,7 +342,28 @@ public class ConstantePopularBanco {
             "(1,10,'19/02/2018','Manhã','EMANDAMENTO')," +
             "(1,9,'19/02/2018','Manhã','EMANDAMENTO')," +
             "(5,8,'11/02/2018','Manhã','CONCLUIDA')," +
-            "(4,7,'09/02/2018','Manhã','EMANDAMENTO');";
+            "(4,7,'09/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,5,'16/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,4,'16/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,1,'16/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,3,'16/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,2,'16/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,3,'16/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,4,'19/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,5,'19/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,6,'19/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,10,'20/02/2018','Tarde','EMANDAMENTO')," +
+            "(4,3,'20/02/2018','Tarde','EMANDAMENTO')," +
+            "(4,2,'20/02/2018','Tarde','EMANDAMENTO')," +
+            "(4,4,'21/02/2018','Noite','EMANDAMENTO')," +
+            "(4,5,'21/02/2018','Noite','EMANDAMENTO')," +
+            "(4,6,'21/02/2018','Noite','EMANDAMENTO')," +
+            "(4,7,'22/02/2018','Tarde','EMANDAMENTO')," +
+            "(4,8,'22/02/2018','Tarde','EMANDAMENTO')," +
+            "(4,9,'22/02/2018','Tarde','EMANDAMENTO')," +
+            "(4,8,'23/02/2018','Manhã','EMANDAMENTO'),"+
+            "(4,7,'23/02/2018','Manhã','EMANDAMENTO')," +
+            "(4,2,'23/02/2018','Manhã','EMANDAMENTO');";
 
     public static final String ISERIR_RECOMENDACAO = " INSERT INTO 'recomendacao' " +
             "('id_paciente', 'id_medico', 'nota') VALUES " +
