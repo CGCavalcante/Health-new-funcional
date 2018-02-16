@@ -125,8 +125,7 @@ public class DetalhesConsPac extends AppCompatActivity {
         this.mudarTela(ReagendarDia.class);
     }
 
-    public void cancelarConsulta(View view) {
-        servicosPaciente.cancelarConsulta(idconsLong);
+    public void sairConsPac(View view) {
         this.mudarTela(MenuPaciente.class);
     }
 

@@ -176,6 +176,7 @@
         android:layout_height="67dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
+        android:onClick="sairConsPac"
         app:srcCompat="@android:drawable/ic_delete" />
 
 </LinearLayout>
