@@ -10,12 +10,14 @@ public class DadosMedico implements Serializable {
     private int id;
     private String nome;
     private String especialidade;
+    private String avaliacao;
     private long idmedico;
 
-    public DadosMedico(int id, String nome, String especialidade, long idmedico) {
+    public DadosMedico(int id, String nome, String especialidade, String avaliacao, long idmedico) {
         this.id = id;
         this.nome = nome;
         this.especialidade = especialidade;
+        this.avaliacao = avaliacao;
         this.idmedico = idmedico;
 
     }
@@ -44,10 +46,19 @@ public class DadosMedico implements Serializable {
         this.especialidade = especialidade;
     }
 
-    public long getIdmedico() {return idmedico;
+    public String getAvaliacao() {
+        return avaliacao;
     }
 
-    public void setIdmedico(long idmedico) {this.idmedico = idmedico;
+    public void setAvaliacao(String avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
+    public long getIdmedico() {
+        return idmedico;
+    }
+
+    public void setIdmedico(long idmedico) {
+        this.idmedico = idmedico;
+    }
 }

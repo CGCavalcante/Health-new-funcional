@@ -76,9 +76,10 @@ public class ServicosPosto {
 
             String nome = pessoa.getNome();
             String espec = medico.getEspecialidade();
+            String nota = idmedicos.get(id).toString();
 
             int j = 1;
-            nomeEspec.add(new DadosMedico(j, nome, espec, medico.getId()));
+            nomeEspec.add(new DadosMedico(j, nome, espec, nota, medico.getId()));
             j++;
         }
         return nomeEspec;

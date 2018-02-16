@@ -52,9 +52,11 @@ public class Adaptador extends BaseAdapter {
         ImageView imagem = vista.findViewById(R.id.imagem);
         TextView nomeMedico = vista.findViewById(R.id.nomeMedico);
         TextView especMedico = vista.findViewById(R.id.especMedico);
+        TextView avaliMedico = vista.findViewById(R.id.avaliMedico);
 
         nomeMedico.setText(listaMedicos.get(position).getNome().toString());
         especMedico.setText(listaMedicos.get(position).getEspecialidade().toString());
+        avaliMedico.setText(listaMedicos.get(position).getAvaliacao().toString());
         imagem.setImageResource(R.drawable.user_avatar);
 
         return vista;
