@@ -18,6 +18,8 @@ import java.util.TreeMap;
 
 /**
  * classe SlopeOne ler os dados no banco atraves do ReadPessoa e ReadLivro cria um atributo Context, cria as matrizes de diferenÃ§a e de frequencia.
+ * Referências: https://www.ibm.com/developerworks/br/local/data/sistemas_recomendacao/,
+ * https://github.com/Adailson-Jose/BOOK-FAST/tree/master/app/src/main/java/com/projeto/bookfast/bookfast/recomendacao
  */
 
 public class SlopeOne {
