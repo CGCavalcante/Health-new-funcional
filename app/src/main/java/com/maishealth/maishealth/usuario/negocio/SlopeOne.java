@@ -6,6 +6,7 @@ import android.content.Context;
 import com.maishealth.maishealth.usuario.dominio.Medico;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.dominio.Avaliacao;
+import com.maishealth.maishealth.usuario.dominio.Recomendacao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +59,7 @@ public class SlopeOne {
 
     }
 
-    public Map<Long, Double> listaRecomendacao1(Paciente paciente, String espec) {
+    public ArrayList<Recomendacao> listaRecomendacao1(Paciente paciente, String espec) {
         leituraDados1(espec);
         return calculaRecomendacoes1(dadosAv, paciente);
     }
@@ -127,13 +128,14 @@ public class SlopeOne {
         return cleanpredictions;
     }
 
-    private Map<Long, Double> calculaRecomendacoes1(Map<Long, Map<Long, Double>> dadosAv, Paciente paciente) {
+    private ArrayList<Recomendacao> calculaRecomendacoes1(Map<Long, Map<Long, Double>> dadosAv, Paciente paciente) {
         criarMatrizDiferenca1(dadosAv);
 
         return ordenar(predict(dadosAv.get(paciente.getId())));
     }
 
-    private Map<Long, Double> ordenar(Map<Long, Double> notasUsuario) {
+    private ArrayList<Recomendacao> ordenar(Map<Long, Double> notasUsuario) {
+        ArrayList<Recomendacao> recom = new ArrayList<>();
         Map<Long, Double> saida = new HashMap<>();
 
         for (int j = 0; j < notasUsuario.size(); j++) {
@@ -151,8 +153,10 @@ public class SlopeOne {
                 }
             }
             saida.put(chave, maior);
+            Recomendacao recomendacao = new Recomendacao(chave,maior);
+            recom.add(recomendacao);
         }
-        return saida;
+        return recom;
     }
 
 }

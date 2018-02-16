@@ -8,6 +8,7 @@ import com.maishealth.maishealth.usuario.dominio.DadosMedico;
 import com.maishealth.maishealth.usuario.dominio.Medico;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
 import com.maishealth.maishealth.usuario.dominio.Pessoa;
+import com.maishealth.maishealth.usuario.dominio.Recomendacao;
 import com.maishealth.maishealth.usuario.persistencia.MedicoDAO;
 import com.maishealth.maishealth.usuario.persistencia.MedicoPostoDAO;
 import com.maishealth.maishealth.usuario.persistencia.PessoaDAO;
@@ -60,23 +61,23 @@ public class ServicosPosto {
     }
 
     public ArrayList<DadosMedico> medicosEspec(Paciente paciente, String espec) {
-        Map<Long, Double> idmedicos = slopeOne.listaRecomendacao1(paciente, espec);
+        ArrayList<Recomendacao> idmedicos = slopeOne.listaRecomendacao1(paciente, espec);
 
         ArrayList<DadosMedico> nomeEspec = setarDadosMedico(idmedicos);
 
         return nomeEspec;
     }
 
-    private ArrayList<DadosMedico> setarDadosMedico(Map<Long, Double> idmedicos) {
+    private ArrayList<DadosMedico> setarDadosMedico(ArrayList<Recomendacao> idmedicos) {
         ArrayList<DadosMedico> nomeEspec = new ArrayList<DadosMedico>();
 
-        for (long id : idmedicos.keySet()) {
-            Medico medico = medicoDAO.getMedico(id);
+        for (Recomendacao rec : idmedicos) {
+            Medico medico = medicoDAO.getMedico(rec.getIdmed());
             Pessoa pessoa = pessoaDAO.getPessoaByIdUsuario(medico.getIdUsuario());
 
             String nome = pessoa.getNome();
             String espec = medico.getEspecialidade();
-            String nota = idmedicos.get(id).toString();
+            String nota = Double.toString(rec.getNota());
 
             int j = 1;
             nomeEspec.add(new DadosMedico(j, nome, espec, nota, medico.getId()));
