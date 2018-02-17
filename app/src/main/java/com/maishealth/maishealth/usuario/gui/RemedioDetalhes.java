@@ -63,7 +63,7 @@ public class RemedioDetalhes extends AppCompatActivity {
 
                 Toast.makeText(RemedioDetalhes.this, "Medicamento Deletado", Toast.LENGTH_SHORT).show();
                 servicosMedicamento.excluirMedicamento(idRemdedio);
-                mudarTela(MenuMedicoActivity.class);
+                mudarTela(RemedioLista.class);
             }
         });
         aviso = builder.create();

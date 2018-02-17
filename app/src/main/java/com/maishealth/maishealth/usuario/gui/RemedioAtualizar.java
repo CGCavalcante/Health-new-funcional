@@ -117,6 +117,7 @@ public class RemedioAtualizar extends AppCompatActivity {
             long idRemedio = medicamentoAtualizar.getId();
             servicosMedicamento.atualizarMedicamento(idRemedio, nomeMedIns, fornecIns);
             GuiUtil.myToast(this, "Medicamento Atualizado com Sucesso!");
+            mudarTela(RemedioLista.class);
         }else {
             GuiUtil.myToast(this, "Já existe este Medicamento para esse Fornecedor!");
         }
