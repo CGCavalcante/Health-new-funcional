@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class MedicamentoDAO {
     private SQLiteDatabase liteDatabase;
-    private DataBase dataBaseHelper;
+    private final DataBase dataBaseHelper;
 
     public MedicamentoDAO(Context context){dataBaseHelper = new DataBase(context);}
 
-    public long inserirMedicamtento(Medicamento medicamento){
+    public void inserirMedicamtento(Medicamento medicamento){
         liteDatabase = dataBaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -34,11 +34,9 @@ public class MedicamentoDAO {
         long id = liteDatabase.insert(tabela, null, values);
         liteDatabase.close();
 
-        return id;
-
     }
 
-    public long atualizarMedicamento (Medicamento medicamento){
+    public void atualizarMedicamento (Medicamento medicamento){
         liteDatabase = dataBaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -60,7 +58,6 @@ public class MedicamentoDAO {
 
         liteDatabase.close();
 
-        return id;
 
     }
 

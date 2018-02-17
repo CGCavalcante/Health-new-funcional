@@ -97,10 +97,4 @@ public class RemedioCadastrar extends AppCompatActivity {
         GuiUtil.myToast(getApplicationContext(), "Medicamento Cadastrado com Sucesso!");
     }
 
-    public void cadastrarFornecDiferente( Medicamento medicamento, String nomeMedIns, String fornecedorString){
-        ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
-        servicosMedicamento.cadastrarMedicamento(nomeMedIns, fornecedorString);
-        GuiUtil.myToast(getApplicationContext(), "Medicamento Cadastrado com Sucesso!");
-    }
-
 }

@@ -10,7 +10,7 @@ import com.maishealth.maishealth.usuario.persistencia.MedicamentoDAO;
 import java.util.ArrayList;
 
 public class ServicosMedicamento {
-    private MedicamentoDAO medicamentoDAO;
+    private final MedicamentoDAO medicamentoDAO;
 
     public ServicosMedicamento (Context context){
         medicamentoDAO = new MedicamentoDAO(context);
@@ -38,7 +38,7 @@ public class ServicosMedicamento {
         return medicamentoDAO.getMedicamento(idMedicamento);
     }
 
-    public ArrayList<Medicamento> getMedicamentos (){
+    private ArrayList<Medicamento> getMedicamentos(){
         return medicamentoDAO.getMedicamentos();
     }
 
