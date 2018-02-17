@@ -102,7 +102,7 @@ public class CalendarioDialog extends AppCompatActivity {
         finish();
     }
 
-    public void voltarMenuMed1(View view) {
+    public void voltarListaEspec(View view) {
         this.mudarTela(ListaEspecialidade.class);
     }
 

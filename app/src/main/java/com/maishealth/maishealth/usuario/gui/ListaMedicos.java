@@ -93,6 +93,7 @@ public class ListaMedicos extends AppCompatActivity {
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
+        intent.putExtra("espec", especialidade);
         startActivity(intent);
         finish();
     }

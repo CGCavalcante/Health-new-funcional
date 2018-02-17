@@ -113,7 +113,7 @@ public class ReagendarDia extends AppCompatActivity {
 
             if (valido) {
                 GuiUtil.myToast(this, "Consulta Reagendada");
-                this.mudarTela(MenuPaciente.class);
+                this.mudarTela(ListaConsPac.class);
             } else {
                 GuiUtil.myToast(this, "Nao existe disponibilidade");
             }

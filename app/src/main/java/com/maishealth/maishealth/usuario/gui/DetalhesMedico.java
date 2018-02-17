@@ -105,12 +105,16 @@ public class DetalhesMedico extends AppCompatActivity {
     }
 
     public void cancelarMarcarConsulta(View view){
-        mudarTela(MenuPaciente.class);
+        mudarTela(ListaMedicos.class);
 
     }
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
+        intent.putExtra("data", data);
+        intent.putExtra("turno", turno);
+        intent.putExtra("espec", especString);
+        intent.putExtra("diaS", diaSemana);
         startActivity(intent);
         finish();
     }

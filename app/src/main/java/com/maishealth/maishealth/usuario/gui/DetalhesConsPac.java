@@ -126,11 +126,11 @@ public class DetalhesConsPac extends AppCompatActivity {
     }
 
     public void sairConsPac(View view) {
-        this.mudarTela(MenuPaciente.class);
+        this.mudarTela(ListaConsPac.class);
     }
 
     @SuppressLint("WrongViewCast")
-    public void confirmarAcao(View view) {
+    public void confirmarAcao(final View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Aviso");
@@ -147,7 +147,7 @@ public class DetalhesConsPac extends AppCompatActivity {
 
                 Toast.makeText(DetalhesConsPac.this, "Consulta Cancelada", Toast.LENGTH_SHORT).show();
                 servicosPaciente.cancelarConsulta(idconsLong);
-                mudarTela(MenuPaciente.class);
+                sairConsPac(view);
             }
         });
         aviso = builder.create();

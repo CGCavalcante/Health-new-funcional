@@ -117,7 +117,7 @@
         android:layout_width="67dp"
         android:layout_height="67dp"
         android:layout_marginTop="92dp"
-        android:onClick="voltarMenuMed1"
+        android:onClick="voltarListaEspec"
         app:layout_constraintEnd_toStartOf="@+id/bt_confirmar_hor_montado_med"
         app:layout_constraintHorizontal_bias="0.274"
         app:layout_constraintStart_toStartOf="@+id/textViewHorMedico"

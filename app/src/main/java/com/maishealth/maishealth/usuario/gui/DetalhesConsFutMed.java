@@ -96,16 +96,17 @@ public class DetalhesConsFutMed extends AppCompatActivity {
 
     private void mudarTela(Class tela) {
         Intent intent = new Intent(this, tela);
+        intent.putExtra("data", data);
         startActivity(intent);
         finish();
     }
 
     @Override
     public void onBackPressed() {
-        this.mudarTela(MenuMedicoActivity.class);
+        this.mudarTela(ListaConsFutMed.class);
     }
 
     public void sairConsultaFut(View view) {
-        this.mudarTela(MenuMedicoActivity.class);
+        this.mudarTela(ListaConsFutMed.class);
     }
 }
