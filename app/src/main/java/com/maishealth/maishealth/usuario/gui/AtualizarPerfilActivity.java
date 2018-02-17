@@ -13,8 +13,10 @@ import android.widget.TextView;
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.Pessoa;
+import com.maishealth.maishealth.usuario.dominio.Usuario;
 import com.maishealth.maishealth.usuario.negocio.Servicos;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
+import com.maishealth.maishealth.usuario.negocio.ServicosUsuario;
 import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.DEFAULT_ID_USER_PREFERENCES;
@@ -25,6 +27,7 @@ import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_P
 
 public class AtualizarPerfilActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
+    private EditText edtEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class AtualizarPerfilActivity extends AppCompatActivity {
                 Log.i("MenuPaciente", e.getMessage());
             }
         }
+
+        setarTextos();
 
     }
 
@@ -72,7 +77,7 @@ public class AtualizarPerfilActivity extends AppCompatActivity {
     }
 
     public void onClickAtualizarPerfil(View view) {
-        EditText edtEmail = findViewById(R.id.edtEmailMed);
+        edtEmail = findViewById(R.id.edtEmailMed);
         EditText edtSenha = findViewById(R.id.edtSenhaMed);
         String email = edtEmail.getText().toString();
         String senha = edtSenha.getText().toString();
@@ -110,5 +115,18 @@ public class AtualizarPerfilActivity extends AppCompatActivity {
                 edtEmail.setError(e.getMessage());
             }
         }
+    }
+    public  void  setarTextos(){
+        ServicosUsuario servicosUsuario = new ServicosUsuario(getApplicationContext());
+        sharedPreferences = getSharedPreferences(TITLE_PREFERENCES, MODE_PRIVATE);
+        long idUsuario = sharedPreferences.getLong(ID_USER_PREFERENCES, DEFAULT_ID_USER_PREFERENCES);
+
+        Usuario usuario = servicosUsuario.getUsuario(idUsuario);
+
+        if (usuario != null){
+            edtEmail = findViewById(R.id.edtEmailMed);
+            edtEmail.setText(usuario.getEmail());
+        }
+
     }
 }

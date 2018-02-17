@@ -3,6 +3,8 @@ package com.maishealth.maishealth.usuario.gui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
@@ -14,8 +16,8 @@ import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 
 public class RemedioAtualizar extends AppCompatActivity {
     private long idRemdedio;
-    private String idR;
-    private ServicosMedicamento servicosMedicamento;
+    private EditText nomeRemedio;
+    private EditText fornecedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +25,24 @@ public class RemedioAtualizar extends AppCompatActivity {
         setContentView(R.layout.activity_remedio_atualizar);
 
         Intent intent = getIntent();
-        idR = intent.getStringExtra("idmedicamento");
+        String idR=intent.getStringExtra("idmedicamento");
         idRemdedio = Long.parseLong(idR);
 
-        servicosMedicamento = new ServicosMedicamento(getApplicationContext());
-        Medicamento medicamento = servicosMedicamento.getMedicamento(idRemdedio);
+        setarTexto();
 
-        GuiUtil.myToast(getApplicationContext(), "idmedicamento" + idR);
+    }
+
+    private void setarTexto(){
+        ServicosMedicamento servicosMedicamento=new ServicosMedicamento(getApplicationContext());
+        Medicamento medicamento = servicosMedicamento.getMedicamento(idRemdedio);
+        if (medicamento != null) {
+            nomeRemedio =findViewById(R.id.nomeMedicamentoA);
+            fornecedor=findViewById(R.id.fornecedorMedicamentoA);
+            String nomeR = medicamento.getNomeMedicamento();
+            String fornecedorR = medicamento.getFornecedor();
+            nomeRemedio.setText(nomeR);
+            fornecedor.setText(fornecedorR);
+        }
     }
 
     private void mudarTela(Class tela) {
@@ -44,7 +57,7 @@ public class RemedioAtualizar extends AppCompatActivity {
     }
 
     public void sairMenuRemedio(View view) {
-        this.mudarTela(RemedioMenu.class);
+        this.mudarTela(RemedioLista.class);
     }
 
 
@@ -52,10 +65,6 @@ public class RemedioAtualizar extends AppCompatActivity {
         boolean valido = true;
 
         ValidaCadastro validaCadastro = new ValidaCadastro();
-
-        EditText nomeRemedio =findViewById(R.id.nomeMedicamentoA);
-        EditText fornecedor=findViewById(R.id.fornecedorMedicamentoA);
-
         String nomeRemedioString = nomeRemedio.getText().toString();
         String fornecedorString = fornecedor.getText().toString();
 
@@ -73,7 +82,6 @@ public class RemedioAtualizar extends AppCompatActivity {
             nomeRemedio.requestFocus();
             nomeRemedio.setError("Campo obrigatório!");
             valido = false;
-
         }
 
         if (validaCadastro.isCampoVazio(fornecedorString)){
@@ -81,19 +89,38 @@ public class RemedioAtualizar extends AppCompatActivity {
             fornecedor.requestFocus();
             fornecedor.setError("Campo obrigatório!");
             valido = false;
-
         }
 
         if (valido) {
+            atualizarMed(nomeRemedioString, fornecedorString);
+        }
 
-            ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
-            Medicamento medicamento = servicosMedicamento.getMedicamento(idRemdedio);
-            if (medicamento != null) {
-                servicosMedicamento.atualizarMedicamento(idRemdedio, nomeRemedioString, fornecedorString);
-                GuiUtil.myToast (this,"Medicamento Atualizado com Sucesso!");
-                this.mudarTela(RemedioMenu.class);
-            }
+    }
 
+    public void atualizarMed( String nomeRemedioString, String fornecedorString){
+        ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
+        String nomeMedIns = nomeRemedioString.toUpperCase();
+        String fornecIns = fornecedorString.toUpperCase();
+        Medicamento medicamento = servicosMedicamento.getMedicamento(idRemdedio);
+
+        if (medicamento != null) {
+            atualizarMedByName(medicamento, nomeMedIns, fornecIns);
+
+        }else {
+            GuiUtil.myToast(this, "Não há nada para atualizar!");
+        }
+
+    }
+
+    public void atualizarMedByName(Medicamento medicamentoAtualizar, String nomeMedIns, String fornecIns){
+        ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
+        Medicamento medicamento = servicosMedicamento.getMedicamentoByName(nomeMedIns, fornecIns);
+        if (medicamento == null){
+            long idRemedio = medicamentoAtualizar.getId();
+            servicosMedicamento.atualizarMedicamento(idRemedio, nomeMedIns, fornecIns);
+            GuiUtil.myToast(this, "Medicamento Atualizado com Sucesso!");
+        }else {
+            GuiUtil.myToast(this, "Já existe este Medicamento para esse Fornecedor!");
         }
 
     }

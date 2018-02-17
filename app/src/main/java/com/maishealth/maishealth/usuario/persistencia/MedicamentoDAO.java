@@ -117,12 +117,24 @@ public class MedicamentoDAO {
         return getMedicamento(query, argumentos);
 
     }
+    public Medicamento getMedicamentoByName (String nome, String fornec){
+        String query = " SELECT * FROM " + DataBase.TABELA_MEDICAMENTO +
+                " WHERE " + DataBase.NOME_MEDICAMENTO + " LIKE ? "+
+                " AND " + DataBase.FORNECEDOR + " LIKE ? ";
+
+
+        String[] argumentos = {nome, fornec};
+
+        return getMedicamento(query, argumentos);
+
+    }
 
     public ArrayList<Medicamento> getMedicamentos (){
         liteDatabase = dataBaseHelper.getReadableDatabase();
         ArrayList<Medicamento> listaMedicamento = new ArrayList<>();
 
-        String query = "SELECT * FROM " + DataBase.TABELA_MEDICAMENTO;
+        String query = "SELECT * FROM " + DataBase.TABELA_MEDICAMENTO +
+                " ORDER BY " + DataBase.NOME_MEDICAMENTO + " ASC ";
 
         Cursor cursor = liteDatabase.rawQuery(query, null);
 

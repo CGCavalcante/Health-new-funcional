@@ -62,4 +62,8 @@ public class ServicosMedicamento {
         return remedioDados;
     }
 
+    public Medicamento getMedicamentoByName (String nomeMedicamento, String fornec){
+        return medicamentoDAO.getMedicamentoByName(nomeMedicamento, fornec);
+    }
+
 }

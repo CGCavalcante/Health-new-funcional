@@ -53,4 +53,8 @@ public class ServicosUsuario {
         editor.commit();
     }
 
+    public Usuario getUsuario(long idUsuario){
+        return usuarioDAO.getUsuario(idUsuario);
+    }
+
 }

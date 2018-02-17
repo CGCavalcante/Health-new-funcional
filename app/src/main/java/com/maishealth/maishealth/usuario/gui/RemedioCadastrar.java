@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.infra.GuiUtil;
+import com.maishealth.maishealth.usuario.dominio.Medicamento;
 import com.maishealth.maishealth.usuario.negocio.ServicosMedicamento;
 import com.maishealth.maishealth.usuario.negocio.ValidaCadastro;
 
@@ -72,14 +73,34 @@ public class RemedioCadastrar extends AppCompatActivity {
         }
 
         if (valido) {
-
-            ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
-            servicosMedicamento.cadastrarMedicamento(nomeRemedioString, fornecedorString);
-            GuiUtil.myToast(getApplicationContext(), "Medicamento Cadastrado");
-            this.mudarTela(RemedioMenu.class);
-
+            cadastrar(nomeRemedioString, fornecedorString);
         }
 
+    }
+    public  void  cadastrar(String nomeRemedioString, String fornecedorString){
+        ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
+        String nomeMedIns = nomeRemedioString.toUpperCase();
+        String fornecIns = fornecedorString.toUpperCase();
+        Medicamento medicamento = servicosMedicamento.getMedicamentoByName(nomeMedIns, fornecIns);
+
+        if (medicamento == null){
+            cadastrarMedicNovo(nomeMedIns,fornecedorString);
+        }else {
+            GuiUtil.myToast(this, "Medicamento já está existe!\n Não foi possivel cadastrar!");
+        }
+
+    }
+
+    public void cadastrarMedicNovo(String nomeMedIns, String fornecedorString){
+        ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
+        servicosMedicamento.cadastrarMedicamento(nomeMedIns, fornecedorString);
+        GuiUtil.myToast(getApplicationContext(), "Medicamento Cadastrado com Sucesso!");
+    }
+
+    public void cadastrarFornecDiferente( Medicamento medicamento, String nomeMedIns, String fornecedorString){
+        ServicosMedicamento servicosMedicamento=new ServicosMedicamento(this);
+        servicosMedicamento.cadastrarMedicamento(nomeMedIns, fornecedorString);
+        GuiUtil.myToast(getApplicationContext(), "Medicamento Cadastrado com Sucesso!");
     }
 
 }
