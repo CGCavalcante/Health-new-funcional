@@ -148,6 +148,5 @@ public class PacienteDAO {
         liteDatabase.close();
 
         return listaPaciente;
-
     }
 }
