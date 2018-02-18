@@ -122,28 +122,6 @@ public class AvaliacaoDAO {
 
     }
 
-    public Avaliacao getRecomendacao(long idRecomendacao) {
-        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_RECOMENDACAO + " LIKE ? ";
-
-        String idRecomendacaoString   = Long.toString(idRecomendacao);
-        String[] argumentos  = {idRecomendacaoString};
-
-        return this.getRecomendacao(query, argumentos);
-
-    }
-
-    public Avaliacao getRecomendacaoPaciente(long idPaciente) {
-        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_EST_PACIENTE_REC + " LIKE ? ";
-
-        String idPacienteString   = Long.toString(idPaciente);
-        String[] argumentos  = {idPacienteString};
-
-        return this.getRecomendacao(query, argumentos);
-
-    }
-
     public Avaliacao getRecomendacaoByMedicoPaciente(long idMedico, long idPaciente) {
         String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
                 " WHERE " + DataBase.ID_EST_PACIENTE_REC    + " LIKE ? " +
@@ -157,102 +135,6 @@ public class AvaliacaoDAO {
         return this.getRecomendacao(query, argumentos);
 
     }
-
-
-    public Avaliacao getRecomendacaoMedico(long idMedico) {
-        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_EST_MEDICO_REC + " LIKE ? ";
-
-        String idMedicoString   = Long.toString(idMedico);
-        String[] argumentos  = {idMedicoString};
-
-        return this.getRecomendacao(query, argumentos);
-
-    }
-
-    public ArrayList<Avaliacao> getRecomendacaoByMedico(long idMedico) {
-        liteDatabase = dataBaseHelper.getReadableDatabase();
-        ArrayList<Avaliacao> listaAvaliacao = new ArrayList<>();
-
-        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_EST_MEDICO_REC + " LIKE ? ";
-
-        String idMedicoString   = Long.toString(idMedico);
-        String[] argumentos  = {idMedicoString};
-
-        Cursor cursor = liteDatabase.rawQuery(query, argumentos);
-
-        String colunaId   = DataBase.ID_RECOMENDACAO;
-        int indexColunaId = cursor.getColumnIndex(colunaId);
-
-        Avaliacao avaliacao;
-
-        while (cursor.moveToNext()){
-            long idRecomendacao  = cursor.getInt(indexColunaId);
-            avaliacao = getRecomendacao(idRecomendacao);
-            listaAvaliacao.add(avaliacao);
-        }
-        cursor.close();
-
-        return listaAvaliacao;
-
-    }
-
-    public ArrayList<Avaliacao> getRecomendacoes() {
-        liteDatabase = dataBaseHelper.getReadableDatabase();
-        ArrayList<Avaliacao> listaAvaliacao = new ArrayList<>();
-
-        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO;
-
-        //String[] argumentos  = {};
-
-        Cursor cursor = liteDatabase.rawQuery(query, null);
-
-        String colunaId   = DataBase.ID_RECOMENDACAO;
-        int indexColunaId = cursor.getColumnIndex(colunaId);
-
-        Avaliacao avaliacao;
-
-        while (cursor.moveToNext()){
-            long idRecomendacao  = cursor.getInt(indexColunaId);
-            avaliacao = getRecomendacao(idRecomendacao);
-            listaAvaliacao.add(avaliacao);
-        }
-        cursor.close();
-
-        return listaAvaliacao;
-
-    }
-
-    public ArrayList<Avaliacao> getRecomendacaoByPaciente(long idPaciente) {
-        liteDatabase = dataBaseHelper.getReadableDatabase();
-        ArrayList<Avaliacao> listaAvaliacao = new ArrayList<>();
-
-        String query = " SELECT * FROM " + DataBase.TABELA_RECOMENDACAO +
-                " WHERE " + DataBase.ID_EST_PACIENTE_REC + " LIKE ? ";
-
-        String idPacienteString   = Long.toString(idPaciente);
-        String[] argumentos  = {idPacienteString};
-
-        Cursor cursor = liteDatabase.rawQuery(query, argumentos);
-
-        String colunaId   = DataBase.ID_RECOMENDACAO;
-        int indexColunaId = cursor.getColumnIndex(colunaId);
-
-        Avaliacao avaliacao;
-
-        while (cursor.moveToNext()){
-            long idRecomendacao  = cursor.getInt(indexColunaId);
-            avaliacao = getRecomendacao(idRecomendacao);
-            listaAvaliacao.add(avaliacao);
-        }
-        cursor.close();
-
-        return listaAvaliacao;
-
-    }
-
-
 
 }
 

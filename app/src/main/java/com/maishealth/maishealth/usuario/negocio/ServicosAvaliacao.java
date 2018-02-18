@@ -59,11 +59,6 @@ public class ServicosAvaliacao {
         return avaliacaoDAO.getRecomendacaoByMedicoPaciente(idMedico, idPaciente);
     }
 
-    public Avaliacao getRecomendacaoById(long idRecomendacao) {
-        return avaliacaoDAO.getRecomendacao(idRecomendacao);
-    }
-
-
     public ArrayList<Avaliacao> getRecomendacaoByPacienteAndEspec(long idPaciente, List<Medico> medicos) {
         ArrayList<Avaliacao> medicosAvaliados = new ArrayList<>();
         for (Medico medico : medicos) {

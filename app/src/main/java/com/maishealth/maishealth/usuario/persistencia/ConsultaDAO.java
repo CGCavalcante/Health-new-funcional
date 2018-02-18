@@ -168,15 +168,6 @@ public class ConsultaDAO {
 
         return this.getConsulta(query, argumentos);
     }
-    public Consulta getConsultaByData( String data) {
-        String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
-                " WHERE " + DataBase.DATA + " LIKE ?";
-
-        String[] argumentos = {data};
-
-        return this.getConsulta(query, argumentos);
-    }
-
     public Consulta getConsultaByPaciente(long idMedico, String data, String turno, long idPaciente) {
         String query = "SELECT * FROM " + DataBase.TABELA_CONSULTA +
                 " WHERE " + DataBase.ID_EST_MEDICO_CON + " LIKE ?" +
