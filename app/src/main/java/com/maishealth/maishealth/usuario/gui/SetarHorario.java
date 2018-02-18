@@ -52,26 +52,32 @@ public class SetarHorario extends AppCompatActivity {
         String vagasTS = vagasT.getText().toString();
         String vagasNS = vagasN.getText().toString();
 
-        String manha = "Manhã";
-        String tarde = "Tarde";
-        String noite = "Noite";
+        final String manha = "Manhã";
+        final String tarde = "Tarde";
+        final String noite = "Noite";
 
-        if (validaCadastro.isCampoVazio(vagasMS) || !checkBoxM.isChecked()) {
-            vagasM.requestFocus();
-            vagasM.setError("Campo não preechido");
-            valido = false;
+        if (checkBoxM.isChecked()) {
+            if (validaCadastro.isCampoVazio(vagasMS)) {
+                vagasM.requestFocus();
+                vagasM.setError("Campo não preechido");
+                valido=false;
+            }
         }
 
-        if (validaCadastro.isCampoVazio(vagasTS) || !checkBoxT.isChecked()) {
-            vagasT.requestFocus();
-            vagasT.setError("Campo não preechido");
-            valido = false;
+        if (checkBoxT.isChecked()) {
+            if (validaCadastro.isCampoVazio(vagasTS)) {
+                vagasT.requestFocus();
+                vagasT.setError("Campo não preechido");
+                valido=false;
+            }
         }
 
-        if (validaCadastro.isCampoVazio(vagasNS) || !checkBoxN.isChecked()) {
-            vagasN.requestFocus();
-            vagasN.setError("Campo não preechido");
-            valido = false;
+        if (checkBoxN.isChecked()) {
+            if (validaCadastro.isCampoVazio(vagasNS)) {
+                vagasN.requestFocus();
+                vagasN.setError("Campo não preechido");
+                valido=false;
+            }
         }
 
             if (valido) {
