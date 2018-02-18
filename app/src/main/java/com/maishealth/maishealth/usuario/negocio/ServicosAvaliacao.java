@@ -39,7 +39,7 @@ public class ServicosAvaliacao {
         return avaliacaoDAO.inserirRecomendacao(avaliacao);
     }
 
-    public long criarRecomendacao (long idMedico, int nota){
+    public long criarRecomendacao (long idMedico, double nota){
 
         long idPaciente =0;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
@@ -59,13 +59,10 @@ public class ServicosAvaliacao {
         return avaliacaoDAO.getRecomendacaoByMedicoPaciente(idMedico, idPaciente);
     }
 
-    public ArrayList<Avaliacao> getRecomendacaoByMedico(long idMedico) {
-        return avaliacaoDAO.getRecomendacaoByMedico(idMedico);
+    public Avaliacao getRecomendacaoById(long idRecomendacao) {
+        return avaliacaoDAO.getRecomendacao(idRecomendacao);
     }
 
-    public ArrayList<Avaliacao> getRecomendacoes() {
-        return avaliacaoDAO.getRecomendacoes();
-    }
 
     public ArrayList<Avaliacao> getRecomendacaoByPacienteAndEspec(long idPaciente, List<Medico> medicos) {
         ArrayList<Avaliacao> medicosAvaliados = new ArrayList<>();
@@ -74,6 +71,11 @@ public class ServicosAvaliacao {
         }
         return medicosAvaliados;
     }
+
+    public void atualizarRecomendacao(Avaliacao avaliacao){
+        avaliacaoDAO.atualizarRecomendacao(avaliacao);
+    }
+
 }
 
 

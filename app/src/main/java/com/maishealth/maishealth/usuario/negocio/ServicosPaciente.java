@@ -18,11 +18,11 @@ import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACI
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
 
 public class ServicosPaciente {
-    private PacienteDAO pacienteDAO;
-    private ConsultaDAO consultaDAO;
-    private HorarioMedicoDAO horarioMedicoDAO;
-    private SharedPreferences sharedPreferences;
-    private ServicosConsulta servicosConsulta;
+    private final PacienteDAO pacienteDAO;
+    private final ConsultaDAO consultaDAO;
+    private final HorarioMedicoDAO horarioMedicoDAO;
+    private final SharedPreferences sharedPreferences;
+    private final ServicosConsulta servicosConsulta;
 
     public ServicosPaciente(Context context) {
         sharedPreferences = context.getSharedPreferences(TITLE_PREFERENCES, Context.MODE_PRIVATE);
@@ -48,7 +48,7 @@ public class ServicosPaciente {
 
     public long marcarConsulta( long idMedico, String data, String turno){
         long idPaciente = 0;
-        long retorno = 0;
+        long retorno;
         Paciente paciente = pacienteDAO.getPaciente(sharedPreferences.getLong(ID_PACIENTE_PREFERENCES,idPaciente));
         idPaciente = paciente.getId();
         Consulta consulta = consultaDAO.getConsultaDisponivel(idMedico,data,turno);
@@ -85,8 +85,8 @@ public class ServicosPaciente {
         }else {
             HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(consultaAntiga.getIdMedico(), diaSemana,consultaAntiga.getTurno());
             if (horarioMedico != null) {
-                servicosConsulta.gerarConsultas(consultaAntiga.getIdMedico(), consultaAntiga.getTurno(),data, diaSemana);
-                consulta = consultaDAO.getConsultaDisponivel(idmedico, data, turno);
+                servicosConsulta.gerarConsultas(consultaAntiga.getIdMedico(), consultaAntiga.getTurno(), data, diaSemana);
+                consulta=consultaDAO.getConsultaDisponivel(idmedico, data, turno);
                 consulta.setIdPaciente(consultaAntiga.getIdPaciente());
                 consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
                 consultaDAO.atualizarConsulta(consulta);

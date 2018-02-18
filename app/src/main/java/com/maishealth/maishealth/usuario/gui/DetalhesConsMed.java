@@ -1,5 +1,6 @@
 package com.maishealth.maishealth.usuario.gui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,74 +18,51 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 
 public class DetalhesConsMed extends AppCompatActivity {
-    private String idConsS;
     private long idConsLomg;
-    private ServicosMedico servicosMedico;
-    private ServicosPessoa servicosPessoa;
     private ServicosConsulta servicosConsulta;
-    private ServicosPaciente servicosPaciente;
-
-    private Consulta consulta;
-    private TextView dataCons;
-    private TextView turnoCons;
-    private String data;
-    private String turno;
-
-    private Medico medico;
-    private Pessoa pessoaMed;
-    private String nomemed;
-    private String espec;
-    private String crm;
-    private TextView nomeMed;
-    private TextView especMed;
-    private TextView crmMed;
-
-    private Paciente paciente;
-    private Pessoa pessoaPac;
-    private String nomepac;
-    private TextView nomePac;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_cons_med);
 
         Intent intent = getIntent();
-        idConsS = intent.getStringExtra("idCons");
+        String idConsS=intent.getStringExtra("idCons");
         idConsLomg = Long.parseLong(idConsS);
 
-        servicosMedico = new ServicosMedico(getApplicationContext());
-        servicosPessoa = new ServicosPessoa(getApplicationContext());
+        ServicosMedico servicosMedico=new ServicosMedico(getApplicationContext());
+        ServicosPessoa servicosPessoa=new ServicosPessoa(getApplicationContext());
         servicosConsulta = new ServicosConsulta(getApplicationContext());
-        servicosPaciente = new ServicosPaciente(getApplicationContext());
+        ServicosPaciente servicosPaciente=new ServicosPaciente(getApplicationContext());
 
-        consulta = servicosConsulta.getConsultaById(idConsLomg);
-        turno = consulta.getTurno();
-        data = consulta.getData();
+        Consulta consulta=servicosConsulta.getConsultaById(idConsLomg);
+        String turno=consulta.getTurno();
+        String data=consulta.getData();
 
         final long idmed = consulta.getIdMedico();
-        medico = servicosMedico.getMedico(idmed);
-        espec = medico.getEspecialidade();
-        crm = medico.getCrm();
+        Medico medico=servicosMedico.getMedico(idmed);
+        String espec=medico.getEspecialidade();
+        String crm=medico.getCrm();
         final long idUserMed = medico.getIdUsuario();
-        pessoaMed = servicosPessoa.searchPessoaByIdUsuario(idUserMed);
-        nomemed = pessoaMed.getNome();
+        Pessoa pessoaMed=servicosPessoa.searchPessoaByIdUsuario(idUserMed);
+        String nomemed=pessoaMed.getNome();
 
         final long idpac = consulta.getIdPaciente();
-        paciente = servicosPaciente.getPacienteById(idpac);
+        Paciente paciente=servicosPaciente.getPacienteById(idpac);
         final long idUserPac = paciente.getIdUsuario();
-        pessoaPac = servicosPessoa.searchPessoaByIdUsuario(idUserPac);
-        nomepac = pessoaPac.getNome();
+        Pessoa pessoaPac=servicosPessoa.searchPessoaByIdUsuario(idUserPac);
+        String nomepac=pessoaPac.getNome();
 
-        turnoCons = findViewById(R.id.turnoD);
-        dataCons = findViewById(R.id.dataD);
+        TextView turnoCons=findViewById(R.id.turnoD);
+        TextView dataCons=findViewById(R.id.dataD);
 
-        nomeMed = findViewById(R.id.medD);
-        especMed = findViewById(R.id.especMedD);
-        crmMed = findViewById(R.id.crmMedD);
+        TextView nomeMed=findViewById(R.id.medD);
+        TextView especMed=findViewById(R.id.especMedD);
+        TextView crmMed=findViewById(R.id.crmMedD);
 
-        nomePac = findViewById(R.id.pacD);
+        TextView nomePac=findViewById(R.id.pacD);
 
         dataCons.setText("Data: " + data);
         turnoCons.setText("Turno: " + turno);

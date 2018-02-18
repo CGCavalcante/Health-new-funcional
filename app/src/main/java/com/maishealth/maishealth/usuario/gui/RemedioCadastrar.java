@@ -50,16 +50,16 @@ public class RemedioCadastrar extends AppCompatActivity {
         if (validaCadastro.isCampoVazio(nomeRemedioString)  && validaCadastro.isCampoVazio(fornecedorString))
         {
             nomeRemedio.requestFocus();
-            nomeRemedio.setError("Campo obrigatório!");
+            nomeRemedio.setError(getString(R.string.campo_obrigatorio));
             fornecedor.requestFocus();
-            fornecedor.setError("Campo obrigatório!");
+            fornecedor.setError(getString(R.string.campo_obrigatorio));
             valido = false;
         }
 
         if (validaCadastro.isCampoVazio(nomeRemedioString)){
 
             nomeRemedio.requestFocus();
-            nomeRemedio.setError("Campo obrigatório!");
+            nomeRemedio.setError(getString(R.string.campo_obrigatorio));
             valido = false;
 
         }
@@ -67,7 +67,7 @@ public class RemedioCadastrar extends AppCompatActivity {
         if (validaCadastro.isCampoVazio(fornecedorString)){
 
             fornecedor.requestFocus();
-            fornecedor.setError("Campo obrigatório!");
+            fornecedor.setError(getString(R.string.campo_obrigatorio));
             valido = false;
 
         }

@@ -14,7 +14,7 @@
         android:background="@color/colorButoes"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="Conssultas"
+        app:title="Consultas"
         app:titleTextColor="@color/colorFundo" />
 
     <ListView

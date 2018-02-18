@@ -193,6 +193,7 @@
     <string name="cancelar_consulta">Cancelar Consulta</string>
     <string name="nome_do_medicamento">Nome do Medicamento</string>
     <string name="fornecedor_do_medicamento">Fornecedor do Medicamento</string>
+    <string name="campo_obrigatorio">Campo obrigatório!</string>
 
 
 </resources>

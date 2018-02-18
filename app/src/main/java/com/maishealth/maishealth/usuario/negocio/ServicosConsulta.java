@@ -34,8 +34,6 @@ public class ServicosConsulta {
     private MedicoDAO medicoDAO;
     private ServicosPessoa servicosPessoa;
     private SharedPreferences sharedPreferences;
-    private long idMedico;
-    private long idPaciente;
 
     public ServicosConsulta(Context context) {
         consultaDAO = new ConsultaDAO(context);
@@ -52,25 +50,13 @@ public class ServicosConsulta {
         consultaDAO.inserirConsulta(consulta);
     }
 
-    public void cadastrarConsulta (long idMedico, String data, String turno){
+    private void cadastrarConsulta(long idMedico, String data, String turno){
         Consulta consulta = new Consulta();
         consulta.setTurno(turno);
         consulta.setData(data);
         consulta.setIdMedico(idMedico);
         consulta.setStatus(EnumStatusConsulta.DISPONIVEL.toString());
         cadastrarConsulta(consulta);
-    }
-
-    public void atualizarConsulta (long idMedico, String data, String turno ,long idPaciente){
-        Consulta consulta = consultaDAO.getConsultaDisponivel(idMedico, data, turno);
-        if (consulta != null){
-            consulta.setTurno(turno);
-            consulta.setData(data);
-            consulta.setIdMedico(idMedico);
-            consulta.setIdPaciente(idPaciente);
-            consulta.setStatus(EnumStatusConsulta.EMANDAMENTO.toString());
-            consultaDAO.atualizarConsulta(consulta);
-        }
     }
 
     public void gerarConsultas(long idMedico, String turno, String data, String diaSemana){
@@ -188,9 +174,8 @@ public class ServicosConsulta {
     }
 
     public Consulta getConsultaById(long idcons) {
-        Consulta consulta = consultaDAO.getConsulta(idcons);
 
-        return consulta;
+        return consultaDAO.getConsulta(idcons);
     }
 
     public void  concluirConsulta(long idConsulta){
@@ -202,10 +187,12 @@ public class ServicosConsulta {
         }
     }
 
-    public void cancelarConsulta(long idConsulta){
-        Consulta consulta = consultaDAO.getConsulta(idConsulta);
-        if(consulta != null) {
-            consultaDAO.deleteConsulta(idConsulta);
+    public void verificaGerarConsultas(long idmedico, String turno, String data, String diaSemana){
+        // gera consultas para o dia selecionado pelo paciente
+        // caso a data e turno selecionados não estejam no banco
+        Consulta verificaConsulta  =  getConsulta(idmedico, turno, data);
+        if (verificaConsulta == null) {
+            gerarConsultas(idmedico, turno, data, diaSemana);
         }
     }
 

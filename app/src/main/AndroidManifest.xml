@@ -39,10 +39,6 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".usuario.gui.Cadastrar" />
         <activity android:name=".usuario.gui.MenuPaciente" />
-        <activity android:name=".usuario.gui.MeuHistoricoActivity" />
-        <activity
-            android:name=".usuario.gui.ConsultasPendentesActivity"
-            android:label="@string/label_consultas_pendentes" />
         <activity
             android:name=".usuario.gui.AcharPostoActivity"
             android:label="@string/label_mapa_dos_postos" />
@@ -50,21 +46,6 @@
         <activity
             android:name=".usuario.gui.AtualizarPerfilActivity"
             android:label="@string/label_atualizar_perfil" />
-        <activity
-            android:name=".usuario.gui.ConfirmarConsulta"
-            android:label="@string/label_confirmar_consulta" />
-        <activity
-            android:name=".usuario.gui.ConsultaAtualMedActivity"
-            android:label="@string/label_consulta_atual" />
-        <activity
-            android:name=".usuario.gui.ConsultaEscolhidaActivity"
-            android:label="@string/label_consulta_escolhida" />
-        <activity
-            android:name=".usuario.gui.EscolherDiaDaConsultaActivity"
-            android:label="@string/label_escolher_dia_da_consulta" />
-        <activity
-            android:name=".usuario.gui.ListaDeConsultasParaMedicoActivity"
-            android:label="@string/label_lista_consultas_medico" />
         <activity android:name=".usuario.gui.HorarioMedicoAct" />
         <activity android:name=".usuario.gui.CalendarioDialog" />
         <activity android:name=".usuario.gui.SetarHorario" />

@@ -1,22 +1,16 @@
 package com.maishealth.maishealth.usuario.gui;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maishealth.maishealth.R;
-import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.Medico;
 import com.maishealth.maishealth.usuario.dominio.Paciente;
@@ -27,75 +21,53 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPaciente;
 import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 
 public class DetalhesConsPac extends AppCompatActivity {
-    AlertDialog aviso;
 
-    private String idConsS;
     private long idconsLong;
-    private ServicosMedico servicosMedico;
-    private ServicosPessoa servicosPessoa;
-    private ServicosConsulta servicosConsulta;
     private ServicosPaciente servicosPaciente;
 
     private Consulta consulta;
-    private TextView dataCons;
-    private TextView turnoCons;
-    private String data;
-    private String turno;
 
-    private Medico medico;
-    private Pessoa pessoaMed;
-    private String nomemed;
-    private String espec;
-    private String crm;
-    private TextView nomeMed;
-    private TextView especMed;
-    private TextView crmMed;
-
-    private Paciente paciente;
-    private Pessoa pessoaPac;
-    private String nomepac;
-    private TextView nomePac;
-
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_cons_pac);
 
         Intent intent = getIntent();
-        idConsS = intent.getStringExtra("idCons");
+        String idConsS=intent.getStringExtra("idCons");
         idconsLong = Long.parseLong(idConsS);
 
-        servicosMedico = new ServicosMedico(getApplicationContext());
-        servicosPessoa = new ServicosPessoa(getApplicationContext());
-        servicosConsulta = new ServicosConsulta(getApplicationContext());
+        ServicosMedico servicosMedico=new ServicosMedico(getApplicationContext());
+        ServicosPessoa servicosPessoa=new ServicosPessoa(getApplicationContext());
+        ServicosConsulta servicosConsulta=new ServicosConsulta(getApplicationContext());
         servicosPaciente = new ServicosPaciente(getApplicationContext());
 
         consulta = servicosConsulta.getConsultaById(idconsLong);
-        turno = consulta.getTurno();
-        data = consulta.getData();
+        String turno=consulta.getTurno();
+        String data=consulta.getData();
 
         final long idmed = consulta.getIdMedico();
-        medico = servicosMedico.getMedico(idmed);
-        espec = medico.getEspecialidade();
-        crm = medico.getCrm();
+        Medico medico=servicosMedico.getMedico(idmed);
+        String espec=medico.getEspecialidade();
+        String crm=medico.getCrm();
         final long idUserMed = medico.getIdUsuario();
-        pessoaMed = servicosPessoa.searchPessoaByIdUsuario(idUserMed);
-        nomemed = pessoaMed.getNome();
+        Pessoa pessoaMed=servicosPessoa.searchPessoaByIdUsuario(idUserMed);
+        String nomemed=pessoaMed.getNome();
 
         final long idpac = consulta.getIdPaciente();
-        paciente = servicosPaciente.getPacienteById(idpac);
+        Paciente paciente=servicosPaciente.getPacienteById(idpac);
         final long idUserPac = paciente.getIdUsuario();
-        pessoaPac = servicosPessoa.searchPessoaByIdUsuario(idUserPac);
-        nomepac = pessoaPac.getNome();
+        Pessoa pessoaPac=servicosPessoa.searchPessoaByIdUsuario(idUserPac);
+        String nomepac=pessoaPac.getNome();
 
-        turnoCons = findViewById(R.id.turnoEA);
-        dataCons = findViewById(R.id.dataEA);
+        TextView turnoCons=findViewById(R.id.turnoEA);
+        TextView dataCons=findViewById(R.id.dataEA);
 
-        nomeMed = findViewById(R.id.medEA);
-        especMed = findViewById(R.id.especMedEA);
-        crmMed = findViewById(R.id.crmMedEA);
+        TextView nomeMed=findViewById(R.id.medEA);
+        TextView especMed=findViewById(R.id.especMedEA);
+        TextView crmMed=findViewById(R.id.crmMedEA);
 
-        nomePac = findViewById(R.id.pacEA);
+        TextView nomePac=findViewById(R.id.pacEA);
 
         dataCons.setText("Data: " + data);
         turnoCons.setText("Turno: " + turno);
@@ -138,8 +110,6 @@ public class DetalhesConsPac extends AppCompatActivity {
 
         builder.setPositiveButton("Não", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
-                /**Toast.makeText(DetalhesConsPac.this, "", Toast.LENGTH_SHORT).show();*/
-
             }
         });
         builder.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
@@ -150,7 +120,7 @@ public class DetalhesConsPac extends AppCompatActivity {
                 sairConsPac(view);
             }
         });
-        aviso = builder.create();
+        AlertDialog aviso=builder.create();
         aviso.show();
     }
 

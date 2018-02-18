@@ -88,13 +88,18 @@ public class AvaliacaoDAO {
 
          String colunaNota = DataBase.NOTA;
          int indexColunaNota = cursor.getColumnIndex(colunaNota);
-        double nota = cursor.getDouble(indexColunaNota);
+         double nota = cursor.getDouble(indexColunaNota);
+
+        String colunaIdRecomendacao = DataBase.ID_RECOMENDACAO;
+        int indexColunaIdRecomendacao = cursor.getColumnIndex(colunaIdRecomendacao);
+        long idRecomendacao = cursor.getInt(indexColunaIdRecomendacao);
 
         Avaliacao avaliacao = new Avaliacao();
 
         avaliacao.setIdPaciente(idPaciente);
         avaliacao.setIdMedico(idMedico);
         avaliacao.setNota(nota);
+        avaliacao.setId(idRecomendacao);
 
         return avaliacao;
      }

@@ -1,5 +1,6 @@
 package com.maishealth.maishealth.usuario.gui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,33 +24,11 @@ import com.maishealth.maishealth.usuario.negocio.ServicosPessoa;
 import com.maishealth.maishealth.usuario.negocio.ServicosAvaliacao;
 
 public class DetalhesHistPac extends AppCompatActivity {
-    public RatingBar estrelinha;
-    private String idConsS;
-    private ServicosMedico servicosMedico;
-    private ServicosPessoa servicosPessoa;
-    private ServicosConsulta servicosConsulta;
-    private ServicosPaciente servicosPaciente;
-    private Consulta consulta;
-    private TextView dataCons;
-    private TextView turnoCons;
-    private String data;
-    private String turno;
-    private Medico medico;
-    private Pessoa pessoaMed;
-    private String nomemed;
-    private String espec;
-    private String crm;
-    private TextView nomeMed;
-    private TextView especMed;
-    private TextView crmMed;
-    private Paciente paciente;
-    private Pessoa pessoaPac;
-    private String nomepac;
-    private TextView nomePac;
-    private ImageView confirmarAvaliacao;
+    private RatingBar estrelinha;
     private long idMed;
     private long idPac;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,40 +36,40 @@ public class DetalhesHistPac extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        idConsS = intent.getStringExtra("idCons");
+        String idConsS=intent.getStringExtra("idCons");
         final long idcons = Long.parseLong(idConsS);
 
-        servicosMedico = new ServicosMedico(getApplicationContext());
-        servicosPessoa = new ServicosPessoa(getApplicationContext());
-        servicosConsulta = new ServicosConsulta(getApplicationContext());
-        servicosPaciente = new ServicosPaciente(getApplicationContext());
+        ServicosMedico servicosMedico=new ServicosMedico(getApplicationContext());
+        ServicosPessoa servicosPessoa=new ServicosPessoa(getApplicationContext());
+        ServicosConsulta servicosConsulta=new ServicosConsulta(getApplicationContext());
+        ServicosPaciente servicosPaciente=new ServicosPaciente(getApplicationContext());
 
-        consulta = servicosConsulta.getConsultaById(idcons);
-        turno = consulta.getTurno();
-        data = consulta.getData();
+        Consulta consulta=servicosConsulta.getConsultaById(idcons);
+        String turno=consulta.getTurno();
+        String data=consulta.getData();
 
         idMed = consulta.getIdMedico();
-        medico = servicosMedico.getMedico(idMed);
-        espec = medico.getEspecialidade();
-        crm = medico.getCrm();
+        Medico medico=servicosMedico.getMedico(idMed);
+        String espec=medico.getEspecialidade();
+        String crm=medico.getCrm();
         final long idUserMed = medico.getIdUsuario();
-        pessoaMed = servicosPessoa.searchPessoaByIdUsuario(idUserMed);
-        nomemed = pessoaMed.getNome();
+        Pessoa pessoaMed=servicosPessoa.searchPessoaByIdUsuario(idUserMed);
+        String nomemed=pessoaMed.getNome();
 
         idPac = consulta.getIdPaciente();
-        paciente = servicosPaciente.getPacienteById(idPac);
+        Paciente paciente=servicosPaciente.getPacienteById(idPac);
         final long idUserPac = paciente.getIdUsuario();
-        pessoaPac = servicosPessoa.searchPessoaByIdUsuario(idUserPac);
-        nomepac = pessoaPac.getNome();
+        Pessoa pessoaPac=servicosPessoa.searchPessoaByIdUsuario(idUserPac);
+        String nomepac=pessoaPac.getNome();
 
-        turnoCons = findViewById(R.id.turnoH);
-        dataCons = findViewById(R.id.dataH);
+        TextView turnoCons=findViewById(R.id.turnoH);
+        TextView dataCons=findViewById(R.id.dataH);
 
-        nomeMed = findViewById(R.id.medH);
-        especMed = findViewById(R.id.especMedH);
-        crmMed = findViewById(R.id.crmMedH);
+        TextView nomeMed=findViewById(R.id.medH);
+        TextView especMed=findViewById(R.id.especMedH);
+        TextView crmMed=findViewById(R.id.crmMedH);
 
-        nomePac = findViewById(R.id.pacH);
+        TextView nomePac=findViewById(R.id.pacH);
 
         dataCons.setText("Data: " + data);
         turnoCons.setText("Turno: " + turno);
@@ -105,7 +84,7 @@ public class DetalhesHistPac extends AppCompatActivity {
         addListenerOnButton();
     }
 
-    public void addListenerOnRatingBar() {
+    private void addListenerOnRatingBar() {
         estrelinha = findViewById(R.id.estrelinha);
         final TextView txtValorAvaliacao = findViewById(R.id.exemplo);
 
@@ -118,9 +97,8 @@ public class DetalhesHistPac extends AppCompatActivity {
         });
     }
 
-    public void addListenerOnButton() {
+    private void addListenerOnButton() {
         estrelinha =findViewById(R.id.estrelinha);
-        confirmarAvaliacao = findViewById(R.id.confirmarAvaliacao);
 
     }
 
@@ -131,12 +109,30 @@ public class DetalhesHistPac extends AppCompatActivity {
         int valor =(int) estrelinha.getRating();
 
         ServicosAvaliacao servicosAvaliacao = new ServicosAvaliacao(getApplicationContext());
-        Avaliacao verificaAvaliacao = servicosAvaliacao.getRecomendacao(idMed, idPac);
+        Avaliacao verificaAvaliacao;
+        verificaAvaliacao=servicosAvaliacao.getRecomendacao(idMed, idPac);
 
         if (verificaAvaliacao == null) {
-            servicosAvaliacao.criarRecomendacao(idMed, valor);
-            GuiUtil.myToast(DetalhesHistPac.this, "Obrigado por avaliar!");
+            insereAvaliacao(valor);
+        }else {
+            atualiazarAvaliacao(valor, verificaAvaliacao);
         }
+    }
+    public void insereAvaliacao(double valor){
+        ServicosAvaliacao servicosAvaliacao = new ServicosAvaliacao(this);
+        servicosAvaliacao.criarRecomendacao(idMed, valor);
+        GuiUtil.myToast(this, "Obrigado por avaliar!");
+    }
+
+    public void atualiazarAvaliacao(double valor, Avaliacao verificaAvaliacao){
+        ServicosAvaliacao servicosAvaliacao = new ServicosAvaliacao(this);
+        Avaliacao avaliacao = new Avaliacao();
+        avaliacao.setNota(valor);
+        avaliacao.setId(verificaAvaliacao.getId());
+        avaliacao.setIdMedico(verificaAvaliacao.getIdMedico());
+        avaliacao.setIdPaciente(verificaAvaliacao.getIdPaciente());
+        servicosAvaliacao.atualizarRecomendacao(avaliacao);
+        GuiUtil.myToast(this, "Avaliação atualizada com sucesso!\nObrigado por avaliar!");
     }
 
     private void mudarTela(Class tela) {
