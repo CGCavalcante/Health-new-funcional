@@ -3,6 +3,7 @@ package com.maishealth.maishealth.usuario.negocio;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.maishealth.maishealth.infra.GuiUtil;
 import com.maishealth.maishealth.usuario.dominio.Consulta;
 import com.maishealth.maishealth.usuario.dominio.EnumStatusConsulta;
 import com.maishealth.maishealth.usuario.dominio.HorarioMedico;
@@ -46,9 +47,10 @@ public class ServicosMedico {
         return horarioMedicoDAO.inserirHorarioMedico(horarioMedico);
     }
 
-    public void criarHorario(String dia, String turno, long vagas) throws Exception {
+    public void criarHorario(String dia, String turno, long vagas)  {
         long idMedico = 0;
         Medico medico = medicoDAO.getMedico(sharedPreferences.getLong(ID_MEDICO_PREFERENCES, idMedico));
+        idMedico = medico.getId();
         HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(medico.getId(), dia,turno);
 
         if (horarioMedico == null) {
@@ -59,7 +61,8 @@ public class ServicosMedico {
             horarioMedicoIns.setDiaSemana(dia);
             criarHorario(horarioMedicoIns);
         }else {
-            throw new Exception("Horário já cadastrado!");
+            horarioMedico.setVagas(vagas);
+            atualizarHorario(horarioMedico);
         }
     }
 
@@ -67,19 +70,11 @@ public class ServicosMedico {
         return horarioMedicoDAO.atualizaHorarioMedico(horarioMedico);
     }
 
-    public void atualizarHorario(Long idMedico, String dia, String turno, long vagas) throws Exception {
-
-        HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(idMedico, dia, turno);
-
-        if (horarioMedico == null) {
-            throw new Exception("Horário não existe no sistema");
-        } else {
-            horarioMedico.setIdMedico(idMedico);
-            horarioMedico.setTurno(turno);
-            horarioMedico.setVagas(vagas);
-            horarioMedico.setDiaSemana(dia);
-            atualizarHorario(horarioMedico);
-        }
+    public HorarioMedico getHorarioMedico(String dia, String turno){
+        long idMedico = 0;
+        Medico medico = medicoDAO.getMedico(sharedPreferences.getLong(ID_MEDICO_PREFERENCES, idMedico));
+        HorarioMedico horarioMedico = horarioMedicoDAO.getHorarioMedico(medico.getId(), dia,turno);
+        return horarioMedico;
     }
 
     public Medico getMedico(long id) {

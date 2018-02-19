@@ -194,6 +194,13 @@
     <string name="nome_do_medicamento">Nome do Medicamento</string>
     <string name="fornecedor_do_medicamento">Fornecedor do Medicamento</string>
     <string name="campo_obrigatorio">Campo obrigatório!</string>
+    <string name="campo_nao_preechido">Campo não preechido</string>
+    <string name="manha">Manhã</string>
+    <string name="tarde">Tarde</string>
+    <string name="noite">Noite</string>
+    <string name="horario_inserido_com_sucesso">Horário inserido com sucesso!</string>
+    <string name="horario_atualizado">Horário Atualizado!</string>
+    <string name="por_favar_checkbox">Por Favor marque o checkbox que do horario que deseja atualizar!</string>
 
 
 </resources>
