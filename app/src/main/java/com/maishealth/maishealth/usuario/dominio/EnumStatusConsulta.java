@@ -1,6 +1,7 @@
 package com.maishealth.maishealth.usuario.dominio;
-
-
+/**
+ * Enum de Status da Consulta para controlar as consultas
+ */
 public enum EnumStatusConsulta {
 
     EMANDAMENTO("Em Andamento"),

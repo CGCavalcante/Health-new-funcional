@@ -30,7 +30,6 @@ public class ListaHistPac extends AppCompatActivity {
 
         lista = findViewById(R.id.lsthistPac);
         listaCons = preencher();
-        GuiUtil.myToast(getApplicationContext(), "tamanho:" + listaCons.size());
 
         AdpConsPac adp = new AdpConsPac(getApplicationContext(), listaCons);
         lista.setAdapter(adp);

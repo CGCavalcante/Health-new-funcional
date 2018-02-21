@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_MEDICO_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
+/**
+ * Classe responsável pelos serviços do Medico
+ */
 
 public class ServicosMedico {
     private MedicoDAO medicoDAO;

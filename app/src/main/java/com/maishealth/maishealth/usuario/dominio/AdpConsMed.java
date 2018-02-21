@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.maishealth.maishealth.R;
 
 import java.util.List;
+/**
+ * Classe responsável por adptar os dados para listview das consultas para o médico
+ */
 
 public class AdpConsMed extends BaseAdapter {
     private Context context;

@@ -5,6 +5,9 @@ import android.content.Context;
 
 import com.maishealth.maishealth.usuario.dominio.Pessoa;
 import com.maishealth.maishealth.usuario.persistencia.PessoaDAO;
+/**
+ * Classe responsável pelos serviços de pessoa
+ */
 
 public class ServicosPessoa {
     private PessoaDAO pessoaDAO;

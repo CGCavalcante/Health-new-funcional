@@ -4,6 +4,9 @@ import android.text.TextUtils;
 import android.util.Patterns;
 
 import com.maishealth.maishealth.infra.FormataData;
+/**
+ * Classe responsável pelos serviços de validações de campo e datas
+ */
 
 @SuppressWarnings({"FieldCanBeLocal", "BooleanMethodIsAlwaysInverted"})
 public class ValidaCadastro {

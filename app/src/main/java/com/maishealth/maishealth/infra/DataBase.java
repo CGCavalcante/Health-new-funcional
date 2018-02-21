@@ -27,7 +27,7 @@ public class DataBase extends SQLiteOpenHelper {
     public static final String PESSOA_DATANASC = "data_nasc";
     public static final String CPF = "cpf";
     public static final String ID_EST_USUARIO_PE = "id_est_usuario";
-    // TABELA USUÁRIO
+    // TABELA USUARIO
     public static final String TABELA_USUARIO = "usuario";
     public static final String ID_USUARIO = "id_usuario";
     public static final String USUARIO_EMAIL = "email";

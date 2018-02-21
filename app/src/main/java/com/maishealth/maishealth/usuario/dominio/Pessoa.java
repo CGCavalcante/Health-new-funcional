@@ -1,4 +1,8 @@
 package com.maishealth.maishealth.usuario.dominio;
+/**
+ * Classe com sets e gets dos atributos da Pessoa
+ * objeto Pessoa
+ */
 
 public class Pessoa {
     private long id;

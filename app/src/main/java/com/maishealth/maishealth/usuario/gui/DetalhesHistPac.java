@@ -103,9 +103,6 @@ public class DetalhesHistPac extends AppCompatActivity {
     }
 
     public void confirmarAvaliacao(View view){
-        Toast.makeText(DetalhesHistPac.this,
-                String.valueOf(estrelinha.getRating()),
-                Toast.LENGTH_SHORT).show();
         int valor =(int) estrelinha.getRating();
 
         ServicosAvaliacao servicosAvaliacao = new ServicosAvaliacao(getApplicationContext());

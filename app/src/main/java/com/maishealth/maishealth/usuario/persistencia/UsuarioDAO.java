@@ -16,7 +16,7 @@ public class UsuarioDAO {
         dataBaseHelper = new DataBase(context);
     }
 
-    public long inserirUsuário(Usuario usuario){
+    public long inserirUsuario(Usuario usuario){
         liteDatabase = dataBaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 

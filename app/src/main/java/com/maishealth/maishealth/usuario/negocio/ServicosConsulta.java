@@ -25,6 +25,9 @@ import java.util.Calendar;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_MEDICO_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACIENTE_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
+/**
+ * Classe responsável pelos serviços de consulta
+ */
 
 public class ServicosConsulta {
 

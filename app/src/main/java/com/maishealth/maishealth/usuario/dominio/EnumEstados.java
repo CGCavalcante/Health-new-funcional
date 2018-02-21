@@ -1,4 +1,7 @@
 package com.maishealth.maishealth.usuario.dominio;
+/**
+ * Enum dos estados para CRM do médico
+ */
 
 public enum EnumEstados {
     ACRE("AC"), ALAGOAS("AL"), AMAPA("AP"), AMAZONAS("AM"), BAHIA("BA"), CEARA("CE"),

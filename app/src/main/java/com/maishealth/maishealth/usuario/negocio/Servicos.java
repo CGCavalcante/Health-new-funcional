@@ -21,7 +21,9 @@ import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.IS_MEDI
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.LOGIN_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.PASSWORD_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
-
+/**
+ * Classe responsável pelos serviços de cadastro
+ */
 
 public class Servicos {
     private UsuarioDAO usuarioDAO;

@@ -11,6 +11,10 @@ import com.maishealth.maishealth.R;
 
 import java.util.List;
 
+/**
+ * Classe responsável por adptar os dados para listview lista de medicamentos
+ */
+
 public class RemedioAdaptador extends BaseAdapter {
     Context context;
     List<RemedioDados> remedios;

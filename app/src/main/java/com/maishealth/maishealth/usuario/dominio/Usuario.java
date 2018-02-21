@@ -1,5 +1,8 @@
 package com.maishealth.maishealth.usuario.dominio;
-
+/**
+ * Classe com sets e gets dos atributos do Usuario
+ * objeto  Usuario
+ */
 public class Usuario {
     private long id;
     private String email;

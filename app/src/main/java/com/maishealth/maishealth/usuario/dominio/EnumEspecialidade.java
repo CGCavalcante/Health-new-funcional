@@ -1,4 +1,7 @@
 package com.maishealth.maishealth.usuario.dominio;
+/**
+ * Enum de especialidades para cadastro do médico e marcação de consulta
+ */
 
 public enum EnumEspecialidade {
     CARDIOLOGIA("Cardiologia"),CLINICOGERAL("Clinico Geral"),DERMATOLOGIA("Dermatologia"),GASTROENTEROLOGIA("Gastroenterologia"),

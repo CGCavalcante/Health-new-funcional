@@ -54,7 +54,6 @@ public class RemedioDetalhes extends AppCompatActivity {
 
         builder.setPositiveButton("Não", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
-                /**Toast.makeText(DetalhesConsPac.this, "", Toast.LENGTH_SHORT).show();*/
 
             }
         });

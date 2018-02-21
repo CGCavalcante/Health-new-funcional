@@ -8,6 +8,9 @@ import com.maishealth.maishealth.usuario.dominio.RemedioDados;
 import com.maishealth.maishealth.usuario.persistencia.MedicamentoDAO;
 
 import java.util.ArrayList;
+/**
+ * Classe responsável pelos serviços de Medicamentos
+ */
 
 public class ServicosMedicamento {
     private final MedicamentoDAO medicamentoDAO;

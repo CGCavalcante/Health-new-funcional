@@ -16,6 +16,9 @@ import java.util.List;
 
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_PACIENTE_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
+/**
+ * Classe responsável pelos serviços de Avaliação
+ */
 
 public class ServicosAvaliacao {
     private PacienteDAO pacienteDAO;

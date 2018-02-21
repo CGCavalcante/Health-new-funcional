@@ -18,9 +18,8 @@ import com.maishealth.maishealth.usuario.persistencia.UsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 /**
- * Created by Wenderson de Souza on 31/01/2018.
+ * Classe responsável pelos serviços de Posto
  */
 
 public class ServicosPosto {

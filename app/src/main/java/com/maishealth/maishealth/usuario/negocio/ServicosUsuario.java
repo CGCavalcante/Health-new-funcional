@@ -12,6 +12,9 @@ import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.ID_USER
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.LOGIN_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.PASSWORD_PREFERENCES;
 import static com.maishealth.maishealth.infra.ConstanteSharedPreferences.TITLE_PREFERENCES;
+/**
+ * Classe responsável pelos serviços de usuário
+ */
 
 public class ServicosUsuario {
     private UsuarioDAO usuarioDAO;
@@ -23,7 +26,7 @@ public class ServicosUsuario {
     }
 
     private long cadastrarUsuario(Usuario usuario){
-        return usuarioDAO.inserirUsuário(usuario);
+        return usuarioDAO.inserirUsuario(usuario);
     }
 
     public long cadastrarUsuario(String email, String senha) {

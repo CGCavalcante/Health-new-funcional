@@ -12,7 +12,9 @@ import com.maishealth.maishealth.R;
 import com.maishealth.maishealth.usuario.dominio.DadosMedico;
 
 import java.util.List;
-
+/**
+ * Classe responsável por adptar os dados para listview listaMedicos
+ */
 public class Adaptador extends BaseAdapter {
 
     Context contexto;

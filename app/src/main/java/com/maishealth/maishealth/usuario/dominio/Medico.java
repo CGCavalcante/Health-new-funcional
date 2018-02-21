@@ -1,5 +1,8 @@
 package com.maishealth.maishealth.usuario.dominio;
-
+/**
+ * Classe com sets e gets dos atributos da Medico
+ * objeto Medico
+ */
 public class Medico {
     private long id;
     private String crm; //Talvez um int ou long seja melhor

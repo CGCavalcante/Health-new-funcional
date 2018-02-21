@@ -1,5 +1,7 @@
 package com.maishealth.maishealth.usuario.dominio;
-
+/**
+ * Enum de Tipo Sanguineo para cadastro
+ */
 public enum EnumTipoSangue {
     NAOSABE("Não sei"), APOSITIVO("A+"), ANEGATIVO("A-"), BPOSITIVO("B+"), BNEGATIVO("B-"),
     ABPOSITIVO("AB+"), ABNEGATIVO("AB-"), OPOSITIVO("O+"), ONEGATIVO("O-");

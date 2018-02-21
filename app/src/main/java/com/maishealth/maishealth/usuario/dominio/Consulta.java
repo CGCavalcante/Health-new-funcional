@@ -1,6 +1,8 @@
 package com.maishealth.maishealth.usuario.dominio;
-
-
+/**
+ * Classe com sets e gets dos atributos da Consulta
+ * objeto Consulta
+ */
 public class Consulta {
     private long idPaciente;
     private long idMedico;

@@ -35,7 +35,6 @@ public class ListaConsMed extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DadosConsMed consMed = (DadosConsMed) parent.getItemAtPosition(position);
 
-                GuiUtil.myToast(getApplicationContext(), "idCons:" + consMed.getIdCons());
 
                 Intent intent = new Intent(getApplicationContext(), DetalhesConsMed.class);
                 String idCons = Long.toString(consMed.getIdCons());
